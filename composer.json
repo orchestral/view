@@ -8,20 +8,26 @@
 			"email": "crynobone@gmail.com"
 		}
 	],
+	"autoload": {
+		"psr-0": { 
+			"Orchestra\\View" : "src/" 
+		}
+	},
 	"require": {
 		"php": ">=5.3.3",
-		"illuminate/support": "4.0.*@dev"
+		"orchestra/support": "2.0.*"
 	},
 	"require-dev": {
+		"illuminate/view": "4.0.*",
 		"mockery/mockery": "0.8.0"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/view component outside of Orchestra Platform",
 		"orchestra/foundation": "Allow using orchestra/view with Orchestra Platform"
 	},
-	"autoload": {
-		"psr-0": { 
-			"Orchestra\\View" : "src/" 
+	"extra": {
+		"branch-alias": {
+			"dev-master": "2.0.x-dev"
 		}
 	},
 	"minimum-stability": "dev"
