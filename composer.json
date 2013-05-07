@@ -18,8 +18,8 @@
 		"orchestra/support": "2.0.*"
 	},
 	"require-dev": {
-		"illuminate/view": "4.0.*",
-		"mockery/mockery": "0.8.0"
+		"mockery/mockery": "0.8.0",
+		"illuminate/view": "4.0.*"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/view component outside of Orchestra Platform",
