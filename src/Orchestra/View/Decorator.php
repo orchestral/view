@@ -24,6 +24,24 @@ class Decorator {
 	}
 
 	/**
+	 * Render the macro.
+	 *
+	 * @access public	
+	 * @param  string   $name
+	 * @param  array    $data
+	 * @return mixed
+	 */
+	public function render($name, $data = null)
+	{
+		if (isset($this->macros[$name]))
+		{
+			return call_user_func($this->macros[$name], $data);
+		}
+
+		throw new BadMethodCallException("Method [$name] does not exist.");
+	}
+
+	/**
 	 * Dynamically handle calls to custom macros.
 	 *
 	 * @access public
@@ -33,11 +51,8 @@ class Decorator {
 	 */
 	public function __call($method, $parameters)
 	{
-		if (isset($this->macros[$method]))
-		{
-			return call_user_func_array($this->macros[$method], $parameters);
-		}
+		array_unshift($parameters, $method);
 
-		throw new BadMethodCallException("Method [$method] does not exist.");
+		return call_user_func_array(array($this, 'render'), $parameters);
 	}
 }
