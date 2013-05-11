@@ -20,4 +20,28 @@ class FileViewFinder extends \Illuminate\View\FileViewFinder {
 
 		return $this->findInPaths($view, array_merge($paths, $this->hints[$namespace]));
 	}
+
+	/**
+	 * Find the given view in the list of paths.
+	 *
+	 * @param  string  $name
+	 * @param  array   $paths
+	 * @return string
+	 */
+	protected function findInPaths($name, $paths)
+	{
+		if (starts_with('path: ', $name)) return substr($name, 6);
+
+		return parent::findInPaths($name, $paths);
+	}
+
+	/**
+	 * Set the active view paths.
+	 *
+	 * @return array
+	 */
+	public function setPaths($paths)
+	{
+		$this->paths = $paths;
+	}
 }

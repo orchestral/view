@@ -15,10 +15,11 @@
 	},
 	"require": {
 		"php": ">=5.3.3",
-		"orchestra/support": "2.0.*"
+		"orchestra/memory": "2.0.*"
 	},
 	"require-dev": {
 		"mockery/mockery": "0.8.0",
+		"illuminate/container": "4.0.*",
 		"illuminate/view": "4.0.*"
 	},
 	"suggest": {

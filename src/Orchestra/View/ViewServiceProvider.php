@@ -39,7 +39,7 @@ class ViewServiceProvider extends ServiceProvider {
 	{
 		$this->app['orchestra.theme'] = $this->app->share(function($app)
 		{
-			return new Theme\Environment;
+			return new Theme\ThemeManager($app);
 		});
 	}
 }
