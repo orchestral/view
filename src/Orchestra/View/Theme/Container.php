@@ -78,7 +78,7 @@ class Container {
 		$this->theme = $theme;
 		$viewFinder  = $this->app['view.finder'];
 
-		$paths = array($this->getThemePath()) + $viewFinder->getPaths());
+		$paths = array($this->getThemePath()) + $viewFinder->getPaths();
 		$viewFinder->setPaths($paths);
 	}
 
