@@ -24,14 +24,6 @@ class Container {
 	protected $theme = null;
 
 	/**
-	 * Themes aliases, allowing similar view to be mapped without having to
-	 * duplicate the physical file.
-	 *
-	 * @var array
-	 */
-	protected $aliases = array();
-
-	/**
 	 * Filesystem path of theme.
 	 *
 	 * @var string
@@ -85,7 +77,7 @@ class Container {
 		$this->theme = $theme;
 		$viewFinder  = $this->app['view.finder'];
 
-		$paths = array($this->getThemePath()) + $viewFinder->getPaths();
+		$paths = array_merge(array($this->getThemePath()), $viewFinder->getPaths());
 		$viewFinder->setPaths($paths);
 	}
 
@@ -149,21 +141,6 @@ class Container {
 	}
 
 	/**
-	 * Path helper for Theme
-	 *
-	 * @access public
-	 * @param  string   $file
-	 * @return string
-	 */
-	public function path($file = '')
-	{
-		// Check theme aliases if we already have registered aliases.
-		if (isset($this->aliases[$file])) return $this->aliases[$file];
-
-		return $file;
-	}
-
-	/**
 	 * URL helper for the theme.
 	 *
 	 * @access public
@@ -185,24 +162,5 @@ class Container {
 	public function asset($url = '')
 	{
 		return "{$this->relativeUrl}/{$this->theme}/{$url}";
-	}
-
-	/**
-	 * Map theme aliases, to allow a similar views to be map together without
-	 * make multiple file.
-	 *
-	 * @access public
-	 * @param  array    $aliases
-	 * @return void
-	 */
-	public function map($aliases)
-	{
-		foreach ((array) $aliases as $alias => $file)
-		{
-			if ( ! is_numeric($alias))
-			{
-				$this->aliases[$alias] = $this->parse($file);
-			}
-		}
 	}
 }

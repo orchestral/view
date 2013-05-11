@@ -40,7 +40,7 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase {
 		$app['url'] = $url = m::mock('Url');
 		$app['path.public'] = '/var/laravel/public';
 
-		$url->shouldReceive('base')->once()->andReturn('http://localhost/');
+		$url->shouldReceive('to')->once()->with('/')->andReturn('http://localhost/');
 
 		$stub = new ThemeManager($app);
 		$this->assertInstanceOf('\Orchestra\View\Theme\Container', $stub->driver());
