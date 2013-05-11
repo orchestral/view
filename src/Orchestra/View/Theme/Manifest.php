@@ -1,15 +1,16 @@
 <?php namespace Orchestra\View\Theme;
 
 use RuntimeException;
+use Illuminate\Filesystem\Filesystem;
 
 class Manifest {
 
 	/**
 	 * Application instance.
 	 *
-	 * @var Illuminate\Foundation\Application
+	 * @var Illuminate\Filesystem\Filesystem
 	 */
-	protected $app = null;
+	protected $files = null;
 	
 	/**
 	 * Theme configuration.
@@ -25,13 +26,13 @@ class Manifest {
 	 * @param  string   $path
 	 * @return void
 	 */
-	public function __construct($app, $path)
+	public function __construct(Filesystem $files, $path)
 	{
-		$this->app = $app;
+		$this->files = $files;
 
-		if ($app['files']->exists($manifest = "{$path}/theme.json"))
+		if ($files->exists($manifest = "{$path}/theme.json"))
 		{
-			$this->items = json_decode($app['files']->get($manifest));
+			$this->items = json_decode($files->get($manifest));
 
 			if (is_null($this->items))
 			{

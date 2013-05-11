@@ -46,4 +46,24 @@ class FileViewFinderTest extends \PHPUnit_Framework_TestCase {
 		$stub->addNamespace('foo/bar', '/path/vendor/foo/bar/views');
 		$this->assertEquals('/path/vendor/foo/bar/views/hello.php', $stub->find("foo/bar::hello"));
 	}
+
+	/**
+	 * Test Orchestra\View\FileViewFinder::setPaths() method.
+	 *
+	 * @test
+	 */
+	public function testSetPathsMethod()
+	{
+		$files = $this->files;
+		$stub  = new FileViewFinder($files, array('/path/theme/views', '/path/app/views'), array('php'));
+
+		$refl  = new \ReflectionObject($stub);
+		$paths = $refl->getProperty('paths');
+		$paths->setAccessible(true);
+
+		$expected = array('/path/orchestra/views');
+		$stub->setPaths($expected);
+
+		$this->assertEquals($expected, $paths->getValue($stub));
+	}
 }

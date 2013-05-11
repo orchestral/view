@@ -109,7 +109,7 @@ class Container {
 
 		if ($this->app['files']->isDirectory($themePath))
 		{
-			$manifest = new Manifest($this->app, $themePath);
+			$manifest = new Manifest($this->app['files'], $themePath);
 		}
 
 		// There might be situation where Orchestra Platform was unable 

@@ -44,16 +44,27 @@ class ContainerTest extends \PHPUnit_Framework_TestCase {
 	{
 		$app = $this->app;
 		$app['view.finder'] = $finder = m::mock('ViewFinder');
+		$app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
 
 		$finder->shouldReceive('getPaths')->once()->andReturn(array('/var/orchestra/app/views'))
 			->shouldReceive('setPaths')->once()->with(array(
 				'/var/orchestra/public/themes/default',
 				'/var/orchestra/app/views'
 			))->andReturn(null);
+		$files->shouldReceive('isDirectory')->once()->with('/var/orchestra/public/themes/default')->andReturn(true)
+			->shouldReceive('exists')->once()->with('/var/orchestra/public/themes/default/theme.json')->andReturn(true)
+			->shouldReceive('get')->once()->with('/var/orchestra/public/themes/default/theme.json')->andReturn('{"autoload":["start.php"]}')
+			->shouldReceive('requireOnce')->once()->with('/var/orchestra/public/themes/default/start.php')->andReturn(null);
 
 		$stub = new Container($app);
 		$stub->setTheme('default');
 
 		$this->assertEquals('default', $stub->getTheme());
+
+		$stub->boot();
+
+		$this->assertEquals("http://localhost/themes/default/foo", $stub->to('foo'));
+		$this->assertEquals("/themes/default/foo", $stub->asset('foo'));
+
 	}
 }
