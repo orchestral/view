@@ -8,6 +8,13 @@ class Container {
 	 * @var Illuminate\Foundation\Application
 	 */
 	protected $app = null;
+
+	/**
+	 * Booted indicator.
+	 *
+	 * @var boolean
+	 */
+	protected $booted = false;
 	
 	/**
 	 * Theme name.
@@ -58,7 +65,7 @@ class Container {
 	public function __construct($app)
 	{
 		$this->app  = $app;
-		$baseUrl    = $app['url']->base();
+		$baseUrl    = $app['url']->to('/');
 		$this->path = $app['path.public'].'/themes';
 
 		// Register relative and absolute URL for theme usage.
@@ -101,12 +108,16 @@ class Container {
 	 */
 	public function boot()
 	{
+		if ($this->booted) return;
+
+		$this->booted = true;
+
 		$themePath = $this->getThemePath();
 		$manifest  = null;
 
-		if ($app['files']->isDirectory($themePath))
+		if ($this->app['files']->isDirectory($themePath))
 		{
-			$manifest = new Manifest($this->app, $path);
+			$manifest = new Manifest($this->app, $themePath);
 		}
 
 		// There might be situation where Orchestra Platform was unable 
@@ -121,7 +132,7 @@ class Container {
 			foreach ($manifest->autoload as $file)
 			{
 				$file = ltrim($file, '/');
-				include_once "{$themePath}/{$file}";
+				$this->app['files']->requireOnce("{$themePath}/{$file}");
 			}
 		}
 	}

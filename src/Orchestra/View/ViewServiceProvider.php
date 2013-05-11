@@ -42,4 +42,27 @@ class ViewServiceProvider extends ServiceProvider {
 			return new Theme\ThemeManager($app);
 		});
 	}
+
+	/**
+	 * Bootstrap the application events.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		$app    = $this->app;
+		$memory = $app['orchestra.memory']->makeOrFallback();
+
+		$app['orchestra.theme']->setTheme($memory->get('site.theme.frontend'));
+		
+		$app['events']->listen('orchestra.started: admin', function () use ($app, $memory)
+		{
+			$app['orchestra.theme']->setTheme($memory->get('site.theme.backend'));
+		});
+
+		$app['events']->listen('composing: *', function () use ($app)
+		{
+			$app['orchestra.theme']->boot();
+		});
+	}
 }

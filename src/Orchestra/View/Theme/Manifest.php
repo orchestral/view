@@ -29,7 +29,7 @@ class Manifest {
 	{
 		$this->app = $app;
 
-		if ($app['files']->exist($manifest = "{$path}/theme.json"))
+		if ($app['files']->exists($manifest = "{$path}/theme.json"))
 		{
 			$this->items = json_decode($app['files']->get($manifest));
 
