@@ -1,6 +1,7 @@
 <?php namespace Orchestra\View;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 
 class DecoratorServiceProvider extends ServiceProvider {
 
@@ -21,6 +22,12 @@ class DecoratorServiceProvider extends ServiceProvider {
 		$this->app['orchestra.decorator'] = $this->app->share(function($app)
 		{
 			return new Decorator;
+		});
+
+		$this->app->booting(function()
+		{
+			$loader = AliasLoader::getInstance();
+			$loader->alias('Orchestra\Decorator', 'Orchestra\Support\Facades\Decorator');
 		});
 	}
 
