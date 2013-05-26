@@ -62,7 +62,7 @@ class Container {
 
 		// Register relative and absolute URL for theme usage.
 		$this->absoluteUrl = rtrim($baseUrl, '/').'/themes';
-		$this->relativeUrl = str_replace($baseUrl, '/', $this->absoluteUrl);
+		$this->relativeUrl = trim(str_replace($baseUrl, '/', $this->absoluteUrl), '/');
 	}
 
 	/**
@@ -161,6 +161,6 @@ class Container {
 	 */
 	public function asset($url = '')
 	{
-		return "{$this->relativeUrl}/{$this->theme}/{$url}";
+		return "/{$this->relativeUrl}/{$this->theme}/{$url}";
 	}
 }
