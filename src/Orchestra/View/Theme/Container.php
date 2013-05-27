@@ -57,7 +57,7 @@ class Container {
 	public function __construct($app)
 	{
 		$this->app  = $app;
-		$baseUrl    = $app['url']->to('/');
+		$baseUrl    = $app['request']->root();
 		$this->path = $app['path.public'].'/themes';
 
 		// Register relative and absolute URL for theme usage.

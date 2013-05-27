@@ -18,6 +18,11 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->app = new \Illuminate\Container\Container;
+		$this->app['request'] = $request = m::mock('RequestMock');
+		$this->app['path.public'] = '/var/laravel/public';
+
+		$request->shouldReceive('root')->andReturn('http://localhost/');
+
 	}
 
 	/**
@@ -36,12 +41,7 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testConstructMethod()
 	{
-		$app = $this->app;
-		$app['url'] = $url = m::mock('Url');
-		$app['path.public'] = '/var/laravel/public';
-
-		$url->shouldReceive('to')->once()->with('/')->andReturn('http://localhost/');
-
+		$app  = $this->app;
 		$stub = new ThemeManager($app);
 		$this->assertInstanceOf('\Orchestra\View\Theme\Container', $stub->driver());
 	}

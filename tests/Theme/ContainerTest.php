@@ -20,9 +20,9 @@ class ContainerTest extends \PHPUnit_Framework_TestCase {
 		$this->app = new \Illuminate\Container\Container;
 
 		$this->app['path.public'] = '/var/orchestra/public';
-		$this->app['url'] = $url = m::mock('Url');
+		$this->app['request'] = $request = m::mock('Request');
 
-		$url->shouldReceive('to')->with('/')->andReturn('http://localhost/');
+		$request->shouldReceive('root')->andReturn('http://localhost/');
 	}
 
 	/**
