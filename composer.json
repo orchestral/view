@@ -15,12 +15,12 @@
 	},
 	"require": {
 		"php": ">=5.3.3",
-		"orchestra/memory": "2.0.*"
+		"orchestra/memory": "2.1.*"
 	},
 	"require-dev": {
 		"mockery/mockery": "0.8.0",
-		"illuminate/container": "4.0.*",
-		"illuminate/view": "4.0.*"
+		"illuminate/container": "4.1.*",
+		"illuminate/view": "4.1.*"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/view component outside of Orchestra Platform",
@@ -28,7 +28,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "2.0.x-dev"
+			"dev-master": "2.1-dev"
 		}
 	},
 	"minimum-stability": "dev"
