@@ -27,7 +27,9 @@ Next add the service provider in `app/config/app.php`.
 	
 	// ...
 	
+	'Orchestra\View\DecoratorServiceProvider',
 	'Orchestra\View\ViewServiceProvider',
+	'Orchestra\Memory\MemoryServiceProvider',
 ),
 ```
 
