@@ -5,7 +5,7 @@ Orchestra\View is Orchestra Platform approach to deliver themeable application t
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![Build Status](https://travis-ci.org/orchestral/view.png?branch=2.0)](https://travis-ci.org/orchestral/view) [![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=2.0)](https://coveralls.io/r/orchestral/view?branch=2.0)
+[![Build Status](https://travis-ci.org/orchestral/view.png?branch=master)](https://travis-ci.org/orchestral/view) [![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=master)](https://coveralls.io/r/orchestral/view?branch=master)
 
 ## Quick Installation
 
