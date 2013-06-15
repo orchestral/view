@@ -14,8 +14,9 @@ class Decorator {
 	/**
 	 * Registers a custom macro.
 	 *
+	 * @access public
 	 * @param  string   $name
-	 * @param  Closure  $macro
+	 * @param  \Closure $macro
 	 * @return void
 	 */
 	public function macro($name, $macro)
@@ -30,6 +31,7 @@ class Decorator {
 	 * @param  string   $name
 	 * @param  array    $data
 	 * @return mixed
+	 * @throws \BadMethodCallException
 	 */
 	public function render($name, $data = null)
 	{
