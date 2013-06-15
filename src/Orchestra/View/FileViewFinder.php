@@ -12,7 +12,8 @@ class FileViewFinder extends \Illuminate\View\FileViewFinder {
 	/**
 	 * Get the fully qualified location of the view.
 	 *
-	 * @param  string  $name
+	 * @access public
+	 * @param  string   $name
 	 * @return string
 	 */
 	public function find($name)
@@ -28,7 +29,8 @@ class FileViewFinder extends \Illuminate\View\FileViewFinder {
 	/**
 	 * Get the path to a template with a named path.
 	 *
-	 * @param  string  $name
+	 * @access protected
+	 * @param  string   $name
 	 * @return string
 	 */
 	protected function findNamedPathView($name)
@@ -47,6 +49,7 @@ class FileViewFinder extends \Illuminate\View\FileViewFinder {
 	/**
 	 * Set the active view paths.
 	 *
+	 * @access public
 	 * @return array
 	 */
 	public function setPaths($paths)

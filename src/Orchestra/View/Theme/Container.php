@@ -5,7 +5,7 @@ class Container {
 	/**
 	 * Application instance.
 	 *
-	 * @var Illuminate\Foundation\Application
+	 * @var \Illuminate\Foundation\Application
 	 */
 	protected $app = null;
 
@@ -31,26 +31,25 @@ class Container {
 	protected $path = null;
 
 	/**
-	 * URL path of Theme
+	 * URL path of theme.
 	 *
 	 * @var string
 	 */
 	protected $absoluteUrl = null;
 
 	/**
-	 * Relative URL path of Theme
+	 * Relative URL path of theme.
 	 *
 	 * @var string
 	 */
 	protected $relativeUrl = null;
 
 	/**
-	 * Start Theme Engine, this should be called from Orchestra\Core::start()
+	 * Start theme engine, this should be called from application booted 
 	 * or whenever we need to overwrite current active theme per request.
 	 *
-	 * @static
 	 * @access public
-	 * @param  Illuminate\Foundation\Application    $app
+	 * @param  \Illuminate\Foundation\Application   $app
 	 * @param  string                               $name
 	 * @return void
 	 */
@@ -115,7 +114,7 @@ class Container {
 		// There might be situation where Orchestra Platform was unable 
 		// to get theme information, we should only assume there a valid
 		// theme when manifest is actually an instance of 
-		// Orchestra\View\Theme\Manifest
+		// Orchestra\View\Theme\Manifest.
 		if ( ! $manifest instanceof Manifest) return null;
 
 		// Loop and include all file which was mark as autoloaded.
@@ -153,7 +152,7 @@ class Container {
 	}
 
 	/**
-	 * Relative URL helper for Theme
+	 * Relative URL helper for theme.
 	 *
 	 * @access public
 	 * @param  string   $url

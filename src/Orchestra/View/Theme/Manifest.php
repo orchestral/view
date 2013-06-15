@@ -8,7 +8,7 @@ class Manifest {
 	/**
 	 * Application instance.
 	 *
-	 * @var Illuminate\Filesystem\Filesystem
+	 * @var \Illuminate\Filesystem\Filesystem
 	 */
 	protected $files = null;
 	
@@ -23,8 +23,10 @@ class Manifest {
 	 * Load the theme.
 	 *
 	 * @access public
-	 * @param  string   $path
+	 * @param  \Illuminate\Filesystem\Filesystem    $files
+	 * @param  string                               $path
 	 * @return void
+	 * @throws \RuntimeException
 	 */
 	public function __construct(Filesystem $files, $path)
 	{
@@ -36,7 +38,7 @@ class Manifest {
 
 			if (is_null($this->items))
 			{
-				// json_decode couldn't parse, throw an exception
+				// json_decode couldn't parse, throw an exception.
 				throw new RuntimeException(
 					"Theme [{$path}]: cannot decode theme.json file"
 				);

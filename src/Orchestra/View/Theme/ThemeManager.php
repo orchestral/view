@@ -7,6 +7,7 @@ class ThemeManager extends Manager {
 	/**
 	 * Create an instance of the orchestra theme driver.
 	 *
+	 * @access protected
 	 * @return \Orchestra\View\Theme\Container
 	 */
 	protected function createOrchestraDriver()
@@ -17,6 +18,7 @@ class ThemeManager extends Manager {
 	/**
 	 * Get the default authentication driver name.
 	 *
+	 * @access protected
 	 * @return string
 	 */
 	protected function getDefaultDriver()
