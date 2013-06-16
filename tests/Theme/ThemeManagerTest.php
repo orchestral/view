@@ -46,4 +46,19 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf('\Orchestra\View\Theme\Container', $stub->driver());
 	}
 
+	/**
+	 * Test Orchestra\View\Theme\ThemeManager::detect() method.
+	 *
+	 * @test
+	 */
+	public function testDetectMethod()
+	{
+		$app  = $this->app;
+		$app['orchestra.theme.finder'] = $finder = m::mock('\Orchestra\View\Theme\Finder');
+
+		$finder->shouldReceive('detect')->once()->andReturn('foo');
+
+		$stub = new ThemeManager($app);
+		$this->assertEquals('foo', $stub->detect());
+	}
 }

@@ -43,6 +43,11 @@ class ViewServiceProvider extends ServiceProvider {
 			return new Theme\ThemeManager($app);
 		});
 
+		$this->app['orchestra.theme.finder'] = $this->app->share(function($app)
+		{
+			return new Theme\Finder($app);
+		});
+
 		$this->app->booting(function()
 		{
 			$loader = AliasLoader::getInstance();

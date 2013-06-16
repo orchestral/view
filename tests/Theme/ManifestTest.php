@@ -31,6 +31,7 @@ class ManifestTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals('bar', $stub->foo);
 		$this->assertFalse(isset($stub->foobar));
 		$this->assertTrue(isset($stub->foo));
+		$this->assertEquals('/var/orchestra/themes/default', $stub->path);
 	}
 
 	/**
