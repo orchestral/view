@@ -1,7 +1,5 @@
 <?php namespace Orchestra\View\Theme;
 
-use FileSystemIterator as fIterator;
-
 class Finder {
 
 	/**
