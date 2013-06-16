@@ -25,4 +25,15 @@ class ThemeManager extends Manager {
 	{
 		return 'orchestra';
 	}
+
+	/**
+	 * Detect available themes.
+	 *
+	 * @access public
+	 * @return array
+	 */
+	public function detect()
+	{
+		return $this->app['orchestra.theme.finder']->detect();
+	}
 }

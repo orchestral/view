@@ -15,9 +15,9 @@ class Manifest {
 	/**
 	 * Theme configuration.
 	 *
-	 * @var array
+	 * @var Object
 	 */
-	protected $items = array();
+	protected $items;
 
 	/**
 	 * Load the theme.
@@ -30,6 +30,7 @@ class Manifest {
 	 */
 	public function __construct(Filesystem $files, $path)
 	{
+		$path        = rtrim($path, '/');
 		$this->files = $files;
 
 		if ($files->exists($manifest = "{$path}/theme.json"))
@@ -43,6 +44,8 @@ class Manifest {
 					"Theme [{$path}]: cannot decode theme.json file"
 				);
 			}
+
+			$this->items->path = $path;
 		}
 	}
 
