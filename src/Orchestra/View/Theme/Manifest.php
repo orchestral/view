@@ -45,8 +45,23 @@ class Manifest {
 				);
 			}
 
+			$this->items->name = $this->parseThemeNameFromPath($path);
 			$this->items->path = $path;
 		}
+	}
+
+	/**
+	 * Get theme name from path.
+	 * 
+	 * @access protected
+	 * @param  string   $path
+	 * @return string
+	 */
+	protected function parseThemeNameFromPath($path)
+	{
+		$paths = explode('/', $path);
+
+		return array_pop($paths);
 	}
 
 	/**
