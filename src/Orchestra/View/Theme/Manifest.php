@@ -45,7 +45,7 @@ class Manifest {
 				);
 			}
 
-			$this->items->name = $this->parseThemeNameFromPath($path);
+			$this->items->uid  = $this->parseThemeNameFromPath($path);
 			$this->items->path = $path;
 		}
 	}
