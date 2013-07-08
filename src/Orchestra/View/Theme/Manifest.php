@@ -59,9 +59,10 @@ class Manifest {
 	 */
 	protected function parseThemeNameFromPath($path)
 	{
-		$paths = explode('/', $path);
+		$path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
+		$path = explode(DIRECTORY_SEPARATOR, $path);
 
-		return array_pop($paths);
+		return array_pop($path);
 	}
 
 	/**

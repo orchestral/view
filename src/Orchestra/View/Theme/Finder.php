@@ -38,7 +38,7 @@ class Finder {
 
 		foreach ($folders as $folder)
 		{
-			$name = $this->getFilename($folder);
+			$name = $this->parseThemeNameFromPath($folder);
 			$themes[$name] = new Manifest($file, rtrim($folder, '/').'/');
 		}
 
@@ -52,9 +52,11 @@ class Finder {
 	 * @param  string   $path
 	 * @return string
 	 */
-	protected function getFilename($path)
+	protected function parseThemeNameFromPath($path)
 	{
-		$path = explode('/', $path);
+		$path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
+		$path = explode(DIRECTORY_SEPARATOR, $path);
+		
 		return array_pop($path);
 	}
 }
