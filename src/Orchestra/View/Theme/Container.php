@@ -48,7 +48,6 @@ class Container {
 	 * Start theme engine, this should be called from application booted 
 	 * or whenever we need to overwrite current active theme per request.
 	 *
-	 * @access public
 	 * @param  \Illuminate\Foundation\Application   $app
 	 * @param  string                               $name
 	 * @return void
@@ -67,7 +66,6 @@ class Container {
 	/**
 	 * Set the theme, this would also load the theme manifest.
 	 *
-	 * @access public	
 	 * @param  string   $theme
 	 * @return void
 	 */
@@ -83,7 +81,6 @@ class Container {
 	/**
 	 * Get the theme.
 	 *
-	 * @access public
 	 * @return string
 	 */
 	public function getTheme()
@@ -94,7 +91,6 @@ class Container {
 	/**
 	 * Boot the theme by autoloading all the relevant files.
 	 *
-	 * @access public
 	 * @return void
 	 */
 	public function boot()
@@ -131,7 +127,6 @@ class Container {
 	/**
 	 * Get theme path.
 	 *
-	 * @access public
 	 * @return string
 	 */
 	public function getThemePath()
@@ -142,7 +137,6 @@ class Container {
 	/**
 	 * URL helper for the theme.
 	 *
-	 * @access public
 	 * @param  string   $url
 	 * @return string
 	 */
@@ -154,7 +148,6 @@ class Container {
 	/**
 	 * Relative URL helper for theme.
 	 *
-	 * @access public
 	 * @param  string   $url
 	 * @return string
 	 */

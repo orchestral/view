@@ -22,7 +22,6 @@ class Manifest {
 	/**
 	 * Load the theme.
 	 *
-	 * @access public
 	 * @param  \Illuminate\Filesystem\Filesystem    $files
 	 * @param  string                               $path
 	 * @return void
@@ -53,7 +52,6 @@ class Manifest {
 	/**
 	 * Get theme name from path.
 	 * 
-	 * @access protected
 	 * @param  string   $path
 	 * @return string
 	 */
@@ -67,6 +65,9 @@ class Manifest {
 
 	/**
 	 * Magic method to get items by key.
+	 *
+	 * @param  string   $key
+	 * @return mixed
 	 */
 	public function __get($key)
 	{
@@ -77,6 +78,9 @@ class Manifest {
 
 	/**
 	 * Magic Method to check isset by key.
+	 *
+	 * @param  string   $key
+	 * @return boolean
 	 */
 	public function __isset($key)
 	{
