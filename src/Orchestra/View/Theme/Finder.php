@@ -12,7 +12,6 @@ class Finder {
 	/**
 	 * Construct a new finder.
 	 *
-	 * @access public
 	 * @param  \Illuminate\Foundation\Application   $app
 	 * @return void
 	 */
@@ -24,7 +23,6 @@ class Finder {
 	/**
 	 * Detect available themes.
 	 *
-	 * @access public
 	 * @return array
 	 * @throws \RuntimeException
 	 */
@@ -48,7 +46,6 @@ class Finder {
 	/**
 	 * Get folder name from full path.
 	 *
-	 * @access protected
 	 * @param  string   $path
 	 * @return string
 	 */

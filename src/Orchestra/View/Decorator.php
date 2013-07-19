@@ -14,7 +14,6 @@ class Decorator {
 	/**
 	 * Registers a custom macro.
 	 *
-	 * @access public
 	 * @param  string   $name
 	 * @param  \Closure $macro
 	 * @return void
@@ -27,7 +26,6 @@ class Decorator {
 	/**
 	 * Render the macro.
 	 *
-	 * @access public	
 	 * @param  string   $name
 	 * @param  array    $data
 	 * @return mixed
@@ -46,7 +44,6 @@ class Decorator {
 	/**
 	 * Dynamically handle calls to custom macros.
 	 *
-	 * @access public
 	 * @param  string   $method
 	 * @param  array    $parameters
 	 * @return mixed
