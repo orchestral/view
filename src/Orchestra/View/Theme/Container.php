@@ -71,10 +71,19 @@ class Container {
 	 */
 	public function setTheme($theme)
 	{
-		$this->theme = $theme;
-		$viewFinder  = $this->app['view.finder'];
+		$viewFinder = $this->app['view.finder'];
+		$paths      = $viewFinder->getPaths();
 
-		$paths = array_merge(array($this->getThemePath()), $viewFinder->getPaths());
+		if ( ! is_null($this->theme))
+		{
+			if ($paths[0] === $this->getThemePath()) array_shift($paths);
+			$this->app['events']->fire("orchestra.theme.unset: {$this->theme}");
+		}
+
+		$this->theme = $theme;
+		$this->app['events']->fire("orchestra.theme.set: {$this->theme}");
+
+		$paths = array_merge(array($this->getThemePath()), $paths);
 		$viewFinder->setPaths($paths);
 	}
 
@@ -122,6 +131,8 @@ class Container {
 				$this->app['files']->requireOnce("{$themePath}/{$file}");
 			}
 		}
+
+		$this->app['events']->fire("orchestra.theme.boot: {$this->theme}");
 	}
 
 	/**
