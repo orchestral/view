@@ -22,7 +22,6 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase {
 		$this->app['path.public'] = '/var/laravel/public';
 
 		$request->shouldReceive('root')->andReturn('http://localhost/');
-
 	}
 
 	/**

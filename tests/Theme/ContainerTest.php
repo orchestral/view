@@ -45,18 +45,42 @@ class ContainerTest extends \PHPUnit_Framework_TestCase {
 		$app = $this->app;
 		$app['view.finder'] = $finder = m::mock('ViewFinder');
 		$app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
+		$app['events'] = $events = m::mock('\Illuminate\Events\Dispatcher');
 
-		$finder->shouldReceive('getPaths')->once()->andReturn(array('/var/orchestra/app/views'))
-			->shouldReceive('setPaths')->once()->with(array(
-				'/var/orchestra/public/themes/default',
-				'/var/orchestra/app/views'
-			))->andReturn(null);
-		$files->shouldReceive('isDirectory')->once()->with('/var/orchestra/public/themes/default')->andReturn(true)
-			->shouldReceive('exists')->once()->with('/var/orchestra/public/themes/default/theme.json')->andReturn(true)
-			->shouldReceive('get')->once()->with('/var/orchestra/public/themes/default/theme.json')->andReturn('{"autoload":["start.php"]}')
-			->shouldReceive('requireOnce')->once()->with('/var/orchestra/public/themes/default/start.php')->andReturn(null);
-
+		$finder->shouldReceive('getPaths')->once()
+				->andReturn(array('/var/orchestra/app/views'))
+			->shouldReceive('getPaths')->once()
+				->andReturn(array('/var/orchestra/public/themes/foo', '/var/orchestra/app/views'))
+			->shouldReceive('setPaths')->once()
+				->with(array('/var/orchestra/public/themes/foo', '/var/orchestra/app/views'))
+				->andReturn(null)
+			->shouldReceive('setPaths')->once()
+				->with(array('/var/orchestra/public/themes/default', '/var/orchestra/app/views'))
+				->andReturn(null);
+		$files->shouldReceive('isDirectory')->once()
+				->with('/var/orchestra/public/themes/default')->andReturn(true)
+			->shouldReceive('exists')->once()
+				->with('/var/orchestra/public/themes/default/theme.json')->andReturn(true)
+			->shouldReceive('get')->once()
+				->with('/var/orchestra/public/themes/default/theme.json')
+				->andReturn('{"autoload":["start.php"]}')
+			->shouldReceive('requireOnce')->once()
+				->with('/var/orchestra/public/themes/default/start.php')->andReturn(null);
+		$events->shouldReceive('fire')->once()
+				->with('orchestra.theme.set: foo')->andReturn(null)
+			->shouldReceive('fire')->once()
+				->with('orchestra.theme.unset: foo')->andReturn(null)
+			->shouldReceive('fire')->once()
+				->with('orchestra.theme.set: default')->andReturn(null)
+			->shouldReceive('fire')->once()
+				->with('orchestra.theme.boot: default')->andReturn(null);
+		
 		$stub = new Container($app);
+
+		$stub->setTheme('foo');
+
+		$this->assertEquals('foo', $stub->getTheme());
+
 		$stub->setTheme('default');
 
 		$this->assertEquals('default', $stub->getTheme());
