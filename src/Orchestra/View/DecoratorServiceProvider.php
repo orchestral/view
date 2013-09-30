@@ -19,7 +19,7 @@ class DecoratorServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['orchestra.decorator'] = $this->app->share(function($app)
+		$this->app['orchestra.decorator'] = $this->app->share(function()
 		{
 			return new Decorator;
 		});
