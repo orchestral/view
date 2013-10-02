@@ -3,29 +3,6 @@
 class FileViewFinder extends \Illuminate\View\FileViewFinder {
 
 	/**
-	 * File view finder cache paths.
-	 *
-	 * @var array
-	 */
-	protected $caches = array();
-
-	/**
-	 * Get the fully qualified location of the view.
-	 *
-	 * @param  string   $name
-	 * @return string
-	 */
-	public function find($name)
-	{
-		if ( ! isset($this->caches[$name])) 
-		{
-			$this->caches[$name] = parent::find($name);
-		}
-
-		return $this->caches[$name];
-	}
-
-	/**
 	 * Get the path to a template with a named path.
 	 *
 	 * @param  string   $name
