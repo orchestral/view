@@ -50,7 +50,7 @@ class Finder {
 	 */
 	protected function parseThemeNameFromPath($path)
 	{
-		$path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
+		$path = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $path);
 		$path = explode(DIRECTORY_SEPARATOR, $path);
 		
 		return array_pop($path);
