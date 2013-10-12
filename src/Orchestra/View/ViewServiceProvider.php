@@ -62,9 +62,12 @@ class ViewServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$app    = $this->app;
+		$app = $this->app;
 		$memory = $app['orchestra.memory']->makeOrFallback();
 
+		// By default, we should consider all request to use "frontend" 
+		// theme and only convert to use "backend" routing when certain 
+		// event is fired.
 		$app['orchestra.theme']->setTheme($memory->get('site.theme.frontend'));
 		
 		$app['events']->listen('orchestra.started: admin', function () use ($app, $memory)
@@ -72,6 +75,9 @@ class ViewServiceProvider extends ServiceProvider {
 			$app['orchestra.theme']->setTheme($memory->get('site.theme.backend'));
 		});
 
+		// The theme is only booted when the first view is being composed. 
+		// This would prevent multiple theme being booted in the same 
+		// request.
 		$app['events']->listen('composing: *', function () use ($app)
 		{
 			$app['orchestra.theme']->boot();
