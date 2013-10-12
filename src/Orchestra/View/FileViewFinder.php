@@ -3,10 +3,7 @@
 class FileViewFinder extends \Illuminate\View\FileViewFinder {
 
 	/**
-	 * Get the path to a template with a named path.
-	 *
-	 * @param  string   $name
-	 * @return string
+	 * {@inheritdoc}
 	 */
 	protected function findNamedPathView($name)
 	{
