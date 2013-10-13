@@ -15,9 +15,7 @@ class ThemeManager extends Manager {
 	}
 
 	/**
-	 * Get the default authentication driver name.
-	 *
-	 * @return string
+	 * {@inheritdoc}
 	 */
 	protected function getDefaultDriver()
 	{

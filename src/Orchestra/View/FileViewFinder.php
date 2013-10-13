@@ -3,15 +3,14 @@
 class FileViewFinder extends \Illuminate\View\FileViewFinder {
 
 	/**
-	 * Get the path to a template with a named path.
-	 *
-	 * @param  string   $name
-	 * @return string
+	 * {@inheritdoc}
 	 */
 	protected function findNamedPathView($name)
 	{
 		list($namespace, $view) = $this->getNamespaceSegments($name);
 
+		// Prepend global view paths to namespace hints path. This would 
+		// allow theme to take priority if such view exist.
 		$generatePath = function ($path) use ($namespace) {
 			return "{$path}/packages/{$namespace}";
 		};
@@ -23,10 +22,11 @@ class FileViewFinder extends \Illuminate\View\FileViewFinder {
 
 	/**
 	 * Set the active view paths.
-	 *
+	 * 
+	 * @param  array    $paths
 	 * @return array
 	 */
-	public function setPaths($paths)
+	public function setPaths(array $paths)
 	{
 		$this->paths = $paths;
 	}

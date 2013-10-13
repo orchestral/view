@@ -50,7 +50,6 @@ class Container {
 	 *
 	 * @param  \Illuminate\Foundation\Application   $app
 	 * @param  string                               $name
-	 * @return void
 	 */
 	public function __construct($app)
 	{
