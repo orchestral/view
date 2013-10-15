@@ -24,7 +24,6 @@ class Manifest {
 	 *
 	 * @param  \Illuminate\Filesystem\Filesystem    $files
 	 * @param  string                               $path
-	 * @return void
 	 * @throws \RuntimeException
 	 */
 	public function __construct(Filesystem $files, $path)

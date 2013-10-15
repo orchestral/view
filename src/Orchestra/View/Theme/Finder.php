@@ -1,20 +1,22 @@
 <?php namespace Orchestra\View\Theme;
 
+use Illuminate\Container\Container as Application;
+
 class Finder {
 
 	/**
 	 * Application instance.
 	 *
-	 * @var \Illuminate\Foundation\Application
+	 * @var \Illuminate\Container\Container
 	 */
 	protected $app = null;
 
 	/**
 	 * Construct a new finder.
-	 *
-	 * @param  \Illuminate\Foundation\Application   $app
+	 * 
+	 * @param  \Illuminate\Container\Container  $app
 	 */
-	public function __construct($app)
+	public function __construct(Application $app)
 	{
 		$this->app = $app;
 	}
