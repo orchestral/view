@@ -1,11 +1,13 @@
 <?php namespace Orchestra\View\Theme;
 
+use Illuminate\Container\Container as Application;
+
 class Container {
 	
 	/**
 	 * Application instance.
-	 *
-	 * @var \Illuminate\Foundation\Application
+	 * 
+	 * @var \Illuminate\Container\Container
 	 */
 	protected $app = null;
 
@@ -47,11 +49,11 @@ class Container {
 	/**
 	 * Start theme engine, this should be called from application booted 
 	 * or whenever we need to overwrite current active theme per request.
-	 *
-	 * @param  \Illuminate\Foundation\Application   $app
-	 * @param  string                               $name
+	 * 
+	 * @param  \Illuminate\Container\Container  $app
+	 * @param  string                           $name
 	 */
-	public function __construct($app)
+	public function __construct(Application $app)
 	{
 		$this->app  = $app;
 		$baseUrl    = $app['request']->root();
