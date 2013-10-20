@@ -103,12 +103,12 @@ class Container
     /**
      * Boot the theme by autoloading all the relevant files.
      *
-     * @return void
+     * @return boolean
      */
     public function boot()
     {
         if ($this->booted) {
-            return null;
+            return false;
         }
 
         $this->booted = true;
@@ -116,17 +116,15 @@ class Container
         $themePath = $this->getThemePath();
         $manifest  = null;
 
-        if ($this->app['files']->isDirectory($themePath)) {
-            $manifest = new Manifest($this->app['files'], $themePath);
-        }
-
         // There might be situation where Orchestra Platform was unable
         // to get theme information, we should only assume there a valid
         // theme when manifest is actually an instance of
         // Orchestra\View\Theme\Manifest.
-        if (! $manifest instanceof Manifest) {
-            return null;
+        if (! $this->app['files']->isDirectory($themePath)) {
+            return false;
         }
+
+        $manifest = new Manifest($this->app['files'], $themePath);
 
         // Loop and include all file which was mark as autoloaded.
         if (isset($manifest->autoload) and is_array($manifest->autoload)) {
@@ -137,6 +135,8 @@ class Container
         }
 
         $this->app['events']->fire("orchestra.theme.boot: {$this->theme}");
+
+        return true;
     }
 
     /**

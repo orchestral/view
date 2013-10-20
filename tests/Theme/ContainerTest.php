@@ -85,10 +85,41 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('default', $stub->getTheme());
 
-        $stub->boot();
+        $this->assertTrue($stub->boot());
 
         $this->assertEquals("http://localhost/themes/default/foo", $stub->to('foo'));
         $this->assertEquals("/themes/default/foo", $stub->asset('foo'));
 
+        $this->assertFalse($stub->boot());
+    }
+
+    /**
+     * Test Orchestra\View\Theme\Container::boot() method when manifest
+     * is not available.
+     *
+     * @test
+     */
+    public function testBootMethodWhenManifestIsNotAvailable()
+    {
+        $app = $this->app;
+        $app['view.finder'] = $finder = m::mock('ViewFinder');
+        $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
+        $app['events'] = $events = m::mock('\Illuminate\Events\Dispatcher');
+
+        $finder->shouldReceive('getPaths')->once()
+                ->andReturn(array('/var/orchestra/app/views'))
+            ->shouldReceive('setPaths')->once()
+                ->with(array('/var/orchestra/public/themes/default', '/var/orchestra/app/views'))
+                ->andReturn(null);
+        $files->shouldReceive('isDirectory')->once()
+                ->with('/var/orchestra/public/themes/default')->andReturn(false);
+        $events->shouldReceive('fire')->once()
+                ->with('orchestra.theme.set: default')->andReturn(null);
+
+        $stub = new Container($app);
+
+        $stub->setTheme('default');
+
+        $this->assertFalse($stub->boot());
     }
 }
