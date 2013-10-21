@@ -8,7 +8,8 @@ This would allow extension (or even packages) to have it's own set of view styli
 [![Latest Stable Version](https://poser.pugx.org/orchestra/view/v/stable.png)](https://packagist.org/packages/orchestra/view) 
 [![Total Downloads](https://poser.pugx.org/orchestra/view/downloads.png)](https://packagist.org/packages/orchestra/view) 
 [![Build Status](https://travis-ci.org/orchestral/view.png?branch=master)](https://travis-ci.org/orchestral/view) 
-[![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=master)](https://coveralls.io/r/orchestral/view?branch=master)
+[![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=master)](https://coveralls.io/r/orchestral/view?branch=master) 
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/view/badges/quality-score.png?s=2c779ead7d25dc51d1b1dd0a31447e5939d21793)](https://scrutinizer-ci.com/g/orchestral/view/) 
 
 ## Quick Installation
 
