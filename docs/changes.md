@@ -3,9 +3,10 @@ View Change Log
 
 ## Version 2.0
 
-### v2.0.6@dev
+### v2.0.6
 
 * Allow finding theme with inconsistent directory separator.
+* Implement [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standard.
 
 ### v2.0.5
 
