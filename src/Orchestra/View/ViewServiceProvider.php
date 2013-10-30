@@ -23,7 +23,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     protected function registerViewFinder()
     {
-        $this->app['view.finder'] = $this->app->share(function ($app) {
+        $this->app->bindShared('view.finder', function ($app) {
             $paths = $app['config']['view.paths'];
 
             return new FileViewFinder($app['files'], $paths);
@@ -37,11 +37,11 @@ class ViewServiceProvider extends ServiceProvider
      */
     protected function registerTheme()
     {
-        $this->app['orchestra.theme'] = $this->app->share(function ($app) {
+        $this->app->bindShared('orchestra.theme', function ($app) {
             return new Theme\ThemeManager($app);
         });
 
-        $this->app['orchestra.theme.finder'] = $this->app->share(function ($app) {
+        $this->app->bindShared('orchestra.theme.finder', function ($app) {
             return new Theme\Finder($app);
         });
 
