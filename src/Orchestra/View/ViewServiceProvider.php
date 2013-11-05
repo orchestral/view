@@ -44,11 +44,6 @@ class ViewServiceProvider extends ServiceProvider
         $this->app->bindShared('orchestra.theme.finder', function ($app) {
             return new Theme\Finder($app);
         });
-
-        $this->app->booting(function () {
-            $loader = AliasLoader::getInstance();
-            $loader->alias('Orchestra\Theme', 'Orchestra\Support\Facades\Theme');
-        });
     }
 
     /**

@@ -22,11 +22,6 @@ class DecoratorServiceProvider extends ServiceProvider
         $this->app->bindShared('orchestra.decorator', function () {
             return new Decorator;
         });
-
-        $this->app->booting(function () {
-            $loader = AliasLoader::getInstance();
-            $loader->alias('Orchestra\Decorator', 'Orchestra\Support\Facades\Decorator');
-        });
     }
 
     /**
