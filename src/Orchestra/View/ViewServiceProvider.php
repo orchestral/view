@@ -1,7 +1,6 @@
 <?php namespace Orchestra\View;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -43,11 +42,6 @@ class ViewServiceProvider extends ServiceProvider
 
         $this->app['orchestra.theme.finder'] = $this->app->share(function ($app) {
             return new Theme\Finder($app);
-        });
-
-        $this->app->booting(function () {
-            $loader = AliasLoader::getInstance();
-            $loader->alias('Orchestra\Theme', 'Orchestra\Support\Facades\Theme');
         });
     }
 
