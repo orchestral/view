@@ -1,7 +1,6 @@
 <?php namespace Orchestra\View;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 
 class ViewServiceProvider extends ServiceProvider
 {
