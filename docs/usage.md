@@ -1,11 +1,12 @@
-Using Theme
-==============
+---
+title: Using Theme
+---
 
 * [Basic of a Theme](#basic-of-a-theme)
 * [Anatomy of a Theme](#anatomy-of-a-theme)
 * [Asset Routing](#asset-routing)
 
-## Basic of a Theme
+## Basic of a Theme {#basic-of-a-theme}
 
 ### Default Theme
 
@@ -17,35 +18,31 @@ By default, the selected theme is `default`, and located at `public/themes/defau
 
 Each theme can have a manifest file, which provide Orchestra Platform the required information to properly use the theme.
 
-```json
-{
-	"name": "Default",
-	"description": "Default Theme for Orchestra Platform",
-	"author": "Orchestra Platform",
-	"autoload": [
-	]
-}
-```
+	{
+		"name": "Default",
+		"description": "Default Theme for Orchestra Platform",
+		"author": "Orchestra Platform",
+		"autoload": [
+		]
+	}
 
 #### Autoloading Theme Configuration
 
 There would be time where you would need to be able to customize Theme by adding additional helper or configuration. We can easily start files using the `"autoload"` options:
 
-```json
-{
-	"autoload": [
-		"start.php",
-		"helpers.php"
-	]
-}
-```
+	{
+		"autoload": [
+			"start.php",
+			"helpers.php"
+		]
+	}
 
 Based on above example, two files would be loaded on each request:
 
 * `public/themes/default/start.php`
 * `public/themes/default/helpers.php`
 
-## Anatomy of a Theme
+## Anatomy of a Theme {#anatomy-of-a-theme}
 
 The **application** views is accessible from the root path of your theme, while extensions/packages can be accessible from `packages/{package-name}` subfolder. So for example if your selected theme is `default`, and you plan to replace `home.index` and `acme/foo::home.index` view. Only the following file would be needed:
 
@@ -56,12 +53,10 @@ The **application** views is accessible from the root path of your theme, while 
 
 > As you can see, the file structure of the view follow closely cascading filesystem replacement structure used in many other framework.
 
-## Asset Routing
+## Asset Routing {#asset-routing}
 
 You are free to maintain where assets is located inside the theme folder as it is under public folder. To access the asset file, you can use the following snippet.
 
-```html
-<script src="<?php echo Orchestra\Theme::to('assets/js/script.js'); ?>">
-<!-- this would point to `http:://yourdomain.com/themes/default/assets/js/script.js` -->
-```
+	<script src="<?php echo Orchestra\Theme::to('assets/js/script.js'); ?>">
+	<!-- this would point to `http:://yourdomain.com/themes/default/assets/js/script.js` -->
 
