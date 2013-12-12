@@ -18,7 +18,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/view": "2.0.*"
+		"orchestra/view": "2.1.*@dev"
 	}
 }
 ```
@@ -27,9 +27,9 @@ Next add the service provider in `app/config/app.php`.
 
 ```php
 'providers' => array(
-	
+
 	// ...
-	
+
 	'Orchestra\View\DecoratorServiceProvider',
 	'Orchestra\View\ViewServiceProvider',
 	'Orchestra\Memory\MemoryServiceProvider',
@@ -38,5 +38,5 @@ Next add the service provider in `app/config/app.php`.
 
 ## Resources
 
-* [Documentation](http://orchestraplatform.com/docs/2.0/components/view)
-* [Change Log](http://orchestraplatform.com/docs/2.0/components/view/changes#v2.1)
+* [Documentation](http://orchestraplatform.com/docs/latest/components/view)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/view/changes#v2-1)

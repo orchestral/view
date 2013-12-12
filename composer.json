@@ -1,7 +1,7 @@
 {
 	"name": "orchestra/view",
 	"description": "Orchestra Platform 2 View Component",
-	"homepage": "http://orchestraplatform.com/docs/2.0/components/view/",
+	"homepage": "http://orchestraplatform.com/docs/latest/components/view/",
 	"keywords": ["orchestra-platform", "orchestral", "laravel"],
 	"license": "MIT",
 	"authors": [
@@ -12,8 +12,8 @@
 		}
 	],
 	"autoload": {
-		"psr-0": { 
-			"Orchestra\\View" : "src/" 
+		"psr-0": {
+			"Orchestra\\View" : "src/"
 		}
 	},
 	"require": {
@@ -21,7 +21,7 @@
 		"orchestra/memory": "2.1.*"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.8.0",
+		"mockery/mockery": "0.8.*",
 		"illuminate/container": "4.1.*",
 		"illuminate/view": "4.1.*"
 	},
