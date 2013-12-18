@@ -9,7 +9,28 @@ class Container
      *
      * @var \Illuminate\Container\Container
      */
-    protected $app = null;
+    protected $app;
+
+    /**
+     * Filesystem path of theme.
+     *
+     * @var string
+     */
+    protected $path;
+
+    /**
+     * URL path of theme.
+     *
+     * @var string
+     */
+    protected $absoluteUrl;
+
+    /**
+     * Relative URL path of theme.
+     *
+     * @var string
+     */
+    protected $relativeUrl;
 
     /**
      * Booted indicator.
@@ -24,27 +45,6 @@ class Container
      * @var string
      */
     protected $theme = null;
-
-    /**
-     * Filesystem path of theme.
-     *
-     * @var string
-     */
-    protected $path = null;
-
-    /**
-     * URL path of theme.
-     *
-     * @var string
-     */
-    protected $absoluteUrl = null;
-
-    /**
-     * Relative URL path of theme.
-     *
-     * @var string
-     */
-    protected $relativeUrl = null;
 
     /**
      * Start theme engine, this should be called from application booted
@@ -114,7 +114,6 @@ class Container
         $this->booted = true;
 
         $themePath = $this->getThemePath();
-        $manifest  = null;
 
         // There might be situation where Orchestra Platform was unable
         // to get theme information, we should only assume there a valid
@@ -124,14 +123,11 @@ class Container
             return false;
         }
 
-        $manifest = new Manifest($this->app['files'], $themePath);
+        $autoload = $this->getThemeAutoloadFiles($themePath);
 
-        // Loop and include all file which was mark as autoloaded.
-        if (isset($manifest->autoload) and is_array($manifest->autoload)) {
-            foreach ($manifest->autoload as $file) {
-                $file = ltrim($file, '/');
-                $this->app['files']->requireOnce("{$themePath}/{$file}");
-            }
+        foreach ($autoload as $file) {
+            $file = ltrim($file, '/');
+            $this->app['files']->requireOnce("{$themePath}/{$file}");
         }
 
         $this->app['events']->fire("orchestra.theme.boot: {$this->theme}");
@@ -169,5 +165,23 @@ class Container
     public function asset($url = '')
     {
         return "/{$this->relativeUrl}/{$this->theme}/{$url}";
+    }
+
+    /**
+     * Get theme autoload files from manifest.
+     *
+     * @param  string $themePath
+     * @return array
+     */
+    protected function getThemeAutoloadFiles($themePath)
+    {
+        $autoload = array();
+        $manifest = new Manifest($this->app['files'], $themePath);
+
+        if (isset($manifest->autoload) and is_array($manifest->autoload)) {
+            $autoload = $manifest->autoload;
+        }
+
+        return $autoload;
     }
 }

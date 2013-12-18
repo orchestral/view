@@ -10,7 +10,7 @@ class Manifest
      *
      * @var \Illuminate\Filesystem\Filesystem
      */
-    protected $files = null;
+    protected $files;
 
     /**
      * Theme configuration.

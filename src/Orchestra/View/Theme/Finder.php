@@ -9,7 +9,7 @@ class Finder
      *
      * @var \Illuminate\Container\Container
      */
-    protected $app = null;
+    protected $app;
 
     /**
      * Construct a new finder.
