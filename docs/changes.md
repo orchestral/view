@@ -29,7 +29,7 @@ title: View Change Log
 ### v2.0.2 {#v2-0-2}
 
 * Fixed theme name detection for Windows environment.
-* Rename `Orchestra\View\Finder::getFilename` to `Orchestra\View\Finder:: parseThemeNameFromPath`.
+* Rename `Orchestra\View\Finder::getFilename()` to `Orchestra\View\Finder::parseThemeNameFromPath()`.
 
 ### v2.0.1 {#v2-0-1}
 
