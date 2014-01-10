@@ -3,6 +3,19 @@ title: View Change Log
 
 ---
 
+## Version 2.1 {#v2-1}
+
+### v2.1.0 {#v2-1-0}
+
+* Cache found views has been added to `Illuminate\View\FileViewFinder`, removing duplicate code.
+* When theme is swap, the previous selected theme path should completely remove view finder paths.
+* Add additional events:
+  - orchestra.theme.set: {name}
+  - orchestra.theme.unset: {name}
+  - orchestra.theme.boot: {name}
+* Allow finding theme with inconsistent directory separator.
+* Implement [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standard.
+
 ## Version 2.0 {#v2-0}
 
 ### v2.0.6 {#v2-0-6}
@@ -29,7 +42,7 @@ title: View Change Log
 ### v2.0.2 {#v2-0-2}
 
 * Fixed theme name detection for Windows environment.
-* Rename `Orchestra\View\Finder::getFilename` to `Orchestra\View\Finder:: parseThemeNameFromPath`.
+* Rename `Orchestra\View\Finder::getFilename()` to `Orchestra\View\Finder::parseThemeNameFromPath()`.
 
 ### v2.0.1 {#v2-0-1}
 
