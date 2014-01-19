@@ -178,7 +178,7 @@ class Container
         $autoload = array();
         $manifest = new Manifest($this->app['files'], $themePath);
 
-        if (isset($manifest->autoload) and is_array($manifest->autoload)) {
+        if (isset($manifest->autoload) && is_array($manifest->autoload)) {
             $autoload = $manifest->autoload;
         }
 
