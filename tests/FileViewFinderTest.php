@@ -1,4 +1,4 @@
-<?php namespace Orchestra\View\Tests;
+<?php namespace Orchestra\View\TestCase;
 
 use Mockery as m;
 use Orchestra\View\FileViewFinder;
