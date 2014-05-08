@@ -7,8 +7,8 @@ This would allow extension (or even packages) to have it's own set of view styli
 
 [![Latest Stable Version](https://poser.pugx.org/orchestra/view/v/stable.png)](https://packagist.org/packages/orchestra/view) 
 [![Total Downloads](https://poser.pugx.org/orchestra/view/downloads.png)](https://packagist.org/packages/orchestra/view) 
-[![Build Status](https://travis-ci.org/orchestral/view.png?branch=master)](https://travis-ci.org/orchestral/view) 
-[![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=master)](https://coveralls.io/r/orchestral/view?branch=master) 
+[![Build Status](https://travis-ci.org/orchestral/view.png?branch=2.2)](https://travis-ci.org/orchestral/view) 
+[![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=2.2)](https://coveralls.io/r/orchestral/view?branch=2.2) 
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/view/badges/quality-score.png?s=2c779ead7d25dc51d1b1dd0a31447e5939d21793)](https://scrutinizer-ci.com/g/orchestral/view/) 
 
 ## Quick Installation
@@ -18,7 +18,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/view": "2.2.*@dev"
+		"orchestra/view": "2.2.*"
 	}
 }
 ```
@@ -39,4 +39,4 @@ Next add the service provider in `app/config/app.php`.
 ## Resources
 
 * [Documentation](http://orchestraplatform.com/docs/latest/components/view)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/view/changes#v2-1)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/view/changes#v2-2)
