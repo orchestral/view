@@ -18,7 +18,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/view": "2.2.*@dev"
+		"orchestra/view": "2.2.*"
 	}
 }
 ```
@@ -39,4 +39,4 @@ Next add the service provider in `app/config/app.php`.
 ## Resources
 
 * [Documentation](http://orchestraplatform.com/docs/latest/components/view)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/view/changes#v2-1)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/view/changes#v2-2)
