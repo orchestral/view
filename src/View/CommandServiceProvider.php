@@ -3,7 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use Orchestra\View\Console\StatusCommand;
 
-class ConsoleServiceProvider extends ServiceProvider
+class CommandServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
