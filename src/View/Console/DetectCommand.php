@@ -50,11 +50,12 @@ class DetectCommand extends BaseCommand
         $frontend = $memory->get('site.theme.frontend');
         $backend  = $memory->get('site.theme.backend');
 
-        $header  = array('Theme Name', 'Frontend', 'Backend');
+        $header  = array('ID', 'Theme Name', 'Frontend', 'Backend');
         $content = array();
 
         foreach ($themes as $id => $theme) {
             $content[] = array(
+                $id,
                 $theme->name,
                 ($id == $frontend ? "   ✓" : ''),
                 ($id == $backend ? "   ✓" : ''),

@@ -1,9 +1,10 @@
 <?php namespace Orchestra\View\Console;
 
 use Orchestra\Support\Str;
+use Orchestra\View\Theme\Finder;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ThemeCommand extends BaseCommand
+class ActivateCommand extends BaseCommand
 {
     /**
      * Theme finder instance.
@@ -46,7 +47,7 @@ class ThemeCommand extends BaseCommand
     public function fire()
     {
         $group = Str::lower($this->argument('group'));
-        $name  = Str::lower($this->argument('name'));
+        $id    = Str::lower($this->argument('id'));
 
         $themes = $this->finder->detect();
 
@@ -54,12 +55,12 @@ class ThemeCommand extends BaseCommand
             throw new \InvalidArgumentException("Invalid theme name [{$group}], should either be 'frontend' or 'backend'.");
         }
 
-        if (! isset($themes[$name])) {
-            throw new \InvalidArgumentException("Invalid theme name [{$name}].");
+        if (! isset($themes[$id])) {
+            throw new \InvalidArgumentException("Invalid Theme ID [{$id}].");
         }
 
-        $this->laravel['orchestra.memory']->set("site.theme.{$group}", $name);
-        $this->info("Theme [{$name}] activated on {$group}.");
+        $this->laravel['orchestra.memory']->set("site.theme.{$group}", $themes[$id]->name);
+        $this->info("Theme [{$themes[$id]->name}] activated on group [{$group}].");
     }
 
     /**
@@ -71,7 +72,7 @@ class ThemeCommand extends BaseCommand
     {
         return array(
             array('group', InputArgument::REQUIRED, 'Either frontend or backend.'),
-            array('name', InputArgument::REQUIRED, 'Theme name.'),
+            array('id', InputArgument::REQUIRED, 'Theme ID.'),
         );
     }
 }
