@@ -17,7 +17,7 @@ class ThemeManager extends Manager
     /**
      * {@inheritdoc}
      */
-    protected function getDefaultDriver()
+    public function getDefaultDriver()
     {
         return 'orchestra';
     }
