@@ -13,10 +13,9 @@ class CommandServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bindShared('orchestra.view.command.detect', function ($app) {
-            $memory = $app['orchestra.memory']->driver();
             $finder = $app['orchestra.theme.finder'];
 
-            return new DetectCommand($memory, $finder);
+            return new DetectCommand($finder);
         });
 
         $this->commands(array(

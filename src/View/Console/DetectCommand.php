@@ -1,17 +1,9 @@
 <?php namespace Orchestra\View\Console;
 
-use Orchestra\Memory\Provider as Memory;
 use Orchestra\View\Theme\Finder;
 
 class DetectCommand extends BaseCommand
 {
-    /**
-     * Memory instance.
-     *
-     * @var \Orchestra\Memory\Provider
-     */
-    protected $memory;
-
     /**
      * Theme finder instance.
      *
@@ -36,12 +28,10 @@ class DetectCommand extends BaseCommand
     /**
      * Construct a new status command.
      *
-     * @param  \Orchestra\Memory\Provider   $memory
      * @param  \Orchestra\View\Theme\Finder $finder
      */
-    public function __construct(Memory $memory, Finder $finder)
+    public function __construct(Finder $finder)
     {
-        $this->memory = $memory;
         $this->finder = $finder;
 
         parent::__construct();
@@ -54,9 +44,11 @@ class DetectCommand extends BaseCommand
      */
     public function fire()
     {
-        $themes = $this->finder->detect();
-        $frontend = $this->memory->get('site.theme.frontend');
-        $backend = $this->memory->get('site.theme.backend');
+        $memory   = $this->laravel['orchestra.memory'];
+
+        $themes   = $this->finder->detect();
+        $frontend = $memory->get('site.theme.frontend');
+        $backend  = $memory->get('site.theme.backend');
 
         $header  = array('Theme Name', 'Frontend', 'Backend');
         $content = array();
@@ -64,8 +56,8 @@ class DetectCommand extends BaseCommand
         foreach ($themes as $id => $theme) {
             $content[] = array(
                 $theme->name,
-                ($id == $frontend ? "✓" : ''),
-                ($id == $backend ? "✓" : ''),
+                ($id == $frontend ? "   ✓" : ''),
+                ($id == $backend ? "   ✓" : ''),
             );
         }
 
