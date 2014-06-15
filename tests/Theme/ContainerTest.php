@@ -1,4 +1,4 @@
-<?php namespace Orchestra\View\Tests\Theme;
+<?php namespace Orchestra\View\TestCase\Theme;
 
 use Mockery as m;
 use Orchestra\View\Theme\Container;

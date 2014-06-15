@@ -1,6 +1,7 @@
 <?php namespace Orchestra\View\Theme;
 
 use Illuminate\Container\Container as Application;
+use Orchestra\Support\Collection;
 
 class Finder
 {
@@ -24,12 +25,12 @@ class Finder
     /**
      * Detect available themes.
      *
-     * @return array
+     * @return \Orchestra\Support\Collection
      * @throws \RuntimeException
      */
     public function detect()
     {
-        $themes = array();
+        $themes = new Collection();
         $file   = $this->app['files'];
         $path   = rtrim($this->app['path.public'], '/').'/themes/';
 
