@@ -1,7 +1,7 @@
 <?php namespace Orchestra\View;
 
 use Illuminate\Support\ServiceProvider;
-use Orchestra\View\Console\StatusCommand;
+use Orchestra\View\Console\DetectCommand;
 
 class CommandServiceProvider extends ServiceProvider
 {
@@ -12,12 +12,12 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('orchestra.view.command.status', function ($app) {
-            return new StatusCommand($app['orchestra.memory']);
+        $this->app->bindShared('orchestra.view.command.detect', function ($app) {
+            return new DetectCommand($app['orchestra.memory']);
         });
 
         $this->commands(array(
-            'orchestra.view.command.status',
+            'orchestra.view.command.detect',
         ));
     }
 }
