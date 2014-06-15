@@ -33,6 +33,8 @@ class StatusCommand extends BaseCommand
     public function __construct(Memory $memory)
     {
         $this->memory = $memory;
+
+        parent::__construct();
     }
 
     /**

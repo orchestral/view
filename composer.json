@@ -22,7 +22,7 @@
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.*",
-        "illuminate/console": "4.2.*",
+		"illuminate/console": "4.2.*",
 		"illuminate/container": "4.2.*",
 		"illuminate/view": "4.2.*"
 	},
