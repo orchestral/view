@@ -64,4 +64,18 @@ class DetectCommand extends BaseCommand
 
         $this->table($header, $content);
     }
+
+    /**
+     * Table generator.
+     *
+     * @param  array   $header
+     * @param  array   $content
+     * @return void
+     */
+    public function table($header, $content)
+    {
+        $table = $this->getHelperSet()->get('table');
+        $table->setHeaders($header)->setRows($content);
+        $table->render($this->getOutput());
+    }
 }
