@@ -5,6 +5,10 @@ title: View Change Log
 
 ## Version 2.1 {#v2-1}
 
+### v2.1.2 {#v2-1-2}
+
+* Add `php artisan theme:detect` and `php artisan theme:activate` command.
+
 ### v2.1.1 {#v2-1-1}
 
 * Implement [PSR-4](https://github.com/php-fig/fig-standards/blob/master/proposed/psr-4-autoloader/psr-4-autoloader.md) autoloading structure.
