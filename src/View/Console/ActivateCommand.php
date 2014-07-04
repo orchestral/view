@@ -59,7 +59,7 @@ class ActivateCommand extends BaseCommand
             throw new \InvalidArgumentException("Invalid Theme ID [{$id}].");
         }
 
-        $this->laravel['orchestra.memory']->set("site.theme.{$group}", $themes[$id]->name);
+        $this->laravel['orchestra.memory']->set("site.theme.{$group}", $themes[$id]->uid);
         $this->info("Theme [{$themes[$id]->name}] activated on group [{$group}].");
     }
 

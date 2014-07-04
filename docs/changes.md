@@ -3,7 +3,26 @@ title: View Change Log
 
 ---
 
+## Version 2.2 {#v2-2}
+
+### v2.2.1 {#v2-2-1}
+
+* Fixes invalid theme name when activating a theme using `php artisan theme:activate` command.
+
+### v2.2.0 {#v2-2-0}
+
+* Bump minimum version to PHP v5.4.0.
+* Add `php artisan theme:detect` and `php artisan theme:activate` command.
+
 ## Version 2.1 {#v2-1}
+
+### v2.1.3 {#v2-1-3}
+
+* Fixes invalid theme name when activating a theme using `php artisan theme:activate` command.
+
+### v2.1.2 {#v2-1-2}
+
+* Add `php artisan theme:detect` and `php artisan theme:activate` command.
 
 ### v2.1.1 {#v2-1-1}
 
