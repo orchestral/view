@@ -1,7 +1,7 @@
 <?php namespace Orchestra\View\Console;
 
-use Illuminate\Support\Fluent;
 use Orchestra\View\Theme\Finder;
+use Orchestra\View\Theme\Manifest;
 
 class DetectCommand extends BaseCommand
 {
@@ -69,12 +69,12 @@ class DetectCommand extends BaseCommand
     /**
      * Get theme status.
      *
-     * @param  string                       $type
-     * @param  \Illuminate\Support\Fluent   $theme
-     * @param  bool                         $active
+     * @param  string                           $type
+     * @param  \Orchestra\View\Theme\Manifest   $theme
+     * @param  bool                             $active
      * @return string
      */
-    protected function getThemeStatus($type, Fluent $theme, $active = false)
+    protected function getThemeStatus($type, Manifest $theme, $active = false)
     {
         if ($active === true) {
             return "   ✓";
