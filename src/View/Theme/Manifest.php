@@ -3,6 +3,10 @@
 use RuntimeException;
 use Illuminate\Filesystem\Filesystem;
 
+/**
+ * @property string $type
+ * @property array $autoload
+ */
 class Manifest
 {
     /**
