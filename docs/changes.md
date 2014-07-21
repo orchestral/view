@@ -5,6 +5,10 @@ title: View Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.2 {#v2-2-2}
+
+* Allow a theme manifest to support type option which can limit the visibility to either "frontend" or "backend" (default to accessible by both type).
+
 ### v2.2.1 {#v2-2-1}
 
 * Fixes invalid theme name when activating a theme using `php artisan theme:activate` command.
@@ -15,6 +19,10 @@ title: View Change Log
 * Add `php artisan theme:detect` and `php artisan theme:activate` command.
 
 ## Version 2.1 {#v2-1}
+
+### v2.1.4 {#v2-1-4}
+
+* Allow a theme manifest to support type option which can limit the visibility to either "frontend" or "backend" (default to accessible by both type).
 
 ### v2.1.3 {#v2-1-3}
 
