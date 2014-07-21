@@ -1,6 +1,7 @@
 <?php namespace Orchestra\View\Console;
 
 use Orchestra\View\Theme\Finder;
+use Orchestra\View\Theme\Manifest;
 
 class DetectCommand extends BaseCommand
 {
@@ -57,11 +58,32 @@ class DetectCommand extends BaseCommand
             $content[] = array(
                 $id,
                 $theme->name,
-                ($id == $frontend ? "   ✓" : ''),
-                ($id == $backend ? "   ✓" : ''),
+                $this->getThemeStatus('frontend', $theme, ($id == $frontend)),
+                $this->getThemeStatus('backend', $theme, ($id == $backend)),
             );
         }
 
         $this->table($header, $content);
+    }
+
+    /**
+     * Get theme status.
+     *
+     * @param  string                           $type
+     * @param  \Orchestra\View\Theme\Manifest   $theme
+     * @param  bool                             $active
+     * @return string
+     */
+    protected function getThemeStatus($type, Manifest $theme, $active = false)
+    {
+        if ($active === true) {
+            return "   ✓";
+        }
+
+        if (! empty($theme->type) && ! in_array($type, $theme->type)) {
+            return "   ✗";
+        }
+
+        return "";
     }
 }

@@ -1,5 +1,6 @@
 <?php namespace Orchestra\View\Console;
 
+use InvalidArgumentException;
 use Orchestra\Support\Str;
 use Orchestra\View\Theme\Finder;
 use Symfony\Component\Console\Input\InputArgument;
@@ -28,6 +29,13 @@ class ActivateCommand extends BaseCommand
     protected $description = 'Set active themes in the application.';
 
     /**
+     * Available themes type.
+     *
+     * @var array
+     */
+    protected $type = array('frontend', 'backend');
+
+    /**
      * Construct a new status command.
      *
      * @param  \Orchestra\View\Theme\Finder $finder
@@ -49,18 +57,38 @@ class ActivateCommand extends BaseCommand
         $group = Str::lower($this->argument('group'));
         $id    = Str::lower($this->argument('id'));
 
+        $theme = $this->getAvailableTheme($group)->get($id);
+
+        if (! in_array($group, $this->type)) {
+            throw new InvalidArgumentException("Invalid theme name [{$group}], should either be 'frontend' or 'backend'.");
+        }
+
+        if (is_null($theme)) {
+            throw new InvalidArgumentException("Invalid Theme ID [{$id}], or is not available for '{$group}'.");
+        }
+
+        $this->laravel['orchestra.memory']->set("site.theme.{$group}", $theme->uid);
+
+        $this->info("Theme [{$theme->name}] activated on group [{$group}].");
+    }
+
+    /**
+     * Get all available theme by type.
+     *
+     * @param  string   $type
+     * @return \Illuminate\Support\Collection
+     */
+    protected function getAvailableTheme($type)
+    {
         $themes = $this->finder->detect();
 
-        if (! in_array($group, array('frontend', 'backend'))) {
-            throw new \InvalidArgumentException("Invalid theme name [{$group}], should either be 'frontend' or 'backend'.");
-        }
+        return $themes->filter(function ($manifest) use ($type) {
+            if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
+                return ;
+            }
 
-        if (! isset($themes[$id])) {
-            throw new \InvalidArgumentException("Invalid Theme ID [{$id}].");
-        }
-
-        $this->laravel['orchestra.memory']->set("site.theme.{$group}", $themes[$id]->uid);
-        $this->info("Theme [{$themes[$id]->name}] activated on group [{$group}].");
+            return $manifest;
+        });
     }
 
     /**

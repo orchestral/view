@@ -23,14 +23,14 @@ class ManifestTest extends \PHPUnit_Framework_TestCase
         $files = m::mock('\Illuminate\Filesystem\Filesystem');
 
         $files->shouldReceive('exists')->once()->with('/var/orchestra/themes/default/theme.json')->andReturn(true)
-            ->shouldReceive('get')->once()->with('/var/orchestra/themes/default/theme.json')->andReturn('{"foo":"bar"}');
+            ->shouldReceive('get')->once()->with('/var/orchestra/themes/default/theme.json')->andReturn('{"name":"foobar"}');
 
         $stub = new Manifest($files, '/var/orchestra/themes/default');
 
         $this->assertNull($stub->foobar);
-        $this->assertEquals('bar', $stub->foo);
-        $this->assertFalse(isset($stub->foobar));
-        $this->assertTrue(isset($stub->foo));
+        $this->assertEquals('foobar', $stub->name);
+        $this->assertFalse(isset($stub->hello));
+        $this->assertTrue(is_array($stub->autoload));
         $this->assertEquals('/var/orchestra/themes/default', $stub->path);
     }
 
