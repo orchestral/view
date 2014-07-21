@@ -41,8 +41,9 @@ class Finder
             $name = $this->parseThemeNameFromPath($folder);
             $manifest = new Manifest($file, rtrim($folder, '/').'/');
 
-            if ( !isset($manifest->type) || $manifest->type == $type)
+            if (! isset($manifest->type) || $manifest->type == $type) {
                 $themes[$name] = $manifest;
+            }
         }
 
         return $themes;
