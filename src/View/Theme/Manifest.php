@@ -2,6 +2,7 @@
 
 use RuntimeException;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Fluent;
 
 class Manifest
 {
@@ -20,6 +21,20 @@ class Manifest
     protected $items;
 
     /**
+     * Default manifest options.
+     *
+     * @var array
+     */
+    protected $manifestOptions = array(
+        'name'        => null,
+        'uid'         => null,
+        'description' => null,
+        'author'      => null,
+        'autoload'    => array(),
+        'type'        => array(),
+    );
+
+    /**
      * Load the theme.
      *
      * @param  \Illuminate\Filesystem\Filesystem    $files
@@ -32,18 +47,40 @@ class Manifest
         $this->files = $files;
 
         if ($files->exists($manifest = "{$path}/theme.json")) {
-            $this->items = json_decode($files->get($manifest));
+            $jsonable = json_decode($files->get($manifest), true);
 
-            if (is_null($this->items)) {
+            if (is_null($jsonable)) {
                 // json_decode couldn't parse, throw an exception.
                 throw new RuntimeException(
                     "Theme [{$path}]: cannot decode theme.json file"
                 );
             }
 
+            $this->items       = new Fluent($this->generateManifestConfig($jsonable));
             $this->items->uid  = $this->parseThemeNameFromPath($path);
             $this->items->path = $path;
         }
+    }
+
+    /**
+     * Generate a proper manifest configuration for the theme. This
+     * would allow other part of the application to use this configuration
+     * to migrate, load service provider as well as preload some
+     * configuration.
+     *
+     * @param  array    $jsonable
+     * @return array
+     */
+    protected function generateManifestConfig(array $jsonable)
+    {
+        $manifest = array();
+
+        // Assign extension manifest option or provide the default value.
+        foreach ($this->manifestOptions as $key => $default) {
+            $manifest["{$key}"] = array_get($jsonable, $key, $default);
+        }
+
+        return $manifest;
     }
 
     /**
