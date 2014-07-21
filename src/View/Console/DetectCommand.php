@@ -1,5 +1,6 @@
 <?php namespace Orchestra\View\Console;
 
+use Illuminate\Support\Fluent;
 use Orchestra\View\Theme\Finder;
 
 class DetectCommand extends BaseCommand
@@ -57,12 +58,33 @@ class DetectCommand extends BaseCommand
             $content[] = array(
                 $id,
                 $theme->name,
-                ($id == $frontend ? "   ✓" : ''),
-                ($id == $backend ? "   ✓" : ''),
+                $this->getThemeStatus('frontend', $theme, ($id == $frontend)),
+                $this->getThemeStatus('backend', $theme, ($id == $backend)),
             );
         }
 
         $this->table($header, $content);
+    }
+
+    /**
+     * Get theme status.
+     *
+     * @param  string                       $type
+     * @param  \Illuminate\Support\Fluent   $theme
+     * @param  bool                         $active
+     * @return string
+     */
+    protected function getThemeStatus($type, Fluent $theme, $active = false)
+    {
+        if ($active === true) {
+            return "   ✓";
+        }
+
+        if (! empty($theme->type) && ! in_array($type, $theme->type)) {
+            return "   ✗";
+        }
+
+        return "";
     }
 
     /**
