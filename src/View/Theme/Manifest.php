@@ -4,6 +4,10 @@ use RuntimeException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Fluent;
 
+/**
+ * @property null|array $type
+ * @property array $autoload
+ */
 class Manifest
 {
     /**
