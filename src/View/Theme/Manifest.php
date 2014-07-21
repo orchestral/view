@@ -4,7 +4,7 @@ use RuntimeException;
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * @property string $type
+ * @property null|array $type
  * @property array $autoload
  */
 class Manifest

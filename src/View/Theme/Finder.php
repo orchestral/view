@@ -25,11 +25,11 @@ class Finder
     /**
      * Detect available themes.
      *
-     * @param  string  $type
+     * @param  null|string  $type
      * @return \Orchestra\Support\Collection
      * @throws \RuntimeException
      */
-    public function detect($type = 'frontend')
+    public function detect($type = null)
     {
         $themes = new Collection();
         $file   = $this->app['files'];
@@ -41,9 +41,10 @@ class Finder
             $name = $this->parseThemeNameFromPath($folder);
             $manifest = new Manifest($file, rtrim($folder, '/').'/');
 
-            if (! isset($manifest->type) || $manifest->type == $type) {
+            if (is_null($type) || empty($manifest->type) || in_array($type, $manifest->type)) {
                 $themes[$name] = $manifest;
             }
+
         }
 
         return $themes;
