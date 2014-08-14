@@ -66,6 +66,24 @@ class ActivateCommand extends BaseCommand
 
         $theme = $this->getAvailableTheme($group)->get($id);
 
+        if ($this->validateProvidedTheme($group, $id, $theme)) {
+            $this->laravel['orchestra.memory']->set("site.theme.{$group}", $theme->uid);
+
+            $this->info("Theme [{$theme->name}] activated on group [{$group}].");
+        }
+    }
+
+    /**
+     * Validate provided theme.
+     *
+     * @param  string       $group
+     * @param  string       $id
+     * @param  object|null  $theme
+     * @return bool
+     * @throws \InvalidArgumentException
+     */
+    protected function validateProvidedTheme($group, $id, $theme)
+    {
         if (! in_array($group, $this->type)) {
             throw new InvalidArgumentException("Invalid theme name [{$group}], should either be 'frontend' or 'backend'.");
         }
@@ -74,9 +92,7 @@ class ActivateCommand extends BaseCommand
             throw new InvalidArgumentException("Invalid Theme ID [{$id}], or is not available for '{$group}'.");
         }
 
-        $this->laravel['orchestra.memory']->set("site.theme.{$group}", $theme->uid);
-
-        $this->info("Theme [{$theme->name}] activated on group [{$group}].");
+        return true;
     }
 
     /**
