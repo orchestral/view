@@ -1,12 +1,15 @@
 <?php namespace Orchestra\View\Console;
 
 use InvalidArgumentException;
+use Illuminate\Console\ConfirmableTrait;
 use Orchestra\Support\Str;
 use Orchestra\View\Theme\Finder;
 use Symfony\Component\Console\Input\InputArgument;
 
 class ActivateCommand extends BaseCommand
 {
+    use ConfirmableTrait;
+
     /**
      * Theme finder instance.
      *
@@ -54,6 +57,10 @@ class ActivateCommand extends BaseCommand
      */
     public function fire()
     {
+        if (! $this->confirmToProceed()) {
+            return null;
+        }
+
         $group = Str::lower($this->argument('group'));
         $id    = Str::lower($this->argument('id'));
 
@@ -84,7 +91,7 @@ class ActivateCommand extends BaseCommand
 
         return $themes->filter(function ($manifest) use ($type) {
             if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
-                return ;
+                return null;
             }
 
             return $manifest;
