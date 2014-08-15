@@ -5,6 +5,7 @@ use Illuminate\Console\ConfirmableTrait;
 use Orchestra\Support\Str;
 use Orchestra\View\Theme\Finder;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class ActivateCommand extends BaseCommand
 {
@@ -124,6 +125,18 @@ class ActivateCommand extends BaseCommand
         return array(
             array('group', InputArgument::REQUIRED, 'Either frontend or backend.'),
             array('id', InputArgument::REQUIRED, 'Theme ID.'),
+        );
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return array(
+            array('force', null, InputOption::VALUE_NONE, 'Force the operation to run when in production.'),
         );
     }
 }
