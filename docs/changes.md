@@ -5,6 +5,11 @@ title: View Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.3 {#v2-2-3}
+
+* Add confirmation when running `activate` command on `"production"` environment.
+* Utilize `Illuminate\Support\Arr`.
+
 ### v2.2.2 {#v2-2-2}
 
 * Allow a theme manifest to support type option which can limit the visibility to either "frontend" or "backend" (default to accessible by both type).
