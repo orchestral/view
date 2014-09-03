@@ -51,7 +51,6 @@ class Container
      * or whenever we need to overwrite current active theme per request.
      *
      * @param  \Illuminate\Container\Container  $app
-     * @param  string                           $name
      */
     public function __construct(Application $app)
     {

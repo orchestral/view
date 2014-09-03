@@ -1,6 +1,8 @@
 <?php namespace Orchestra\View;
 
 use Illuminate\Support\ServiceProvider;
+use Orchestra\View\Theme\Finder;
+use Orchestra\View\Theme\ThemeManager;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -37,11 +39,11 @@ class ViewServiceProvider extends ServiceProvider
     protected function registerTheme()
     {
         $this->app->bindShared('orchestra.theme', function ($app) {
-            return new Theme\ThemeManager($app);
+            return new ThemeManager($app);
         });
 
         $this->app->bindShared('orchestra.theme.finder', function ($app) {
-            return new Theme\Finder($app);
+            return new Finder($app);
         });
     }
 
