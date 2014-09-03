@@ -2,6 +2,7 @@
 
 use RuntimeException;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 
 class Manifest
@@ -77,7 +78,7 @@ class Manifest
 
         // Assign extension manifest option or provide the default value.
         foreach ($this->manifestOptions as $key => $default) {
-            $manifest["{$key}"] = array_get($jsonable, $key, $default);
+            $manifest["{$key}"] = Arr::get($jsonable, $key, $default);
         }
 
         return $manifest;
