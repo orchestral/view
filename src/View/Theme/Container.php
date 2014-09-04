@@ -1,6 +1,8 @@
 <?php namespace Orchestra\View\Theme;
 
 use Illuminate\Container\Container as Application;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Filesystem\Filesystem;
 use Orchestra\View\FileViewFinder;
 
 class Container
@@ -11,6 +13,16 @@ class Container
      * @var \Illuminate\Container\Container
      */
     protected $app;
+
+    /**
+     * @var \Illuminate\Contracts\Events\Dispatcher
+     */
+    protected $dispatcher;
+
+    /**
+     * @var \Illuminate\Filesystem\Filesystem
+     */
+    protected $files;
 
     /**
      * Theme filesystem path.
@@ -54,22 +66,37 @@ class Container
     protected $theme = null;
 
     /**
-     * Start theme engine, this should be called from application booted
-     * or whenever we need to overwrite current active theme per request.
+     * Setup a new theme container.
      *
-     * @param  \Illuminate\Container\Container  $app
+     * @param  \Illuminate\Container\Container          $app
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
+     * @param  \Illuminate\Filesystem\Filesystem        $files
      */
-    public function __construct(Application $app)
+    public function __construct(Application $app, Dispatcher $dispatcher, Filesystem $files)
     {
         $this->app = $app;
-        $baseUrl   = $app['request']->root();
+        $this->dispatcher = $dispatcher;
+        $this->files = $files;
 
         $this->path = $app['path.public'].'/themes';
         $this->cascadingPath = $app['path.base'].'/resources/themes';
+    }
+
+    /**
+     * Start theme engine, this should be called from application booted
+     * or whenever we need to overwrite current active theme per request.
+     *
+     * @return $this
+     */
+    public function initiate()
+    {
+        $baseUrl = $this->app['request']->root();
 
         // Register relative and absolute URL for theme usage.
         $this->absoluteUrl = rtrim($baseUrl, '/').'/themes';
         $this->relativeUrl = trim(str_replace($baseUrl, '/', $this->absoluteUrl), '/');
+
+        return $this;
     }
 
     /**
@@ -80,20 +107,12 @@ class Container
      */
     public function setTheme($theme)
     {
-        $viewFinder = $this->app['view.finder'];
-
         if (! is_null($this->theme)) {
-            $paths = $this->getDefaultViewPaths($viewFinder);
-
-            $this->app['events']->fire("orchestra.theme.unset: {$this->theme}");
-        } else {
-            $paths = $viewFinder->getPaths();
+            $this->dispatcher->fire("orchestra.theme.unset: {$this->theme}");
         }
 
         $this->theme = $theme;
-        $this->app['events']->fire("orchestra.theme.set: {$this->theme}");
-
-        $this->registerThemePaths($viewFinder, $paths);
+        $this->dispatcher->fire("orchestra.theme.set: {$this->theme}");
     }
 
     /**
@@ -119,24 +138,20 @@ class Container
 
         $this->booted = true;
 
-        $themePath = $this->getThemePath();
+        $this->dispatcher->fire("orchestra.theme.resolving", array($this, $this->app));
 
-        // There might be situation where Orchestra Platform was unable
-        // to get theme information, we should only assume there a valid
-        // theme when manifest is actually an instance of
-        // Orchestra\View\Theme\Manifest.
-        if (! $this->app['files']->isDirectory($themePath)) {
-            return false;
-        }
+        $viewFinder = $this->app['view.finder'];
+        $themePath  = $this->getThemePath();
+        $autoload   = $this->getThemeAutoloadFiles($themePath);
 
-        $autoload = $this->getThemeAutoloadFiles($themePath);
+        $this->setViewPaths($viewFinder);
 
         foreach ($autoload as $file) {
             $file = ltrim($file, '/');
-            $this->app['files']->requireOnce("{$themePath}/{$file}");
+            $this->files->requireOnce("{$themePath}/{$file}");
         }
 
-        $this->app['events']->fire("orchestra.theme.boot: {$this->theme}");
+        $this->dispatcher->fire("orchestra.theme.boot: {$this->theme}");
 
         return true;
     }
@@ -168,7 +183,14 @@ class Container
      */
     public function getThemePaths()
     {
-        return array($this->getCascadingThemePath(), $this->getThemePath());
+        $paths      = array();
+        $themePaths = array($this->getCascadingThemePath(), $this->getThemePath());
+
+        foreach ($themePaths as $path) {
+            $this->files->isDirectory($path) && $paths[] = $path;
+        }
+
+        return $paths;
     }
 
     /**
@@ -201,43 +223,23 @@ class Container
      */
     protected function getThemeAutoloadFiles($themePath)
     {
-        $autoload = array();
-        $manifest = new Manifest($this->app['files'], $themePath);
+        $manifest = new Manifest($this->files, $themePath);
 
-        if (isset($manifest->autoload) && is_array($manifest->autoload)) {
-            $autoload = $manifest->autoload;
-        }
-
-        return $autoload;
-    }
-
-    /**
-     * Get default view paths (excluding registered theme paths).
-     *
-     * @param  \Orchestra\View\FileViewFinder   $viewFinder
-     * @return array
-     */
-    protected function getDefaultViewPaths(FileViewFinder $viewFinder)
-    {
-        $paths = $viewFinder->getPaths();
-
-        foreach ($this->getThemePaths() as $themePath) {
-            ($paths[0] === $themePath) && array_shift($paths);
-        }
-
-        return $paths;
+        return data_get($manifest, 'autoload', array());
     }
 
     /**
      * Register theme paths to view file finder paths.
      *
      * @param  \Orchestra\View\FileViewFinder   $viewFinder
-     * @param  array                            $paths
+     * @return void
      */
-    protected function registerThemePaths(FileViewFinder $viewFinder, array $paths = array())
+    protected function setViewPaths(FileViewFinder $viewFinder)
     {
-        $paths = array_merge($this->getThemePaths(), $paths);
+        $themePaths = $this->getThemePaths();
 
-        $viewFinder->setPaths($paths);
+        if (! empty($themePaths)) {
+            $viewFinder->setPaths(array_merge($themePaths, $viewFinder->getPaths()));
+        }
     }
 }

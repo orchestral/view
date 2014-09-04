@@ -24,6 +24,7 @@
 		"mockery/mockery": "0.9.*",
 		"illuminate/console": "4.3.*",
 		"illuminate/container": "4.3.*",
+		"illuminate/events": "4.3.*",
 		"illuminate/view": "4.3.*"
 	},
 	"suggest": {

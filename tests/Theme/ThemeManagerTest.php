@@ -9,7 +9,7 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * Application instance.
      *
-     * @var Illuminate\Container\Container
+     * @var \Illuminate\Container\Container
      */
     private $app;
 
@@ -20,6 +20,8 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->app = new Container;
         $this->app['request'] = $request = m::mock('\Illuminate\Http\Request');
+        $this->app['events'] = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $this->app['files'] = m::mock('\Illuminate\Filesystem\Filesystem');
         $this->app['path.base'] = '/var/orchestra';
         $this->app['path.public'] = '/var/orchestra/public';
 

@@ -1,5 +1,6 @@
 <?php namespace Orchestra\View\TestCase\Theme;
 
+use Illuminate\Events\Dispatcher;
 use Mockery as m;
 use Orchestra\View\Theme\Container;
 
@@ -47,37 +48,28 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $app = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
         $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
-        $app['events'] = $events = m::mock('\Illuminate\Events\Dispatcher');
+        $app['events'] = $events = m::mock('\Illuminate\Events\Dispatcher', array($app));
 
-        $finder->shouldReceive('getPaths')->once()
-                ->andReturn(array('/var/orchestra/app/views'))
-            ->shouldReceive('getPaths')->once()
-                ->andReturn(array('/var/orchestra/public/themes/foo', '/var/orchestra/app/views'))
-            ->shouldReceive('setPaths')->once()
-                ->with(array('/var/orchestra/resources/themes/foo', '/var/orchestra/public/themes/foo', '/var/orchestra/app/views'))
-                ->andReturn(null)
+        $stub = new Container($app, $events, $files);
+
+        $finder->shouldReceive('getPaths')->once()->andReturn(array('/var/orchestra/app/views'))
             ->shouldReceive('setPaths')->once()
                 ->with(array('/var/orchestra/resources/themes/default', '/var/orchestra/public/themes/default', '/var/orchestra/app/views'))
-                ->andReturn(null);
-        $files->shouldReceive('isDirectory')->once()
-                ->with('/var/orchestra/public/themes/default')->andReturn(true)
-            ->shouldReceive('exists')->once()
-                ->with('/var/orchestra/public/themes/default/theme.json')->andReturn(true)
-            ->shouldReceive('get')->once()
-                ->with('/var/orchestra/public/themes/default/theme.json')
-                ->andReturn('{"autoload":["start.php"]}')
-            ->shouldReceive('requireOnce')->once()
-                ->with('/var/orchestra/public/themes/default/start.php')->andReturn(null);
-        $events->shouldReceive('fire')->once()
-                ->with('orchestra.theme.set: foo')->andReturn(null)
-            ->shouldReceive('fire')->once()
-                ->with('orchestra.theme.unset: foo')->andReturn(null)
-            ->shouldReceive('fire')->once()
-                ->with('orchestra.theme.set: default')->andReturn(null)
-            ->shouldReceive('fire')->once()
-                ->with('orchestra.theme.boot: default')->andReturn(null);
+                ->andReturnNull();
+        $files->shouldReceive('isDirectory')->once()->with('/var/orchestra/public/themes/default')->andReturn(true)
+            ->shouldReceive('isDirectory')->once()->with('/var/orchestra/resources/themes/default')->andReturn(true)
+            ->shouldReceive('exists')->once()->with('/var/orchestra/public/themes/default/theme.json')->andReturn(true)
+            ->shouldReceive('get')->once()->with('/var/orchestra/public/themes/default/theme.json')
+            ->andReturn('{"autoload":["start.php"]}')
+            ->shouldReceive('requireOnce')->once()->with('/var/orchestra/public/themes/default/start.php')
+            ->andReturnNull();
+        $events->shouldReceive('fire')->once()->with('orchestra.theme.resolving', array($stub, $app))->andReturnNull()
+            ->shouldReceive('fire')->once()->with('orchestra.theme.set: foo')->andReturnNull()
+            ->shouldReceive('fire')->once()->with('orchestra.theme.unset: foo')->andReturnNull()
+            ->shouldReceive('fire')->once()->with('orchestra.theme.set: default')->andReturnNull()
+            ->shouldReceive('fire')->once()->with('orchestra.theme.boot: default')->andReturnNull();
 
-        $stub = new Container($app);
+        $stub->initiate();
 
         $stub->setTheme('foo');
 
@@ -105,23 +97,19 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $app = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
+        $app['events'] = $events = new Dispatcher($app);
         $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
-        $app['events'] = $events = m::mock('\Illuminate\Events\Dispatcher');
 
-        $finder->shouldReceive('getPaths')->once()
-                ->andReturn(array('/var/orchestra/app/views'))
-            ->shouldReceive('setPaths')->once()
-                ->with(array('/var/orchestra/resources/themes/default', '/var/orchestra/public/themes/default', '/var/orchestra/app/views'))
-                ->andReturn(null);
-        $files->shouldReceive('isDirectory')->once()
-                ->with('/var/orchestra/public/themes/default')->andReturn(false);
-        $events->shouldReceive('fire')->once()
-                ->with('orchestra.theme.set: default')->andReturn(null);
+        $stub = new Container($app, $events, $files);
 
-        $stub = new Container($app);
+        $files->shouldReceive('exists')->once()->with('/var/orchestra/public/themes/default/theme.json')->andReturn(false)
+            ->shouldReceive('isDirectory')->once()->with('/var/orchestra/public/themes/default')->andReturn(false)
+            ->shouldReceive('isDirectory')->once()->with('/var/orchestra/resources/themes/default')->andReturn(false);
+
+        $stub->initiate();
 
         $stub->setTheme('default');
 
-        $this->assertFalse($stub->boot());
+        $this->assertTrue($stub->boot());
     }
 }
