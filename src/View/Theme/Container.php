@@ -141,15 +141,9 @@ class Container
         $this->dispatcher->fire("orchestra.theme.resolving", array($this, $this->app));
 
         $viewFinder = $this->app['view.finder'];
-        $themePath  = $this->getThemePath();
-        $autoload   = $this->getThemeAutoloadFiles($themePath);
 
         $this->setViewPaths($viewFinder);
-
-        foreach ($autoload as $file) {
-            $file = ltrim($file, '/');
-            $this->files->requireOnce("{$themePath}/{$file}");
-        }
+        $this->loadThemeStarterFiles();
 
         $this->dispatcher->fire("orchestra.theme.boot: {$this->theme}");
 
@@ -240,6 +234,22 @@ class Container
 
         if (! empty($themePaths)) {
             $viewFinder->setPaths(array_merge($themePaths, $viewFinder->getPaths()));
+        }
+    }
+
+    /**
+     * Load theme starter files.
+     *
+     * @return void
+     */
+    protected function loadThemeStarterFiles()
+    {
+        $themePath = $this->getThemePath();
+        $autoload = $this->getThemeAutoloadFiles($themePath);
+
+        foreach ($autoload as $file) {
+            $file = ltrim($file, '/');
+            $this->files->requireOnce("{$themePath}/{$file}");
         }
     }
 }
