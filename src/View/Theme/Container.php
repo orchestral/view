@@ -1,6 +1,7 @@
 <?php namespace Orchestra\View\Theme;
 
 use Illuminate\Container\Container as Application;
+use Orchestra\View\FileViewFinder;
 
 class Container
 {
@@ -12,11 +13,17 @@ class Container
     protected $app;
 
     /**
-     * Filesystem path of theme.
+     * Theme filesystem path.
      *
      * @var string
      */
     protected $path;
+
+    /**
+     * Theme cascading filesystem path.
+     * @var string
+     */
+    protected $cascadingPath;
 
     /**
      * URL path of theme.
@@ -54,9 +61,11 @@ class Container
      */
     public function __construct(Application $app)
     {
-        $this->app  = $app;
-        $baseUrl    = $app['request']->root();
+        $this->app = $app;
+        $baseUrl   = $app['request']->root();
+
         $this->path = $app['path.public'].'/themes';
+        $this->cascadingPath = $app['path.base'].'/resources/themes';
 
         // Register relative and absolute URL for theme usage.
         $this->absoluteUrl = rtrim($baseUrl, '/').'/themes';
@@ -72,21 +81,19 @@ class Container
     public function setTheme($theme)
     {
         $viewFinder = $this->app['view.finder'];
-        $paths      = $viewFinder->getPaths();
 
         if (! is_null($this->theme)) {
-            if ($paths[0] === $this->getThemePath()) {
-                array_shift($paths);
-            }
+            $paths = $this->getDefaultViewPaths($viewFinder);
 
             $this->app['events']->fire("orchestra.theme.unset: {$this->theme}");
+        } else {
+            $paths = $viewFinder->getPaths();
         }
 
         $this->theme = $theme;
         $this->app['events']->fire("orchestra.theme.set: {$this->theme}");
 
-        $paths = array_merge(array($this->getThemePath()), $paths);
-        $viewFinder->setPaths($paths);
+        $this->registerThemePaths($viewFinder, $paths);
     }
 
     /**
@@ -100,7 +107,7 @@ class Container
     }
 
     /**
-     * Boot the theme by autoloading all the relevant files.
+     * Boot the theme by auto-loading all the relevant files.
      *
      * @return boolean
      */
@@ -145,6 +152,26 @@ class Container
     }
 
     /**
+     * Get cascading theme path.
+     *
+     * @return string
+     */
+    public function getCascadingThemePath()
+    {
+        return "{$this->cascadingPath}/{$this->theme}";
+    }
+
+    /**
+     * Get theme paths.
+     *
+     * @return string
+     */
+    public function getThemePaths()
+    {
+        return array($this->getCascadingThemePath(), $this->getThemePath());
+    }
+
+    /**
      * URL helper for the theme.
      *
      * @param  string   $url
@@ -182,5 +209,35 @@ class Container
         }
 
         return $autoload;
+    }
+
+    /**
+     * Get default view paths (excluding registered theme paths).
+     *
+     * @param  \Orchestra\View\FileViewFinder   $viewFinder
+     * @return array
+     */
+    protected function getDefaultViewPaths(FileViewFinder $viewFinder)
+    {
+        $paths = $viewFinder->getPaths();
+
+        foreach ($this->getThemePaths() as $themePath) {
+            ($paths[0] === $themePath) && array_shift($paths);
+        }
+
+        return $paths;
+    }
+
+    /**
+     * Register theme paths to view file finder paths.
+     *
+     * @param  \Orchestra\View\FileViewFinder   $viewFinder
+     * @param  array                            $paths
+     */
+    protected function registerThemePaths(FileViewFinder $viewFinder, array $paths = array())
+    {
+        $paths = array_merge($this->getThemePaths(), $paths);
+
+        $viewFinder->setPaths($paths);
     }
 }

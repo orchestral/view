@@ -8,7 +8,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     /**
      * Application instance.
      *
-     * @var Illuminate\Foundation\Application
+     * @var \Illuminate\Container\Container
      */
     private $app;
 
@@ -20,6 +20,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->app = new \Illuminate\Container\Container;
 
         $this->app['path.public'] = '/var/orchestra/public';
+        $this->app['path.base'] = '/var/orchestra';
         $this->app['request'] = $request = m::mock('Request');
 
         $request->shouldReceive('root')->andReturn('http://localhost/');
@@ -31,6 +32,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->app);
+
         m::close();
     }
 
@@ -43,7 +45,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function testGetterAndSetterForTheme()
     {
         $app = $this->app;
-        $app['view.finder'] = $finder = m::mock('ViewFinder');
+        $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
         $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
         $app['events'] = $events = m::mock('\Illuminate\Events\Dispatcher');
 
@@ -52,10 +54,10 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getPaths')->once()
                 ->andReturn(array('/var/orchestra/public/themes/foo', '/var/orchestra/app/views'))
             ->shouldReceive('setPaths')->once()
-                ->with(array('/var/orchestra/public/themes/foo', '/var/orchestra/app/views'))
+                ->with(array('/var/orchestra/resources/themes/foo', '/var/orchestra/public/themes/foo', '/var/orchestra/app/views'))
                 ->andReturn(null)
             ->shouldReceive('setPaths')->once()
-                ->with(array('/var/orchestra/public/themes/default', '/var/orchestra/app/views'))
+                ->with(array('/var/orchestra/resources/themes/default', '/var/orchestra/public/themes/default', '/var/orchestra/app/views'))
                 ->andReturn(null);
         $files->shouldReceive('isDirectory')->once()
                 ->with('/var/orchestra/public/themes/default')->andReturn(true)
@@ -102,14 +104,14 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function testBootMethodWhenManifestIsNotAvailable()
     {
         $app = $this->app;
-        $app['view.finder'] = $finder = m::mock('ViewFinder');
+        $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
         $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
         $app['events'] = $events = m::mock('\Illuminate\Events\Dispatcher');
 
         $finder->shouldReceive('getPaths')->once()
                 ->andReturn(array('/var/orchestra/app/views'))
             ->shouldReceive('setPaths')->once()
-                ->with(array('/var/orchestra/public/themes/default', '/var/orchestra/app/views'))
+                ->with(array('/var/orchestra/resources/themes/default', '/var/orchestra/public/themes/default', '/var/orchestra/app/views'))
                 ->andReturn(null);
         $files->shouldReceive('isDirectory')->once()
                 ->with('/var/orchestra/public/themes/default')->andReturn(false);

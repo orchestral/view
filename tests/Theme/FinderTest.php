@@ -1,5 +1,6 @@
 <?php namespace Orchestra\View\TestCase\Theme;
 
+use Illuminate\Container\Container;
 use Mockery as m;
 use Orchestra\View\Theme\Finder;
 
@@ -8,7 +9,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase
     /**
      * Application instance.
      *
-     * @var \Illuminate\Foundation\Application
+     * @var \Illuminate\Container\Container
      */
     private $app = null;
 
@@ -17,7 +18,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->app = new \Illuminate\Container\Container;
+        $this->app = new Container;
     }
 
     /**
@@ -37,25 +38,25 @@ class FinderTest extends \PHPUnit_Framework_TestCase
     public function testDetectMethod()
     {
         $app = $this->app;
-        $app['path.public'] = '/var/foo/public/';
+        $app['path.public'] = '/var/orchestra/public/';
         $app['files'] = $file = m::mock('\Illuminate\Filesystem\Filesystem');
 
         $file->shouldReceive('directories')->once()
-                ->with('/var/foo/public/themes/')->andReturn(array(
-                    '/var/foo/public/themes/a',
-                    '/var/foo/public/themes/b',
+                ->with('/var/orchestra/public/themes/')->andReturn(array(
+                    '/var/orchestra/public/themes/a',
+                    '/var/orchestra/public/themes/b',
                 ))
             ->shouldReceive('exists')->once()
-                ->with('/var/foo/public/themes/a/theme.json')->andReturn(true)
+                ->with('/var/orchestra/public/themes/a/theme.json')->andReturn(true)
             ->shouldReceive('exists')->once()
-                ->with('/var/foo/public/themes/b/theme.json')->andReturn(false)
+                ->with('/var/orchestra/public/themes/b/theme.json')->andReturn(false)
             ->shouldReceive('get')->once()
-                ->with('/var/foo/public/themes/a/theme.json')->andReturn('{"name": "foo"}');
+                ->with('/var/orchestra/public/themes/a/theme.json')->andReturn('{"name": "foo"}');
 
         $stub   = new Finder($app);
         $themes = $stub->detect();
 
         $this->assertInstanceOf('\Orchestra\View\Theme\Manifest', $themes['a']);
-        $this->assertEquals('/var/foo/public/themes/a', $themes['a']->path);
+        $this->assertEquals('/var/orchestra/public/themes/a', $themes['a']->path);
     }
 }

@@ -1,5 +1,6 @@
 <?php namespace Orchestra\View\TestCase\Theme;
 
+use Illuminate\Container\Container;
 use Mockery as m;
 use Orchestra\View\Theme\ThemeManager;
 
@@ -8,7 +9,7 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * Application instance.
      *
-     * @var Illuminate\Foundation\Application
+     * @var Illuminate\Container\Container
      */
     private $app;
 
@@ -17,9 +18,10 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->app = new \Illuminate\Container\Container;
-        $this->app['request'] = $request = m::mock('RequestMock');
-        $this->app['path.public'] = '/var/laravel/public';
+        $this->app = new Container;
+        $this->app['request'] = $request = m::mock('\Illuminate\Http\Request');
+        $this->app['path.base'] = '/var/orchestra';
+        $this->app['path.public'] = '/var/orchestra/public';
 
         $request->shouldReceive('root')->andReturn('http://localhost/');
     }
