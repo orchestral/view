@@ -69,6 +69,10 @@ class ViewServiceProvider extends ServiceProvider
         // The theme is only booted when the first view is being composed.
         // This would prevent multiple theme being booted in the same
         // request.
+        $app->resolving('view', function () use ($app) {
+            $app['orchestra.theme']->resolving();
+        });
+
         $app['events']->listen('composing: *', function () use ($app) {
             $app['orchestra.theme']->boot();
         });

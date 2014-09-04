@@ -51,12 +51,20 @@ class Container
      */
     protected $relativeUrl;
 
+
     /**
-     * Booted indicator.
+     * Boot indicator.
      *
      * @var boolean
      */
     protected $booted = false;
+
+    /**
+     * Resolve indicator.
+     *
+     * @var boolean
+     */
+    protected $resolved = false;
 
     /**
      * Theme name.
@@ -108,11 +116,18 @@ class Container
     public function setTheme($theme)
     {
         if (! is_null($this->theme)) {
+            $this->resolved && $this->resetViewPaths();
+
             $this->dispatcher->fire("orchestra.theme.unset: {$this->theme}");
         }
 
         $this->theme = $theme;
         $this->dispatcher->fire("orchestra.theme.set: {$this->theme}");
+
+        if ($this->resolved) {
+            $this->resolved = false;
+            $this->resolving();
+        }
     }
 
     /**
@@ -126,9 +141,9 @@ class Container
     }
 
     /**
-     * Boot the theme by auto-loading all the relevant files.
+     * Boot and Load theme starter files.
      *
-     * @return boolean
+     * @return bool
      */
     public function boot()
     {
@@ -138,14 +153,35 @@ class Container
 
         $this->booted = true;
 
-        $this->dispatcher->fire("orchestra.theme.resolving", array($this, $this->app));
+        $themePath = $this->getThemePath();
+        $autoload = $this->getThemeAutoloadFiles($themePath);
 
-        $viewFinder = $this->app['view.finder'];
-
-        $this->setViewPaths($viewFinder);
-        $this->loadThemeStarterFiles();
+        foreach ($autoload as $file) {
+            $file = ltrim($file, '/');
+            $this->files->requireOnce("{$themePath}/{$file}");
+        }
 
         $this->dispatcher->fire("orchestra.theme.boot: {$this->theme}");
+
+        return true;
+    }
+
+    /**
+     * Resolving the theme.
+     *
+     * @return bool
+     */
+    public function resolving()
+    {
+        if ($this->resolved) {
+            return false;
+        }
+
+        $this->resolved = true;
+
+        $this->dispatcher->fire("orchestra.theme.resolving", array($this, $this->app));
+
+        $this->setViewPaths();
 
         return true;
     }
@@ -177,8 +213,18 @@ class Container
      */
     public function getThemePaths()
     {
+        return array($this->getCascadingThemePath(), $this->getThemePath());
+    }
+
+    /**
+     * Get available theme paths.
+     *
+     * @return array
+     */
+    public function getAvailableThemePaths()
+    {
         $paths      = array();
-        $themePaths = array($this->getCascadingThemePath(), $this->getThemePath());
+        $themePaths = $this->getThemePaths();
 
         foreach ($themePaths as $path) {
             $this->files->isDirectory($path) && $paths[] = $path;
@@ -223,14 +269,15 @@ class Container
     }
 
     /**
-     * Register theme paths to view file finder paths.
+     * Set theme paths to view file finder paths.
      *
-     * @param  \Orchestra\View\FileViewFinder   $viewFinder
      * @return void
      */
-    protected function setViewPaths(FileViewFinder $viewFinder)
+    protected function setViewPaths()
     {
-        $themePaths = $this->getThemePaths();
+        $viewFinder = $this->app['view.finder'];
+
+        $themePaths = $this->getAvailableThemePaths();
 
         if (! empty($themePaths)) {
             $viewFinder->setPaths(array_merge($themePaths, $viewFinder->getPaths()));
@@ -238,18 +285,20 @@ class Container
     }
 
     /**
-     * Load theme starter files.
+     * Reset theme paths to view file finder paths.
      *
      * @return void
      */
-    protected function loadThemeStarterFiles()
+    protected function resetViewPaths()
     {
-        $themePath = $this->getThemePath();
-        $autoload = $this->getThemeAutoloadFiles($themePath);
+        $viewFinder = $this->app['view.finder'];
 
-        foreach ($autoload as $file) {
-            $file = ltrim($file, '/');
-            $this->files->requireOnce("{$themePath}/{$file}");
+        $paths = $viewFinder->getPaths();
+
+        foreach ($this->getThemePaths() as $themePath) {
+            ($paths[0] === $themePath) && array_shift($paths);
         }
+
+        $viewFinder->setPaths($paths);
     }
 }
