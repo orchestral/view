@@ -164,7 +164,7 @@ class Container
     /**
      * Get theme paths.
      *
-     * @return string
+     * @return array
      */
     public function getThemePaths()
     {
