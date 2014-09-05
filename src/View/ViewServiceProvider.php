@@ -85,7 +85,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     protected function bootThemeResolver()
     {
-        $app = $this - app;
+        $app = $this->app;
 
         // The theme is only booted when the first view is being composed.
         // This would prevent multiple theme being booted in the same
