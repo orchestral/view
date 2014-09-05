@@ -54,7 +54,18 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $app = $this->app;
+        $this->bootCurrentTheme();
+        $this->bootThemeResolver();
+    }
+
+    /**
+     * Boot current theme selection.
+     *
+     * @return void
+     */
+    protected function bootCurrentTheme()
+    {
+        $app    = $this->app;
         $memory = $app['orchestra.memory']->makeOrFallback();
 
         // By default, we should consider all request to use "frontend"
@@ -65,6 +76,16 @@ class ViewServiceProvider extends ServiceProvider
         $app['events']->listen('orchestra.started: admin', function () use ($app, $memory) {
             $app['orchestra.theme']->setTheme($memory->get('site.theme.backend'));
         });
+    }
+
+    /**
+     * Boot theme resolver.
+     *
+     * @return void
+     */
+    protected function bootThemeResolver()
+    {
+        $app = $this - app;
 
         // The theme is only booted when the first view is being composed.
         // This would prevent multiple theme being booted in the same
