@@ -5,11 +5,11 @@ Orchestra Platform View Component
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![Latest Stable Version](https://poser.pugx.org/orchestra/view/v/stable.png)](https://packagist.org/packages/orchestra/view) 
-[![Total Downloads](https://poser.pugx.org/orchestra/view/downloads.png)](https://packagist.org/packages/orchestra/view) 
-[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=master)](https://travis-ci.org/orchestral/view) 
-[![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=master)](https://coveralls.io/r/orchestral/view?branch=master) 
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/view/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/orchestral/view/) 
+[![Latest Stable Version](https://poser.pugx.org/orchestra/view/v/stable.png)](https://packagist.org/packages/orchestra/view)
+[![Total Downloads](https://poser.pugx.org/orchestra/view/downloads.png)](https://packagist.org/packages/orchestra/view)
+[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=master)](https://travis-ci.org/orchestral/view)
+[![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=master)](https://coveralls.io/r/orchestral/view?branch=master)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/view/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/orchestral/view/)
 
 ## Quick Installation
 
@@ -18,7 +18,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/view": "2.3.*"
+		"orchestra/view": "3.0.*"
 	}
 }
 ```
@@ -39,4 +39,4 @@ Next add the service provider in `app/config/app.php`.
 ## Resources
 
 * [Documentation](http://orchestraplatform.com/docs/latest/components/view)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/view/changes#v2-3)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/view/changes#v3-0)
