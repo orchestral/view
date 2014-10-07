@@ -3,8 +3,6 @@
 use Orchestra\View\Theme\Finder;
 use Orchestra\View\Theme\ThemeManager;
 use Illuminate\Support\ServiceProvider;
-use Orchestra\View\Theme\Finder;
-use Orchestra\View\Theme\ThemeManager;
 
 class ViewServiceProvider extends ServiceProvider
 {
