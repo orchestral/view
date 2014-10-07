@@ -1,5 +1,7 @@
 <?php namespace Orchestra\View;
 
+use Orchestra\View\Theme\Finder;
+use Orchestra\View\Theme\ThemeManager;
 use Illuminate\Support\ServiceProvider;
 use Orchestra\View\Theme\Finder;
 use Orchestra\View\Theme\ThemeManager;
