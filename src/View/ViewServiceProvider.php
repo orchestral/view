@@ -1,8 +1,8 @@
 <?php namespace Orchestra\View;
 
-use Illuminate\Support\ServiceProvider;
 use Orchestra\View\Theme\Finder;
 use Orchestra\View\Theme\ThemeManager;
+use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {

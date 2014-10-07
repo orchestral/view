@@ -1,7 +1,7 @@
 <?php namespace Orchestra\View\Console;
 
-use InvalidArgumentException;
 use Orchestra\Support\Str;
+use InvalidArgumentException;
 use Orchestra\View\Theme\Finder;
 use Symfony\Component\Console\Input\InputArgument;
 
