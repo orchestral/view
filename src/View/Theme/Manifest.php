@@ -1,9 +1,9 @@
 <?php namespace Orchestra\View\Theme;
 
 use RuntimeException;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
+use Illuminate\Filesystem\Filesystem;
 
 class Manifest
 {

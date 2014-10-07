@@ -1,8 +1,8 @@
 <?php namespace Orchestra\View;
 
 use Illuminate\Support\ServiceProvider;
-use Orchestra\View\Console\ActivateCommand;
 use Orchestra\View\Console\DetectCommand;
+use Orchestra\View\Console\ActivateCommand;
 
 class CommandServiceProvider extends ServiceProvider
 {

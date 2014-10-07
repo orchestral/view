@@ -1,11 +1,11 @@
 <?php namespace Orchestra\View\Console;
 
-use InvalidArgumentException;
-use Illuminate\Console\ConfirmableTrait;
 use Orchestra\Support\Str;
+use InvalidArgumentException;
 use Orchestra\View\Theme\Finder;
-use Symfony\Component\Console\Input\InputArgument;
+use Illuminate\Console\ConfirmableTrait;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 
 class ActivateCommand extends BaseCommand
 {
