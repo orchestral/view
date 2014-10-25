@@ -2,7 +2,7 @@
 
 use Orchestra\View\Theme\Finder;
 use Orchestra\View\Theme\ThemeManager;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\View\ViewServiceProvider as ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -13,7 +13,12 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerEngineResolver();
+
         $this->registerViewFinder();
+
+        $this->registerFactory();
+
         $this->registerTheme();
     }
 
@@ -44,58 +49,6 @@ class ViewServiceProvider extends ServiceProvider
 
         $this->app->bindShared('orchestra.theme.finder', function ($app) {
             return new Finder($app);
-        });
-    }
-
-    /**
-     * Bootstrap the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->bootCurrentTheme();
-        $this->bootThemeResolver();
-    }
-
-    /**
-     * Boot current theme selection.
-     *
-     * @return void
-     */
-    protected function bootCurrentTheme()
-    {
-        $app    = $this->app;
-        $memory = $app['orchestra.memory']->makeOrFallback();
-
-        // By default, we should consider all request to use "frontend"
-        // theme and only convert to use "backend" routing when certain
-        // event is fired.
-        $app['orchestra.theme']->setTheme($memory->get('site.theme.frontend'));
-
-        $app['events']->listen('orchestra.started: admin', function () use ($app, $memory) {
-            $app['orchestra.theme']->setTheme($memory->get('site.theme.backend'));
-        });
-    }
-
-    /**
-     * Boot theme resolver.
-     *
-     * @return void
-     */
-    protected function bootThemeResolver()
-    {
-        $app = $this->app;
-
-        // The theme is only booted when the first view is being composed.
-        // This would prevent multiple theme being booted in the same
-        // request.
-        $app->resolving('view', function () use ($app) {
-            $app['orchestra.theme']->resolving();
-        });
-
-        $app['events']->listen('composing: *', function () use ($app) {
-            $app['orchestra.theme']->boot();
         });
     }
 }
