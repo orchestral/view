@@ -27,7 +27,7 @@ class ViewServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerViewFinder()
+    public function registerViewFinder()
     {
         $this->app->bindShared('view.finder', function ($app) {
             $paths = $app['config']['view.paths'];
