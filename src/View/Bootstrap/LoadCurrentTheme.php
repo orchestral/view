@@ -35,11 +35,16 @@ class LoadCurrentTheme
         $app['events']->listen('orchestra.started: admin', function () use ($app, $memory) {
             $app['orchestra.theme']->setTheme($memory->get('site.theme.backend'));
         });
+
+        $app['events']->listen('composing: *', function () use ($app) {
+            $app['orchestra.theme']->boot();
+        });
     }
 
     /**
      * Boot theme resolver.
      *
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return void
      */
     protected function setThemeResolver(Application $app)
@@ -47,12 +52,12 @@ class LoadCurrentTheme
         // The theme is only booted when the first view is being composed.
         // This would prevent multiple theme being booted in the same
         // request.
-        $app->resolving('view', function () use ($app) {
+        if ($app->resolved('view')) {
             $app['orchestra.theme']->resolving();
-        });
-
-        $app['events']->listen('composing: *', function () use ($app) {
-            $app['orchestra.theme']->boot();
-        });
+        } else {
+            $app->resolving('view', function () use ($app) {
+                $app['orchestra.theme']->resolving();
+            });
+        }
     }
 }
