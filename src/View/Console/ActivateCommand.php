@@ -1,6 +1,6 @@
 <?php namespace Orchestra\View\Console;
 
-use Orchestra\Support\Str;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Orchestra\View\Theme\Finder;
 use Illuminate\Console\ConfirmableTrait;
@@ -37,7 +37,7 @@ class ActivateCommand extends BaseCommand
      *
      * @var array
      */
-    protected $type = array('frontend', 'backend');
+    protected $type = ['frontend', 'backend'];
 
     /**
      * Construct a new status command.
@@ -77,8 +77,8 @@ class ActivateCommand extends BaseCommand
     /**
      * Validate provided theme.
      *
-     * @param  string       $group
-     * @param  string       $id
+     * @param  string  $group
+     * @param  string  $id
      * @param  object|null  $theme
      * @return bool
      * @throws \InvalidArgumentException
@@ -99,7 +99,7 @@ class ActivateCommand extends BaseCommand
     /**
      * Get all available theme by type.
      *
-     * @param  string   $type
+     * @param  string  $type
      * @return \Illuminate\Support\Collection
      */
     protected function getAvailableTheme($type)
@@ -122,10 +122,10 @@ class ActivateCommand extends BaseCommand
      */
     protected function getArguments()
     {
-        return array(
-            array('group', InputArgument::REQUIRED, 'Either frontend or backend.'),
-            array('id', InputArgument::REQUIRED, 'Theme ID.'),
-        );
+        return [
+            ['group', InputArgument::REQUIRED, 'Either frontend or backend.'],
+            ['id', InputArgument::REQUIRED, 'Theme ID.'],
+        ];
     }
 
     /**
@@ -135,8 +135,8 @@ class ActivateCommand extends BaseCommand
      */
     protected function getOptions()
     {
-        return array(
-            array('force', null, InputOption::VALUE_NONE, 'Force the operation to run when in production.'),
-        );
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when in production.'],
+        ];
     }
 }

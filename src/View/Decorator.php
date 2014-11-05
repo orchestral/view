@@ -9,13 +9,13 @@ class Decorator
      *
      * @var array
      */
-    protected $macros = array();
+    protected $macros = [];
 
     /**
      * Registers a custom macro.
      *
-     * @param  string   $name
-     * @param  \Closure $macro
+     * @param  string  $name
+     * @param  \Closure  $macro
      * @return void
      */
     public function macro($name, $macro)
@@ -26,8 +26,8 @@ class Decorator
     /**
      * Render the macro.
      *
-     * @param  string   $name
-     * @param  array    $data
+     * @param  string  $name
+     * @param  array   $data
      * @return string
      * @throws \BadMethodCallException
      */
@@ -43,8 +43,8 @@ class Decorator
     /**
      * Dynamically handle calls to custom macros.
      *
-     * @param  string   $method
-     * @param  array    $parameters
+     * @param  string  $method
+     * @param  array   $parameters
      * @return mixed
      */
     public function __call($method, $parameters)

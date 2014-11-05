@@ -1,23 +1,23 @@
 <?php namespace Orchestra\View\Theme;
 
-use Illuminate\Container\Container as Application;
-use Orchestra\Support\Collection;
+use Illuminate\Support\Collection;
+use Illuminate\Contracts\Container\Container as ContainerContract;
 
 class Finder
 {
     /**
      * Application instance.
      *
-     * @var \Illuminate\Container\Container
+     * @var \Illuminate\Contracts\Container\Container
      */
     protected $app;
 
     /**
      * Construct a new finder.
      *
-     * @param  \Illuminate\Container\Container  $app
+     * @param  \Illuminate\Contracts\Container\Container  $app
      */
-    public function __construct(Application $app)
+    public function __construct(ContainerContract $app)
     {
         $this->app = $app;
     }
@@ -25,7 +25,7 @@ class Finder
     /**
      * Detect available themes.
      *
-     * @return \Orchestra\Support\Collection
+     * @return \Illuminate\Support\Collection
      * @throws \RuntimeException
      */
     public function detect()
@@ -52,7 +52,7 @@ class Finder
      */
     protected function parseThemeNameFromPath($path)
     {
-        $path = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $path);
+        $path = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $path);
         $path = explode(DIRECTORY_SEPARATOR, $path);
 
         return array_pop($path);

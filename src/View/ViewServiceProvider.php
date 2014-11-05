@@ -29,7 +29,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function registerViewFinder()
     {
-        $this->app->bindShared('view.finder', function ($app) {
+        $this->app->singleton('view.finder', function ($app) {
             $paths = $app['config']['view.paths'];
 
             return new FileViewFinder($app['files'], $paths);
@@ -43,11 +43,11 @@ class ViewServiceProvider extends ServiceProvider
      */
     protected function registerTheme()
     {
-        $this->app->bindShared('orchestra.theme', function ($app) {
+        $this->app->singleton('orchestra.theme', function ($app) {
             return new ThemeManager($app);
         });
 
-        $this->app->bindShared('orchestra.theme.finder', function ($app) {
+        $this->app->singleton('orchestra.theme.finder', function ($app) {
             return new Finder($app);
         });
     }

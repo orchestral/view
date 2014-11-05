@@ -26,20 +26,20 @@ class Manifest
      *
      * @var array
      */
-    protected $manifestOptions = array(
+    protected $manifestOptions = [
         'name'        => null,
         'uid'         => null,
         'description' => null,
         'author'      => null,
-        'autoload'    => array(),
-        'type'        => array(),
-    );
+        'autoload'    => [],
+        'type'        => [],
+    ];
 
     /**
      * Load the theme.
      *
-     * @param  \Illuminate\Filesystem\Filesystem    $files
-     * @param  string                               $path
+     * @param  \Illuminate\Filesystem\Filesystem  $files
+     * @param  string  $path
      * @throws \RuntimeException
      */
     public function __construct(Filesystem $files, $path)
@@ -69,12 +69,12 @@ class Manifest
      * to migrate, load service provider as well as preload some
      * configuration.
      *
-     * @param  array    $jsonable
+     * @param  array  $jsonable
      * @return array
      */
     protected function generateManifestConfig(array $jsonable)
     {
-        $manifest = array();
+        $manifest = [];
 
         // Assign extension manifest option or provide the default value.
         foreach ($this->manifestOptions as $key => $default) {
@@ -87,7 +87,7 @@ class Manifest
     /**
      * Get theme name from path.
      *
-     * @param  string   $path
+     * @param  string  $path
      * @return string
      */
     protected function parseThemeNameFromPath($path)
@@ -101,7 +101,7 @@ class Manifest
     /**
      * Magic method to get items by key.
      *
-     * @param  string   $key
+     * @param  string  $key
      * @return mixed
      */
     public function __get($key)
@@ -116,8 +116,8 @@ class Manifest
     /**
      * Magic Method to check isset by key.
      *
-     * @param  string   $key
-     * @return boolean
+     * @param  string  $key
+     * @return bool
      */
     public function __isset($key)
     {

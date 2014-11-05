@@ -18,7 +18,7 @@ class DecoratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('orchestra.decorator', function () {
+        $this->app->singleton('orchestra.decorator', function () {
             return new Decorator;
         });
     }
@@ -30,6 +30,6 @@ class DecoratorServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('orchestra.decorator');
+        return ['orchestra.decorator'];
     }
 }

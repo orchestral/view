@@ -51,16 +51,16 @@ class DetectCommand extends BaseCommand
         $frontend = $memory->get('site.theme.frontend');
         $backend  = $memory->get('site.theme.backend');
 
-        $header  = array('ID', 'Theme Name', 'Frontend', 'Backend');
-        $content = array();
+        $header  = ['ID', 'Theme Name', 'Frontend', 'Backend'];
+        $content = [];
 
         foreach ($themes as $id => $theme) {
-            $content[] = array(
+            $content[] = [
                 $id,
                 $theme->name,
                 $this->getThemeStatus('frontend', $theme, ($id == $frontend)),
                 $this->getThemeStatus('backend', $theme, ($id == $backend)),
-            );
+            ];
         }
 
         $this->table($header, $content);
@@ -69,9 +69,9 @@ class DetectCommand extends BaseCommand
     /**
      * Get theme status.
      *
-     * @param  string                           $type
-     * @param  \Orchestra\View\Theme\Manifest   $theme
-     * @param  bool                             $active
+     * @param  string  $type
+     * @param  \Orchestra\View\Theme\Manifest  $theme
+     * @param  bool  $active
      * @return string
      */
     protected function getThemeStatus($type, Manifest $theme, $active = false)

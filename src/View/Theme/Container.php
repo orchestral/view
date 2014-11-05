@@ -1,16 +1,15 @@
 <?php namespace Orchestra\View\Theme;
 
-use Illuminate\Container\Container as Application;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
-use Orchestra\View\FileViewFinder;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Contracts\Container\Container as ContainerContract;
 
 class Container
 {
     /**
      * Application instance.
      *
-     * @var \Illuminate\Container\Container
+     * @var \Illuminate\Contracts\Container\Container
      */
     protected $app;
 
@@ -76,11 +75,11 @@ class Container
     /**
      * Setup a new theme container.
      *
-     * @param  \Illuminate\Container\Container          $app
+     * @param  \Illuminate\Contracts\Container\Container  $app
      * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
-     * @param  \Illuminate\Filesystem\Filesystem        $files
+     * @param  \Illuminate\Filesystem\Filesystem  $files
      */
-    public function __construct(Application $app, Dispatcher $dispatcher, Filesystem $files)
+    public function __construct(ContainerContract $app, Dispatcher $dispatcher, Filesystem $files)
     {
         $this->app = $app;
         $this->dispatcher = $dispatcher;
@@ -110,7 +109,7 @@ class Container
     /**
      * Set the theme, this would also load the theme manifest.
      *
-     * @param  string   $theme
+     * @param  string  $theme
      * @return void
      */
     public function setTheme($theme)
@@ -179,7 +178,7 @@ class Container
 
         $this->resolved = true;
 
-        $this->dispatcher->fire("orchestra.theme.resolving", array($this, $this->app));
+        $this->dispatcher->fire("orchestra.theme.resolving", [$this, $this->app]);
 
         $this->setViewPaths();
 
@@ -213,7 +212,10 @@ class Container
      */
     public function getThemePaths()
     {
-        return array($this->getCascadingThemePath(), $this->getThemePath());
+        return [
+            $this->getCascadingThemePath(),
+            $this->getThemePath()
+        ];
     }
 
     /**
@@ -223,7 +225,7 @@ class Container
      */
     public function getAvailableThemePaths()
     {
-        $paths      = array();
+        $paths      = [];
         $themePaths = $this->getThemePaths();
 
         foreach ($themePaths as $path) {
@@ -236,7 +238,7 @@ class Container
     /**
      * URL helper for the theme.
      *
-     * @param  string   $url
+     * @param  string  $url
      * @return string
      */
     public function to($url = '')
@@ -247,7 +249,7 @@ class Container
     /**
      * Relative URL helper for theme.
      *
-     * @param  string   $url
+     * @param  string  $url
      * @return string
      */
     public function asset($url = '')
@@ -265,7 +267,7 @@ class Container
     {
         $manifest = new Manifest($this->files, $themePath);
 
-        return data_get($manifest, 'autoload', array());
+        return data_get($manifest, 'autoload', []);
     }
 
     /**
