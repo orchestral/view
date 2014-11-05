@@ -1,7 +1,7 @@
 <?php namespace Orchestra\View\TestCase\Theme;
 
-use Illuminate\Container\Container;
 use Mockery as m;
+use Illuminate\Container\Container;
 use Orchestra\View\Theme\ThemeManager;
 
 class ThemeManagerTest extends \PHPUnit_Framework_TestCase

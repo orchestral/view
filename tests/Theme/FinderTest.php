@@ -1,8 +1,8 @@
 <?php namespace Orchestra\View\TestCase\Theme;
 
-use Illuminate\Container\Container;
 use Mockery as m;
 use Orchestra\View\Theme\Finder;
+use Illuminate\Container\Container;
 
 class FinderTest extends \PHPUnit_Framework_TestCase
 {

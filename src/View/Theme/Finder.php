@@ -1,9 +1,10 @@
 <?php namespace Orchestra\View\Theme;
 
 use Illuminate\Support\Collection;
+use Orchestra\Contracts\View\Theme\Finder as FinderContract;
 use Illuminate\Contracts\Container\Container as ContainerContract;
 
-class Finder
+class Finder implements FinderContract
 {
     /**
      * Application instance.

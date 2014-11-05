@@ -2,9 +2,10 @@
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Events\Dispatcher;
+use Orchestra\Contracts\View\Theme\Theme as ThemeContract;
 use Illuminate\Contracts\Container\Container as ContainerContract;
 
-class Container
+class Container implements ThemeContract
 {
     /**
      * Application instance.
