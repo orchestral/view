@@ -11,9 +11,9 @@ class ThemeManager extends Manager
      */
     protected function createOrchestraDriver()
     {
-        $container = new Container($this->app, $this->app['events'], $this->app['files']);
+        $theme = new Theme($this->app, $this->app['events'], $this->app['files']);
 
-        return $container->initiate();
+        return $theme->initiate();
     }
 
     /**

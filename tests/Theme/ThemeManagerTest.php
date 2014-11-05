@@ -46,7 +46,7 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
     {
         $app  = $this->app;
         $stub = new ThemeManager($app);
-        $this->assertInstanceOf('\Orchestra\View\Theme\Container', $stub->driver());
+        $this->assertInstanceOf('\Orchestra\View\Theme\Theme', $stub->driver());
     }
 
     /**

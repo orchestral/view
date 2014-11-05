@@ -1,9 +1,10 @@
 <?php namespace Orchestra\View\TestCase\Theme;
 
+use Illuminate\Container\Container;
 use Mockery as m;
-use Orchestra\View\Theme\Container;
+use Orchestra\View\Theme\Theme;
 
-class ContainerTest extends \PHPUnit_Framework_TestCase
+class ThemeTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Application instance.
@@ -17,7 +18,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->app = new \Illuminate\Container\Container;
+        $this->app = new Container;
 
         $this->app['path.public'] = '/var/orchestra/public';
         $this->app['path.base'] = '/var/orchestra';
@@ -53,7 +54,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $themePath = '/var/orchestra/public/themes';
         $resourcePath = '/var/orchestra/resources/themes';
 
-        $stub = new Container($app, $events, $files);
+        $stub = new Theme($app, $events, $files);
 
         $finder->shouldReceive('getPaths')->times(3)->andReturn(array($defaultPath))
             ->shouldReceive('setPaths')->once()->with(array($defaultPath))->andReturnNull()
@@ -111,7 +112,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $themePath = '/var/orchestra/public/themes';
         $resourcePath = '/var/orchestra/resources/themes';
 
-        $stub = new Container($app, $events, $files);
+        $stub = new Theme($app, $events, $files);
 
         $files->shouldReceive('exists')->once()->with("{$themePath}/default/theme.json")->andReturn(false)
             ->shouldReceive('isDirectory')->once()->with("{$themePath}/default")->andReturn(false)

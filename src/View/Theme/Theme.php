@@ -2,10 +2,10 @@
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Contracts\Container\Container;
 use Orchestra\Contracts\View\Theme\Theme as ThemeContract;
-use Illuminate\Contracts\Container\Container as ContainerContract;
 
-class Container implements ThemeContract
+class Theme implements ThemeContract
 {
     /**
      * Application instance.
@@ -79,7 +79,7 @@ class Container implements ThemeContract
      * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
      * @param  \Illuminate\Filesystem\Filesystem  $files
      */
-    public function __construct(ContainerContract $app, Dispatcher $dispatcher, Filesystem $files)
+    public function __construct(Container $app, Dispatcher $dispatcher, Filesystem $files)
     {
         $this->app = $app;
         $this->dispatcher = $dispatcher;

@@ -1,8 +1,8 @@
 <?php namespace Orchestra\View\Theme;
 
 use Illuminate\Support\Collection;
+use Illuminate\Contracts\Container\Container;
 use Orchestra\Contracts\View\Theme\Finder as FinderContract;
-use Illuminate\Contracts\Container\Container as ContainerContract;
 
 class Finder implements FinderContract
 {
@@ -18,7 +18,7 @@ class Finder implements FinderContract
      *
      * @param  \Illuminate\Contracts\Container\Container  $app
      */
-    public function __construct(ContainerContract $app)
+    public function __construct(Container $app)
     {
         $this->app = $app;
     }
