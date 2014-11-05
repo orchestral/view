@@ -50,7 +50,6 @@ class Container
      */
     protected $relativeUrl;
 
-
     /**
      * Boot indicator.
      *
