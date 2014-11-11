@@ -3,6 +3,7 @@
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Orchestra\View\Theme\Finder;
+use Orchestra\View\Theme\Manifest;
 use Illuminate\Console\ConfirmableTrait;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -106,7 +107,7 @@ class ActivateCommand extends BaseCommand
     {
         $themes = $this->finder->detect();
 
-        return $themes->filter(function ($manifest) use ($type) {
+        return $themes->filter(function (Manifest $manifest) use ($type) {
             if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
                 return null;
             }
