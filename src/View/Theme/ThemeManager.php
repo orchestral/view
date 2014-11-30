@@ -7,7 +7,7 @@ class ThemeManager extends Manager
     /**
      * Create an instance of the orchestra theme driver.
      *
-     * @return \Orchestra\Contracts\View\Theme\Theme
+     * @return \Orchestra\Contracts\Theme\Theme
      */
     protected function createOrchestraDriver()
     {

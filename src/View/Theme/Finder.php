@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Container\Container;
-use Orchestra\Contracts\View\Theme\Finder as FinderContract;
+use Orchestra\Contracts\Theme\Finder as FinderContract;
 
 class Finder implements FinderContract
 {

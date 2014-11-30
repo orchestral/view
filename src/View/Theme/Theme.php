@@ -3,7 +3,7 @@
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Container\Container;
-use Orchestra\Contracts\View\Theme\Theme as ThemeContract;
+use Orchestra\Contracts\Theme\Theme as ThemeContract;
 
 class Theme implements ThemeContract
 {
