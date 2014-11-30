@@ -7,6 +7,13 @@ use Orchestra\View\Console\ActivateCommand;
 class CommandServiceProvider extends ServiceProvider
 {
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+    /**
      * Register the service provider.
      *
      * @return void
@@ -25,9 +32,22 @@ class CommandServiceProvider extends ServiceProvider
             return new ActivateCommand($finder);
         });
 
-        $this->commands(array(
+        $this->commands([
             'orchestra.view.command.detect',
             'orchestra.view.command.activate',
-        ));
+        ]);
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [
+            'orchestra.view.command.detect',
+            'orchestra.view.command.activate',
+        ];
     }
 }
