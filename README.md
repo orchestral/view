@@ -5,11 +5,12 @@ Orchestra Platform View Component
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![Latest Stable Version](https://poser.pugx.org/orchestra/view/v/stable.png)](https://packagist.org/packages/orchestra/view)
-[![Total Downloads](https://poser.pugx.org/orchestra/view/downloads.png)](https://packagist.org/packages/orchestra/view)
-[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=master)](https://travis-ci.org/orchestral/view)
-[![Coverage Status](https://coveralls.io/repos/orchestral/view/badge.png?branch=master)](https://coveralls.io/r/orchestral/view?branch=master)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/view/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/orchestral/view/)
+[![Latest Stable Version](https://img.shields.io/github/release/orchestral/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
+[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
+[![MIT License](https://img.shields.io/packagist/l/orchestra/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
+[![Build Status](https://img.shields.io/travis/orchestral/view/master.svg?style=flat)](https://travis-ci.org/orchestral/view)
+[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/master.svg?style=flat)](https://coveralls.io/r/orchestral/view?branch=master)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/master.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/view/)
 
 ## Quick Installation
 
