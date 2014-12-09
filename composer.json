@@ -13,7 +13,7 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"Orchestra\\View\\" : "src/View/"
+			"Orchestra\\View\\" : "src/"
 		}
 	},
 	"require": {
