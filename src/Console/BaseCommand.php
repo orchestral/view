@@ -15,19 +15,12 @@ abstract class BaseCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $result = $this->fire();
+        $result = parent::execute($input, $output);
 
         $this->finish();
 
         return $result;
     }
-
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    abstract public function fire();
 
     /**
      * Finish the console command.

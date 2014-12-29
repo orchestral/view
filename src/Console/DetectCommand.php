@@ -43,7 +43,7 @@ class DetectCommand extends BaseCommand
      *
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $memory   = $this->laravel['orchestra.memory'];
 
