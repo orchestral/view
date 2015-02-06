@@ -48,7 +48,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
         $app = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
         $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
-        $app['events'] = $events = m::mock('\Illuminate\Contracts\Events\Dispatcher', array($app));
+        $app['events'] = $events = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 
         $defaultPath = '/var/orchestra/resources/views';
         $themePath = '/var/orchestra/public/themes';
