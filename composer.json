@@ -1,6 +1,6 @@
 {
 	"name": "orchestra/view",
-	"description": "Orchestra Platform 2 View Component",
+	"description": "View Component for Orchestra Platform",
 	"homepage": "http://orchestraplatform.com/docs/latest/components/view/",
 	"keywords": ["orchestra-platform", "orchestral", "laravel", "view", "theme"],
 	"license": "MIT",
@@ -27,12 +27,12 @@
 		"illuminate/view": "4.2.*"
 	},
 	"suggest": {
-		"laravel/framework": "Allow using orchestra/view component outside of Orchestra Platform 2",
-		"orchestra/foundation": "Allow using orchestra/view with Orchestra Platform 2"
+		"laravel/framework": "Allow using orchestra/view component outside of Orchestra Platform",
+		"orchestra/foundation": "Allow using orchestra/view with Orchestra Platform"
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "3.0-dev"
+			"dev-master": "3.1-dev"
 		}
 	},
 	"minimum-stability": "dev"
