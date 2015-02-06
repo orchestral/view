@@ -1,16 +1,16 @@
 Orchestra Platform View Component
 ==============
 
-`Orchestra\View` is Orchestra Platform approach to deliver themeable application that support extensions. The functionality evolves by modifying how `Illuminate\View\ViewFileFinder` would resolve which file, which would first look into the current active theme folder, before resolving it cascading-ly.
+View Component is Orchestra Platform approach to deliver themeable application that support extensions. The functionality evolves by modifying how `Illuminate\View\ViewFileFinder` would resolve which file, which would first look into the current active theme folder, before resolving it cascading-ly.
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
 [![Latest Stable Version](https://img.shields.io/github/release/orchestral/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
 [![Total Downloads](https://img.shields.io/packagist/dt/orchestra/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
 [![MIT License](https://img.shields.io/packagist/l/orchestra/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
-[![Build Status](https://img.shields.io/travis/orchestral/view/master.svg?style=flat)](https://travis-ci.org/orchestral/view)
-[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/master.svg?style=flat)](https://coveralls.io/r/orchestral/view?branch=master)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/master.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/view/)
+[![Build Status](https://img.shields.io/travis/orchestral/view/3.0.svg?style=flat)](https://travis-ci.org/orchestral/view)
+[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/3.0.svg?style=flat)](https://coveralls.io/r/orchestral/view?branch=3.0)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/3.0.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/view/)
 
 ## Quick Installation
 
@@ -24,17 +24,17 @@ To install through composer, simply put the following in your `composer.json` fi
 }
 ```
 
-Next add the service provider in `app/config/app.php`.
+Next add the service provider in `config/app.php`.
 
 ```php
-'providers' => array(
+'providers' => [
 
 	// ...
 
 	'Orchestra\View\DecoratorServiceProvider',
 	'Orchestra\View\ViewServiceProvider',
 	'Orchestra\Memory\MemoryServiceProvider',
-),
+],
 ```
 
 ## Resources
