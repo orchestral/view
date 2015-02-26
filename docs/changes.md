@@ -3,6 +3,15 @@ title: View Change Log
 
 ---
 
+## Version 3.0 {#v3-0}
+
+### v3.0.0 {#v3-0-0}
+
+* Update support for Laravel Framework v5.0.
+* Simplify PSR-4 path.
+* Add `Orchestra\View\Bootstrap\LoadCurrentTheme`.
+* Rename `Orchestra\View\Theme\Container` to `Orchestra\View\Theme\Theme`.
+
 ## Version 2.2 {#v2-2}
 
 ### v2.2.3 {#v2-2-3}
