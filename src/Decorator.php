@@ -51,6 +51,6 @@ class Decorator
     {
         array_unshift($parameters, $method);
 
-        return call_user_func_array(array($this, 'render'), $parameters);
+        return call_user_func_array([$this, 'render'], $parameters);
     }
 }

@@ -60,7 +60,7 @@ class ActivateCommand extends BaseCommand
     public function handle()
     {
         if (! $this->confirmToProceed()) {
-            return null;
+            return;
         }
 
         $group = Str::lower($this->argument('group'));
@@ -109,7 +109,7 @@ class ActivateCommand extends BaseCommand
 
         return $themes->filter(function (Manifest $manifest) use ($type) {
             if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
-                return null;
+                return;
             }
 
             return $manifest;

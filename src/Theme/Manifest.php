@@ -107,7 +107,7 @@ class Manifest
     public function __get($key)
     {
         if (! isset($this->items->{$key})) {
-            return null;
+            return;
         }
 
         return $this->items->{$key};
