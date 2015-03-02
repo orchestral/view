@@ -33,6 +33,7 @@ class Theme implements ThemeContract
 
     /**
      * Theme cascading filesystem path.
+     *
      * @var string
      */
     protected $cascadingPath;
@@ -81,11 +82,11 @@ class Theme implements ThemeContract
      */
     public function __construct(Container $app, Dispatcher $dispatcher, Filesystem $files)
     {
-        $this->app = $app;
+        $this->app        = $app;
         $this->dispatcher = $dispatcher;
-        $this->files = $files;
+        $this->files      = $files;
 
-        $this->path = $app['path.public'].'/themes';
+        $this->path          = $app['path.public'].'/themes';
         $this->cascadingPath = $app['path.base'].'/resources/themes';
     }
 
@@ -110,6 +111,7 @@ class Theme implements ThemeContract
      * Set the theme, this would also load the theme manifest.
      *
      * @param  string  $theme
+     *
      * @return void
      */
     public function setTheme($theme)
@@ -153,7 +155,7 @@ class Theme implements ThemeContract
         $this->booted = true;
 
         $themePath = $this->getThemePath();
-        $autoload = $this->getThemeAutoloadFiles($themePath);
+        $autoload  = $this->getThemeAutoloadFiles($themePath);
 
         foreach ($autoload as $file) {
             $file = ltrim($file, '/');
@@ -214,7 +216,7 @@ class Theme implements ThemeContract
     {
         return [
             $this->getCascadingThemePath(),
-            $this->getThemePath()
+            $this->getThemePath(),
         ];
     }
 
@@ -239,6 +241,7 @@ class Theme implements ThemeContract
      * URL helper for the theme.
      *
      * @param  string  $url
+     *
      * @return string
      */
     public function to($url = '')
@@ -250,6 +253,7 @@ class Theme implements ThemeContract
      * Relative URL helper for theme.
      *
      * @param  string  $url
+     *
      * @return string
      */
     public function asset($url = '')
@@ -261,6 +265,7 @@ class Theme implements ThemeContract
      * Get theme autoload files from manifest.
      *
      * @param  string $themePath
+     *
      * @return array
      */
     protected function getThemeAutoloadFiles($themePath)

@@ -81,7 +81,9 @@ class ActivateCommand extends BaseCommand
      * @param  string  $group
      * @param  string  $id
      * @param  object|null  $theme
+     *
      * @return bool
+     *
      * @throws \InvalidArgumentException
      */
     protected function validateProvidedTheme($group, $id, $theme)
@@ -101,6 +103,7 @@ class ActivateCommand extends BaseCommand
      * Get all available theme by type.
      *
      * @param  string  $type
+     *
      * @return \Illuminate\Support\Collection
      */
     protected function getAvailableTheme($type)
