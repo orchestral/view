@@ -18,11 +18,11 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->app = new Container;
-        $this->app['request'] = $request = m::mock('\Illuminate\Http\Request');
-        $this->app['events'] = m::mock('\Illuminate\Contracts\Events\Dispatcher');
-        $this->app['files'] = m::mock('\Illuminate\Filesystem\Filesystem');
-        $this->app['path.base'] = '/var/orchestra';
+        $this->app                = new Container();
+        $this->app['request']     = $request     = m::mock('\Illuminate\Http\Request');
+        $this->app['events']      = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $this->app['files']       = m::mock('\Illuminate\Filesystem\Filesystem');
+        $this->app['path.base']   = '/var/orchestra';
         $this->app['path.public'] = '/var/orchestra/public';
 
         $request->shouldReceive('root')->andReturn('http://localhost/');
@@ -56,7 +56,7 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDetectMethod()
     {
-        $app  = $this->app;
+        $app                           = $this->app;
         $app['orchestra.theme.finder'] = $finder = m::mock('\Orchestra\View\Theme\Finder');
 
         $finder->shouldReceive('detect')->once()->andReturn('foo');

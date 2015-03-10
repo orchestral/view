@@ -27,6 +27,7 @@ class Finder implements FinderContract
      * Detect available themes.
      *
      * @return \Illuminate\Support\Collection
+     *
      * @throws \RuntimeException
      */
     public function detect()
@@ -38,7 +39,7 @@ class Finder implements FinderContract
         $folders = $file->directories($path);
 
         foreach ($folders as $folder) {
-            $name = $this->parseThemeNameFromPath($folder);
+            $name          = $this->parseThemeNameFromPath($folder);
             $themes[$name] = new Manifest($file, rtrim($folder, '/').'/');
         }
 
@@ -49,6 +50,7 @@ class Finder implements FinderContract
      * Get folder name from full path.
      *
      * @param  string   $path
+     *
      * @return string
      */
     protected function parseThemeNameFromPath($path)

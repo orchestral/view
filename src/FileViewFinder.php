@@ -24,6 +24,7 @@ class FileViewFinder extends \Illuminate\View\FileViewFinder
      * Set the active view paths.
      *
      * @param  array  $paths
+     *
      * @return array
      */
     public function setPaths(array $paths)

@@ -16,6 +16,7 @@ class Decorator
      *
      * @param  string  $name
      * @param  \Closure  $macro
+     *
      * @return void
      */
     public function macro($name, $macro)
@@ -28,7 +29,9 @@ class Decorator
      *
      * @param  string  $name
      * @param  array   $data
+     *
      * @return string
+     *
      * @throws \BadMethodCallException
      */
     public function render($name, $data = null)
@@ -45,12 +48,13 @@ class Decorator
      *
      * @param  string  $method
      * @param  array   $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)
     {
         array_unshift($parameters, $method);
 
-        return call_user_func_array(array($this, 'render'), $parameters);
+        return call_user_func_array([$this, 'render'], $parameters);
     }
 }

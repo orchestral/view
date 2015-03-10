@@ -18,11 +18,11 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->app = new Container;
+        $this->app = new Container();
 
         $this->app['path.public'] = '/var/orchestra/public';
-        $this->app['path.base'] = '/var/orchestra';
-        $this->app['request'] = $request = m::mock('Request');
+        $this->app['path.base']   = '/var/orchestra';
+        $this->app['request']     = $request     = m::mock('Request');
 
         $request->shouldReceive('root')->andReturn('http://localhost/');
     }
@@ -45,21 +45,21 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetterAndSetterForTheme()
     {
-        $app = $this->app;
+        $app                = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
-        $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
-        $app['events'] = $events = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $app['files']       = $files       = m::mock('\Illuminate\Filesystem\Filesystem');
+        $app['events']      = $events      = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 
-        $defaultPath = '/var/orchestra/resources/views';
-        $themePath = '/var/orchestra/public/themes';
+        $defaultPath  = '/var/orchestra/resources/views';
+        $themePath    = '/var/orchestra/public/themes';
         $resourcePath = '/var/orchestra/resources/themes';
 
         $stub = new Theme($app, $events, $files);
 
-        $finder->shouldReceive('getPaths')->times(3)->andReturn(array($defaultPath))
-            ->shouldReceive('setPaths')->once()->with(array($defaultPath))->andReturnNull()
-            ->shouldReceive('setPaths')->once() ->with(array("{$resourcePath}/foo", "{$themePath}/foo", $defaultPath))->andReturnNull()
-            ->shouldReceive('setPaths')->once() ->with(array("{$resourcePath}/default", "{$themePath}/default", $defaultPath))->andReturnNull();
+        $finder->shouldReceive('getPaths')->times(3)->andReturn([$defaultPath])
+            ->shouldReceive('setPaths')->once()->with([$defaultPath])->andReturnNull()
+            ->shouldReceive('setPaths')->once()->with(["{$resourcePath}/foo", "{$themePath}/foo", $defaultPath])->andReturnNull()
+            ->shouldReceive('setPaths')->once()->with(["{$resourcePath}/default", "{$themePath}/default", $defaultPath])->andReturnNull();
         $files->shouldReceive('isDirectory')->once()->with("{$themePath}/foo")->andReturn(true)
             ->shouldReceive('isDirectory')->once()->with("{$resourcePath}/foo")->andReturn(true)
             ->shouldReceive('isDirectory')->once()->with("{$themePath}/default")->andReturn(true)
@@ -69,7 +69,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
             ->andReturn('{"autoload":["start.php"]}')
             ->shouldReceive('requireOnce')->once()->with('/var/orchestra/public/themes/default/start.php')
             ->andReturnNull();
-        $events->shouldReceive('fire')->twice()->with('orchestra.theme.resolving', array($stub, $app))->andReturnNull()
+        $events->shouldReceive('fire')->twice()->with('orchestra.theme.resolving', [$stub, $app])->andReturnNull()
             ->shouldReceive('fire')->once()->with('orchestra.theme.set: foo')->andReturnNull()
             ->shouldReceive('fire')->once()->with('orchestra.theme.unset: foo')->andReturnNull()
             ->shouldReceive('fire')->once()->with('orchestra.theme.set: default')->andReturnNull()
@@ -104,12 +104,12 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
      */
     public function testBootMethodWhenManifestIsNotAvailable()
     {
-        $app = $this->app;
+        $app                = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
-        $app['events'] = $events = m::mock('\Illuminate\Contracts\Events\Dispatcher');
-        $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
+        $app['events']      = $events      = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $app['files']       = $files       = m::mock('\Illuminate\Filesystem\Filesystem');
 
-        $themePath = '/var/orchestra/public/themes';
+        $themePath    = '/var/orchestra/public/themes';
         $resourcePath = '/var/orchestra/resources/themes';
 
         $stub = new Theme($app, $events, $files);

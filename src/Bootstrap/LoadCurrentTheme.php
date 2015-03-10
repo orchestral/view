@@ -8,6 +8,7 @@ class LoadCurrentTheme
      * Bootstrap the given application.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
+     *
      * @return void
      */
     public function bootstrap(Application $app)
@@ -21,6 +22,7 @@ class LoadCurrentTheme
      * Set current theme for request.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
+     *
      * @return void
      */
     protected function setCurrentTheme(Application $app)
@@ -45,6 +47,7 @@ class LoadCurrentTheme
      * Boot theme resolver.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
+     *
      * @return void
      */
     protected function setThemeResolver(Application $app)

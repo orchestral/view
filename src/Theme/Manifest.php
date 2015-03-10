@@ -40,6 +40,7 @@ class Manifest
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files
      * @param  string  $path
+     *
      * @throws \RuntimeException
      */
     public function __construct(Filesystem $files, $path)
@@ -70,6 +71,7 @@ class Manifest
      * configuration.
      *
      * @param  array  $jsonable
+     *
      * @return array
      */
     protected function generateManifestConfig(array $jsonable)
@@ -88,6 +90,7 @@ class Manifest
      * Get theme name from path.
      *
      * @param  string  $path
+     *
      * @return string
      */
     protected function parseThemeNameFromPath($path)
@@ -102,12 +105,13 @@ class Manifest
      * Magic method to get items by key.
      *
      * @param  string  $key
+     *
      * @return mixed
      */
     public function __get($key)
     {
         if (! isset($this->items->{$key})) {
-            return null;
+            return;
         }
 
         return $this->items->{$key};
@@ -117,6 +121,7 @@ class Manifest
      * Magic Method to check isset by key.
      *
      * @param  string  $key
+     *
      * @return bool
      */
     public function __isset($key)

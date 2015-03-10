@@ -72,6 +72,7 @@ class DetectCommand extends BaseCommand
      * @param  string  $type
      * @param  \Orchestra\View\Theme\Manifest  $theme
      * @param  bool  $active
+     *
      * @return string
      */
     protected function getThemeStatus($type, Manifest $theme, $active = false)
