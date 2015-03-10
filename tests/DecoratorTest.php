@@ -11,7 +11,7 @@ class DecoratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddAndUsingMacros()
     {
-        $stub = new Decorator;
+        $stub = new Decorator();
 
         $stub->macro('foo', function () {
             return 'foo';
@@ -27,6 +27,6 @@ class DecoratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testCallingUndefinedMacrosThrowsException()
     {
-        with(new Decorator)->foobar();
+        with(new Decorator())->foobar();
     }
 }

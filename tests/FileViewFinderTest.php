@@ -37,7 +37,7 @@ class FileViewFinderTest extends \PHPUnit_Framework_TestCase
     public function testFindNamedPathViewMethod()
     {
         $files = $this->files;
-        $stub  = new FileViewFinder($files, array('/path/theme/views', '/path/app/views'), array('php'));
+        $stub  = new FileViewFinder($files, ['/path/theme/views', '/path/app/views'], ['php']);
 
         $files->shouldReceive('exists')->once()->with('/path/theme/views/packages/foo/bar/hello.php')->andReturn(false)
             ->shouldReceive('exists')->once()->with('/path/app/views/packages/foo/bar/hello.php')->andReturn(false)
@@ -55,13 +55,13 @@ class FileViewFinderTest extends \PHPUnit_Framework_TestCase
     public function testSetPathsMethod()
     {
         $files = $this->files;
-        $stub  = new FileViewFinder($files, array('/path/theme/views', '/path/app/views'), array('php'));
+        $stub  = new FileViewFinder($files, ['/path/theme/views', '/path/app/views'], ['php']);
 
         $refl  = new \ReflectionObject($stub);
         $paths = $refl->getProperty('paths');
         $paths->setAccessible(true);
 
-        $expected = array('/path/orchestra/views');
+        $expected = ['/path/orchestra/views'];
         $stub->setPaths($expected);
 
         $this->assertEquals($expected, $paths->getValue($stub));

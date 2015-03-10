@@ -18,7 +18,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->app = new Container;
+        $this->app = new Container();
     }
 
     /**
@@ -37,15 +37,15 @@ class FinderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDetectMethod()
     {
-        $app = $this->app;
+        $app                = $this->app;
         $app['path.public'] = '/var/orchestra/public/';
-        $app['files'] = $file = m::mock('\Illuminate\Filesystem\Filesystem');
+        $app['files']       = $file       = m::mock('\Illuminate\Filesystem\Filesystem');
 
         $file->shouldReceive('directories')->once()
-                ->with('/var/orchestra/public/themes/')->andReturn(array(
+                ->with('/var/orchestra/public/themes/')->andReturn([
                     '/var/orchestra/public/themes/a',
                     '/var/orchestra/public/themes/b',
-                ))
+                ])
             ->shouldReceive('exists')->once()
                 ->with('/var/orchestra/public/themes/a/theme.json')->andReturn(true)
             ->shouldReceive('exists')->once()
