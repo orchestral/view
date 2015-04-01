@@ -8,7 +8,7 @@ use Illuminate\Console\ConfirmableTrait;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class ActivateCommand extends BaseCommand
+class ActivateCommand extends Command
 {
     use ConfirmableTrait;
 

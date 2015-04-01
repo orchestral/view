@@ -1,10 +1,10 @@
 <?php namespace Orchestra\View\Console;
 
-use Illuminate\Console\Command;
+use Illuminate\Console\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-abstract class BaseCommand extends Command
+abstract class Command extends BaseCommand
 {
     /**
      * Execute the console command.
