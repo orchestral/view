@@ -5,6 +5,11 @@ title: View Change Log
 
 ## Version 3.0 {#v3-0}
 
+### v3.0.1 {#v3-0-1}
+
+* Add `php artisan theme:optimize` command.
+* Rename `Orchestra\View\Console\BaseCommand` to `Orchestra\View\Console\Command`.
+
 ### v3.0.0 {#v3-0-0}
 
 * Update support for Laravel Framework v5.0.
