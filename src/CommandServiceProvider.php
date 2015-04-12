@@ -33,7 +33,7 @@ class CommandServiceProvider extends ServiceProvider
             return new DetectCommand($finder);
         });
 
-        $this->app->singleton('orchestra.view.command.optimize', function ($app) {
+        $this->app->singleton('orchestra.view.command.optimize', function () {
             return new OptimizeCommand();
         });
 
