@@ -78,15 +78,15 @@ class DetectCommand extends Command
     protected function getThemeStatus($type, Manifest $theme, $active = false)
     {
         if ($active === true) {
-            return "   ✓";
+            return '   ✓';
         }
 
         $group = $theme->get('type');
 
         if (! empty($group) && ! in_array($type, $group)) {
-            return "   ✗";
+            return '   ✗';
         }
 
-        return "";
+        return '';
     }
 }
