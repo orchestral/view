@@ -69,9 +69,9 @@ class ActivateCommand extends Command
         $theme = $this->getAvailableTheme($group)->get($id);
 
         if ($this->validateProvidedTheme($group, $id, $theme)) {
-            $this->laravel['orchestra.memory']->set("site.theme.{$group}", $theme->uid);
+            $this->laravel['orchestra.memory']->set("site.theme.{$group}", $theme->get('uid'));
 
-            $this->info("Theme [{$theme->name}] activated on group [{$group}].");
+            $this->info("Theme [{$theme->get('name')}] activated on group [{$group}].");
         }
     }
 
@@ -111,7 +111,9 @@ class ActivateCommand extends Command
         $themes = $this->finder->detect();
 
         return $themes->filter(function (Manifest $manifest) use ($type) {
-            if (! empty($manifest->type) && ! in_array($type, $manifest->type)) {
+            $group = $manifest->get('type');
+
+            if (! empty($group) && ! in_array($type, $group)) {
                 return;
             }
 
