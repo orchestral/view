@@ -29,9 +29,14 @@ class ManifestTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($stub->foobar);
         $this->assertEquals('foobar', $stub->name);
+        $this->assertEquals('foobar', $stub->get('name'));
         $this->assertFalse(isset($stub->hello));
         $this->assertTrue(is_array($stub->autoload));
+
         $this->assertEquals('/var/orchestra/themes/default', $stub->path);
+
+        $this->assertInstanceOf('\Illuminate\Support\Fluent', $stub->items());
+        $this->assertEquals('foobar', $stub->items()->get('name'));
     }
 
     /**
