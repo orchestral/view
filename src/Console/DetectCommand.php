@@ -57,7 +57,7 @@ class DetectCommand extends Command
         foreach ($themes as $id => $theme) {
             $content[] = [
                 $id,
-                $theme->name,
+                $theme->get('name'),
                 $this->getThemeStatus('frontend', $theme, ($id == $frontend)),
                 $this->getThemeStatus('backend', $theme, ($id == $backend)),
             ];
@@ -81,7 +81,9 @@ class DetectCommand extends Command
             return "   ✓";
         }
 
-        if (! empty($theme->type) && ! in_array($type, $theme->type)) {
+        $group = $theme->get('type');
+
+        if (! empty($group) && ! in_array($type, $group)) {
             return "   ✗";
         }
 

@@ -17,7 +17,7 @@ class Manifest
     /**
      * Theme configuration.
      *
-     * @var Object
+     * @var \Illuminate\Support\Fluent
      */
     protected $items;
 
@@ -58,10 +58,34 @@ class Manifest
                 );
             }
 
-            $this->items       = new Fluent($this->generateManifestConfig($jsonable));
-            $this->items->uid  = $this->parseThemeNameFromPath($path);
-            $this->items->path = $path;
+            $this->items = new Fluent($this->generateManifestConfig($jsonable));
+
+            $this->items['uid']  = $this->parseThemeNameFromPath($path);
+            $this->items['path'] = $path;
         }
+    }
+
+    /**
+     * Get single attribute.
+     *
+     * @param  string  $key
+     * @param  mixed|null  $default
+     *
+     * @return mixed
+     */
+    public function get($key, $default = null)
+    {
+        return $this->items->get($key, $default);
+    }
+
+    /**
+     * Get collection.
+     *
+     * @return \Illuminate\Support\Fluent
+     */
+    public function items()
+    {
+        return $this->items;
     }
 
     /**
@@ -114,7 +138,7 @@ class Manifest
             return;
         }
 
-        return $this->items->{$key};
+        return $this->items->get($key);
     }
 
     /**
