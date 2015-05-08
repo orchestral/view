@@ -55,14 +55,14 @@ class Theme implements ThemeContract
     /**
      * Boot indicator.
      *
-     * @var boolean
+     * @var bool
      */
     protected $booted = false;
 
     /**
      * Resolve indicator.
      *
-     * @var boolean
+     * @var bool
      */
     protected $resolved = false;
 
@@ -180,7 +180,7 @@ class Theme implements ThemeContract
 
         $this->resolved = true;
 
-        $this->dispatcher->fire("orchestra.theme.resolving", [$this, $this->app]);
+        $this->dispatcher->fire('orchestra.theme.resolving', [$this, $this->app]);
 
         $this->setViewPaths();
 
