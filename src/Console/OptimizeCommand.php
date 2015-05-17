@@ -40,17 +40,42 @@ class OptimizeCommand extends BaseCommand
     protected function compileViews()
     {
         foreach ($this->laravel['view']->getFinder()->getPaths() as $path) {
-            foreach ($this->laravel['files']->allFiles($path) as $file) {
-                try {
-                    $engine = $this->laravel['view']->getEngineFromPath($file);
-                } catch (InvalidArgumentException $e) {
-                    continue;
-                }
+            $this->compileViewsInPath($path);
+        }
+    }
 
-                if ($engine instanceof CompilerEngine) {
-                    $engine->getCompiler()->compile($file);
-                }
+    /**
+     * Compile all views files in path.
+     *
+     * @param  string  $path
+     *
+     * @return void
+     */
+    protected function compileViewsInPath($path)
+    {
+        foreach ($this->laravel['files']->allFiles($path) as $file) {
+            try {
+                $engine = $this->laravel['view']->getEngineFromPath($file);
+            } catch (InvalidArgumentException $e) {
+                continue;
             }
+
+            $this->compileViewFile($engine, $file);
+        }
+    }
+
+    /**
+     * Compile single view file.
+     *
+     * @param  mixed  $engine
+     * @param  string  $file
+     *
+     * @return void
+     */
+    protected function compileSingleViewFile($engine, $file)
+    {
+        if ($engine instanceof CompilerEngine) {
+            $engine->getCompiler()->compile($file);
         }
     }
 }
