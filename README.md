@@ -8,9 +8,9 @@ This would allow extension (or even packages) to have it's own set of view styli
 [![Latest Stable Version](https://img.shields.io/github/release/orchestral/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
 [![Total Downloads](https://img.shields.io/packagist/dt/orchestra/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
 [![MIT License](https://img.shields.io/packagist/l/orchestra/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
-[![Build Status](https://img.shields.io/travis/orchestral/view/master.svg?style=flat)](https://travis-ci.org/orchestral/view)
-[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/master.svg?style=flat)](https://coveralls.io/r/orchestral/view?branch=master)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/master.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/view/)
+[![Build Status](https://img.shields.io/travis/orchestral/view/3.1.svg?style=flat)](https://travis-ci.org/orchestral/view)
+[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/3.1.svg?style=flat)](https://coveralls.io/r/orchestral/view?branch=3.1)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/3.1.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/view/)
 
 ## Version Compatibility
 
@@ -29,7 +29,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/view": "3.1.*"
+		"orchestra/view": "~3.0"
 	}
 }
 ```
@@ -40,7 +40,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require "orchestra/view=3.1.*"
+    composer require "orchestra/view=~3.0"
 
 ## Configuration
 
