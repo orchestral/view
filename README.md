@@ -28,7 +28,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/view": "3.0.*"
+		"orchestra/view": "~3.0"
 	}
 }
 ```
@@ -39,7 +39,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require "orchestra/view=3.0.*"
+    composer require "orchestra/view=~3.0"
 
 ## Configuration
 
