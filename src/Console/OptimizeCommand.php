@@ -60,7 +60,7 @@ class OptimizeCommand extends BaseCommand
                 continue;
             }
 
-            $this->compileViewFile($engine, $file);
+            $this->compileSingleViewFile($engine, $file);
         }
     }
 
