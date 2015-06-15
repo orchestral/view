@@ -14,7 +14,7 @@ class LoadCurrentTheme
      */
     public function bootstrap(Application $app)
     {
-        $theme = $app->make('orchestra.theme');
+        $theme = $app->make('orchestra.theme')->driver();
 
         $this->setCurrentTheme($app, $theme);
         $this->setThemeResolver($app, $theme);
