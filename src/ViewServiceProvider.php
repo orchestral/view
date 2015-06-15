@@ -30,9 +30,9 @@ class ViewServiceProvider extends ServiceProvider
     public function registerViewFinder()
     {
         $this->app->singleton('view.finder', function ($app) {
-            $paths = $app['config']['view.paths'];
+            $paths = $app->make('config')->get('view.paths', []);
 
-            return new FileViewFinder($app['files'], $paths);
+            return new FileViewFinder($app->make('files'), $paths);
         });
     }
 

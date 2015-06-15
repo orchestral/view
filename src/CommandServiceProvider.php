@@ -26,9 +26,7 @@ class CommandServiceProvider extends ServiceProvider
     public function registerActivateCommand()
     {
         $this->app->singleton('orchestra.view.command.activate', function ($app) {
-            $finder = $app['orchestra.theme.finder'];
-
-            return new ActivateCommand($finder);
+            return new ActivateCommand($app->make('orchestra.theme.finder'));
         });
     }
 
@@ -40,9 +38,7 @@ class CommandServiceProvider extends ServiceProvider
     public function registerDetectCommand()
     {
         $this->app->singleton('orchestra.view.command.detect', function ($app) {
-            $finder = $app['orchestra.theme.finder'];
-
-            return new DetectCommand($finder);
+            return new DetectCommand($app->make('orchestra.theme.finder'));
         });
     }
 
