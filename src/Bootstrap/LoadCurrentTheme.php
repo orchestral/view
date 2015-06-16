@@ -55,7 +55,7 @@ class LoadCurrentTheme
      *
      * @return void
      */
-    protected function setThemeResolver(Application $app, $theme)
+    protected function setThemeResolver(Application $app, Theme $theme)
     {
         // The theme is only booted when the first view is being composed.
         // This would prevent multiple theme being booted in the same
