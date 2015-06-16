@@ -4,6 +4,10 @@ title: View Change Log
 ---
 ## Version 3.1 {#v3-1}
 
+### v3.1.2 {#v3-1-2}
+
+* Improved performances by reducing call within `Illuminate\Container\Container`.
+
 ### v3.1.1 {#v3-1-1}
 
 * Fixes unable to use `php artisan theme:optimize`.
