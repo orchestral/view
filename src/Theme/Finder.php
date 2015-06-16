@@ -33,7 +33,7 @@ class Finder implements FinderContract
     public function detect()
     {
         $themes = new Collection();
-        $file   = $this->app['files'];
+        $file   = $this->app->make('files');
         $path   = rtrim($this->app['path.public'], '/').'/themes/';
 
         $folders = $file->directories($path);

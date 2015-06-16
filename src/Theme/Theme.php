@@ -98,7 +98,7 @@ class Theme implements ThemeContract
      */
     public function initiate()
     {
-        $baseUrl = $this->app['request']->root();
+        $baseUrl = $this->app->make('request')->root();
 
         // Register relative and absolute URL for theme usage.
         $this->absoluteUrl = rtrim($baseUrl, '/').'/themes';
@@ -282,7 +282,7 @@ class Theme implements ThemeContract
      */
     protected function setViewPaths()
     {
-        $viewFinder = $this->app['view.finder'];
+        $viewFinder = $this->app->make('view.finder');
 
         $themePaths = $this->getAvailableThemePaths();
 
@@ -298,7 +298,7 @@ class Theme implements ThemeContract
      */
     protected function resetViewPaths()
     {
-        $viewFinder = $this->app['view.finder'];
+        $viewFinder = $this->app->make('view.finder');
 
         $paths = $viewFinder->getPaths();
 
