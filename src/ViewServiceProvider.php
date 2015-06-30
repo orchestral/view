@@ -2,6 +2,7 @@
 
 use Orchestra\View\Theme\Finder;
 use Orchestra\View\Theme\ThemeManager;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\View\ViewServiceProvider as ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
@@ -29,7 +30,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function registerViewFinder()
     {
-        $this->app->singleton('view.finder', function ($app) {
+        $this->app->singleton('view.finder', function (Application $app) {
             $paths = $app->make('config')->get('view.paths', []);
 
             return new FileViewFinder($app->make('files'), $paths);
@@ -43,11 +44,11 @@ class ViewServiceProvider extends ServiceProvider
      */
     protected function registerTheme()
     {
-        $this->app->singleton('orchestra.theme', function ($app) {
+        $this->app->singleton('orchestra.theme', function (Application $app) {
             return new ThemeManager($app);
         });
 
-        $this->app->singleton('orchestra.theme.finder', function ($app) {
+        $this->app->singleton('orchestra.theme.finder', function (Application $app) {
             return new Finder($app);
         });
     }
