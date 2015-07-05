@@ -3,6 +3,7 @@
 use Orchestra\View\Console\DetectCommand;
 use Orchestra\View\Console\ActivateCommand;
 use Orchestra\View\Console\OptimizeCommand;
+use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Support\Providers\CommandServiceProvider as ServiceProvider;
 
 class CommandServiceProvider extends ServiceProvider
@@ -25,7 +26,7 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function registerActivateCommand()
     {
-        $this->app->singleton('orchestra.view.command.activate', function ($app) {
+        $this->app->singleton('orchestra.view.command.activate', function (Application $app) {
             return new ActivateCommand($app->make('orchestra.theme.finder'));
         });
     }
@@ -37,7 +38,7 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function registerDetectCommand()
     {
-        $this->app->singleton('orchestra.view.command.detect', function ($app) {
+        $this->app->singleton('orchestra.view.command.detect', function (Application $app) {
             return new DetectCommand($app->make('orchestra.theme.finder'));
         });
     }
