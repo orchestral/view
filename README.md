@@ -1,16 +1,18 @@
 View Component for Orchestra Platform
 ==============
 
+[![Join the chat at https://gitter.im/orchestral/platform/components](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/orchestral/platform/components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 View Component is Orchestra Platform approach to deliver themeable application that support extensions. The functionality evolves by modifying how `Illuminate\View\ViewFileFinder` would resolve which file, which would first look into the current active theme folder, before resolving it cascading-ly.
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![Latest Stable Version](https://img.shields.io/github/release/orchestral/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
-[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
-[![MIT License](https://img.shields.io/packagist/l/orchestra/view.svg?style=flat)](https://packagist.org/packages/orchestra/view)
-[![Build Status](https://img.shields.io/travis/orchestral/view/3.1.svg?style=flat)](https://travis-ci.org/orchestral/view)
-[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/3.1.svg?style=flat)](https://coveralls.io/r/orchestral/view?branch=3.1)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/3.1.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/view/)
+[![Latest Stable Version](https://img.shields.io/github/release/orchestral/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
+[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
+[![MIT License](https://img.shields.io/packagist/l/orchestra/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
+[![Build Status](https://img.shields.io/travis/orchestral/view/3.1.svg?style=flat-square)](https://travis-ci.org/orchestral/view)
+[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/3.1.svg?style=flat-square)](https://coveralls.io/r/orchestral/view?branch=3.1)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/3.1.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/view/)
 
 ## Version Compatibility
 
@@ -28,9 +30,9 @@ To install through composer, simply put the following in your `composer.json` fi
 
 ```json
 {
-	"require": {
-		"orchestra/view": "~3.0"
-	}
+    "require": {
+        "orchestra/view": "~3.0"
+    }
 }
 ```
 
@@ -49,11 +51,11 @@ Next add the service provider in `config/app.php`.
 ```php
 'providers' => [
 
-	// ...
+    // ...
 
-	'Orchestra\View\DecoratorServiceProvider',
-	'Orchestra\View\ViewServiceProvider',
-	'Orchestra\Memory\MemoryServiceProvider',
+    Orchestra\View\DecoratorServiceProvider::class,
+    Orchestra\View\ViewServiceProvider::class,
+    Orchestra\Memory\MemoryServiceProvider::class,
 ],
 ```
 
