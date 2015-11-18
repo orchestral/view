@@ -10,9 +10,9 @@ This would allow extension (or even packages) to have it's own set of view styli
 [![Latest Stable Version](https://img.shields.io/github/release/orchestral/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
 [![Total Downloads](https://img.shields.io/packagist/dt/orchestra/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
 [![MIT License](https://img.shields.io/packagist/l/orchestra/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
-[![Build Status](https://img.shields.io/travis/orchestral/view/3.2.svg?style=flat-square)](https://travis-ci.org/orchestral/view)
-[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/3.2.svg?style=flat-square)](https://coveralls.io/r/orchestral/view?branch=3.2)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/3.2.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/view/)
+[![Build Status](https://img.shields.io/travis/orchestral/view/master.svg?style=flat-square)](https://travis-ci.org/orchestral/view)
+[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/master.svg?style=flat-square)](https://coveralls.io/r/orchestral/view?branch=master)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/view/)
 
 ## Version Compatibility
 
@@ -24,6 +24,7 @@ Laravel    | View
  5.0.x     | 3.0.x
  5.1.x     | 3.1.x
  5.2.x     | 3.2.x@dev
+ 5.3.x     | 3.3.x@dev
 
 ## Installation
 
