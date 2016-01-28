@@ -40,7 +40,11 @@ class Decorator
             throw new BadMethodCallException("Method [$name] does not exist.");
         }
 
-        return call_user_func($this->macros[$name], $data);
+        $args = func_get_args();
+
+        array_shift($args);
+
+        return call_user_func_array($this->macros[$name], $args);
     }
 
     /**
