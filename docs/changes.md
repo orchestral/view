@@ -5,6 +5,10 @@ title: View Change Log
 
 ## Version 3.2 {#v3-2}
 
+### v3.2.1 {#v3-2-1}
+
+* Allow multiple arguments in `Orchestra\View\Decorator` render method. ([@stevebauman](https://github.com/stevebauman))
+
 ### v3.2.0 {#v3-2-0}
 
 * Update support for Laravel Framework v5.2.

@@ -28,23 +28,23 @@ class Decorator
      * Render the macro.
      *
      * @param  string  $name
-     * @param  array   $data
+     * @param  mixed  $parameters
      *
      * @return string
      *
      * @throws \BadMethodCallException
      */
-    public function render($name, $data = null)
+    public function render($name, $parameters = null)
     {
         if (! isset($this->macros[$name])) {
             throw new BadMethodCallException("Method [$name] does not exist.");
         }
 
-        $args = func_get_args();
+        $parameters = func_get_args();
 
-        array_shift($args);
+        array_shift($parameters);
 
-        return call_user_func_array($this->macros[$name], $args);
+        return call_user_func_array($this->macros[$name], $parameters);
     }
 
     /**
