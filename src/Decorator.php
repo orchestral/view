@@ -34,17 +34,13 @@ class Decorator
      *
      * @throws \BadMethodCallException
      */
-    public function render($name, $parameters = null)
+    public function render($name, ...$parameters)
     {
         if (! isset($this->macros[$name])) {
             throw new BadMethodCallException("Method [$name] does not exist.");
         }
 
-        $parameters = func_get_args();
-
-        array_shift($parameters);
-
-        return call_user_func_array($this->macros[$name], $parameters);
+        return $this->macros[$name](...$parameters);
     }
 
     /**
@@ -59,6 +55,6 @@ class Decorator
     {
         array_unshift($parameters, $method);
 
-        return call_user_func_array([$this, 'render'], $parameters);
+        return $this->render(...$parameters);
     }
 }
