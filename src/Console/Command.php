@@ -1,4 +1,6 @@
-<?php namespace Orchestra\View\Console;
+<?php
+
+namespace Orchestra\View\Console;
 
 use Illuminate\Console\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;

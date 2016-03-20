@@ -1,4 +1,6 @@
-<?php namespace Orchestra\View\Bootstrap;
+<?php
+
+namespace Orchestra\View\Bootstrap;
 
 use Orchestra\Contracts\Theme\Theme;
 use Illuminate\Contracts\Foundation\Application;

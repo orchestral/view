@@ -1,4 +1,6 @@
-<?php namespace Orchestra\View;
+<?php
+
+namespace Orchestra\View;
 
 use Orchestra\View\Theme\Finder;
 use Orchestra\View\Theme\ThemeManager;

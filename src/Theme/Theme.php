@@ -1,4 +1,6 @@
-<?php namespace Orchestra\View\Theme;
+<?php
+
+namespace Orchestra\View\Theme;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Events\Dispatcher;

@@ -1,4 +1,6 @@
-<?php namespace Orchestra\View\Console;
+<?php
+
+namespace Orchestra\View\Console;
 
 use InvalidArgumentException;
 use Illuminate\View\Engines\CompilerEngine;

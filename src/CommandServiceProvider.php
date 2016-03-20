@@ -1,4 +1,6 @@
-<?php namespace Orchestra\View;
+<?php
+
+namespace Orchestra\View;
 
 use Orchestra\View\Console\DetectCommand;
 use Orchestra\View\Console\ActivateCommand;
