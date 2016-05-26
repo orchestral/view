@@ -57,6 +57,6 @@ class Decorator
     {
         array_unshift($parameters, $method);
 
-        return $this->render(...$parameters);
+        return $this->render($method, ...$parameters);
     }
 }
