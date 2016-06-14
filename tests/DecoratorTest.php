@@ -1,4 +1,6 @@
-<?php namespace Orchestra\View\TestCase;
+<?php
+
+namespace Orchestra\View\TestCase;
 
 use Orchestra\View\Decorator;
 
