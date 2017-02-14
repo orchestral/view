@@ -17,7 +17,7 @@ class FileViewFinderTest extends \PHPUnit_Framework_TestCase
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->files = m::mock('\Illuminate\Filesystem\Filesystem');
     }
@@ -25,7 +25,7 @@ class FileViewFinderTest extends \PHPUnit_Framework_TestCase
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->files);
         m::close();

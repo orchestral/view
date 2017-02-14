@@ -2,9 +2,9 @@
 
 namespace Orchestra\View\TestCase\Theme;
 
-use Illuminate\Container\Container;
 use Mockery as m;
 use Orchestra\View\Theme\Theme;
+use Illuminate\Container\Container;
 
 class ThemeTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,13 +18,13 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->app = new Container();
 
         $this->app['path.public'] = '/var/orchestra/public';
         $this->app['path.base']   = '/var/orchestra';
-        $this->app['request']     = $request     = m::mock('Request');
+        $this->app['request']     = $request = m::mock('Request');
 
         $request->shouldReceive('root')->andReturn('http://localhost/');
     }
@@ -32,7 +32,7 @@ class ThemeTest extends \PHPUnit_Framework_TestCase
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->app);
 

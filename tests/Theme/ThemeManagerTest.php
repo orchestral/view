@@ -18,7 +18,7 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->app                = new Container();
         $this->app['request']     = $request     = m::mock('\Illuminate\Http\Request');
@@ -33,7 +33,7 @@ class ThemeManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->app);
         m::close();

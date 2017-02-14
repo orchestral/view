@@ -18,7 +18,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->app = new Container();
     }
@@ -26,7 +26,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->app);
         m::close();
@@ -41,7 +41,7 @@ class FinderTest extends \PHPUnit_Framework_TestCase
     {
         $app                = $this->app;
         $app['path.public'] = '/var/orchestra/public/';
-        $app['files']       = $file       = m::mock('\Illuminate\Filesystem\Filesystem');
+        $app['files']       = $file = m::mock('\Illuminate\Filesystem\Filesystem');
 
         $file->shouldReceive('directories')->once()
                 ->with('/var/orchestra/public/themes/')->andReturn([

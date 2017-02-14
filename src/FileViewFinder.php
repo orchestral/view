@@ -2,14 +2,18 @@
 
 namespace Orchestra\View;
 
-class FileViewFinder extends \Illuminate\View\FileViewFinder
+use Illuminate\View\FileViewFinder as LaravelViewFinder;
+
+class FileViewFinder extends LaravelViewFinder
 {
+    const HINT_PATH_DELIMITER = '::';
+
     /**
      * {@inheritdoc}
      */
-    protected function findNamedPathView($name)
+    protected function findNamespacedView($name)
     {
-        list($namespace, $view) = $this->getNamespaceSegments($name);
+        list($namespace, $view) = $this->parseNamespaceSegments($name);
 
         // Prepend global view paths to namespace hints path. This would
         // allow theme to take priority if such view exist.
