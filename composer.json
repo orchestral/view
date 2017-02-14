@@ -27,7 +27,8 @@
         "illuminate/container": "~5.4.0",
         "illuminate/filesystem": "~5.4.0",
         "illuminate/view": "~5.4.0",
-        "mockery/mockery": "^0.9.4"
+        "mockery/mockery": "^0.9.4",
+        "phpunit/phpunit": "~5.7"
     },
     "extra": {
         "branch-alias": {
