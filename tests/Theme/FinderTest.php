@@ -3,10 +3,11 @@
 namespace Orchestra\View\TestCase\Theme;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Orchestra\View\Theme\Finder;
 use Illuminate\Container\Container;
 
-class FinderTest extends \PHPUnit_Framework_TestCase
+class FinderTest extends TestCase
 {
     /**
      * Application instance.

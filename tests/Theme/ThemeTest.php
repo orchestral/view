@@ -4,9 +4,10 @@ namespace Orchestra\View\TestCase\Theme;
 
 use Mockery as m;
 use Orchestra\View\Theme\Theme;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 
-class ThemeTest extends \PHPUnit_Framework_TestCase
+class ThemeTest extends TestCase
 {
     /**
      * Application instance.

@@ -3,8 +3,9 @@
 namespace Orchestra\View\TestCase;
 
 use Orchestra\View\Decorator;
+use PHPUnit\Framework\TestCase;
 
-class DecoratorTest extends \PHPUnit_Framework_TestCase
+class DecoratorTest extends TestCase
 {
     /**
      * Test add and using macros.
