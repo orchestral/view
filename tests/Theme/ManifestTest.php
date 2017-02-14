@@ -3,9 +3,10 @@
 namespace Orchestra\View\TestCase\Theme;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Orchestra\View\Theme\Manifest;
 
-class ManifestTest extends \PHPUnit_Framework_TestCase
+class ManifestTest extends TestCase
 {
     /**
      * Teardown the test environment.

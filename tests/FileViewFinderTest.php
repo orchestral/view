@@ -3,9 +3,10 @@
 namespace Orchestra\View\TestCase;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Orchestra\View\FileViewFinder;
 
-class FileViewFinderTest extends \PHPUnit_Framework_TestCase
+class FileViewFinderTest extends TestCase
 {
     /**
      * Filesystem instance.
