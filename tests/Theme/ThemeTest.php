@@ -72,11 +72,11 @@ class ThemeTest extends TestCase
             ->andReturn('{"autoload":["start.php"]}')
             ->shouldReceive('requireOnce')->once()->with('/var/orchestra/public/themes/default/start.php')
             ->andReturnNull();
-        $events->shouldReceive('fire')->twice()->with('orchestra.theme.resolving', [$stub, $app])->andReturnNull()
-            ->shouldReceive('fire')->once()->with('orchestra.theme.set: foo')->andReturnNull()
-            ->shouldReceive('fire')->once()->with('orchestra.theme.unset: foo')->andReturnNull()
-            ->shouldReceive('fire')->once()->with('orchestra.theme.set: default')->andReturnNull()
-            ->shouldReceive('fire')->once()->with('orchestra.theme.boot: default')->andReturnNull();
+        $events->shouldReceive('dispatch')->twice()->with('orchestra.theme.resolving', [$stub, $app])->andReturnNull()
+            ->shouldReceive('dispatch')->once()->with('orchestra.theme.set: foo')->andReturnNull()
+            ->shouldReceive('dispatch')->once()->with('orchestra.theme.unset: foo')->andReturnNull()
+            ->shouldReceive('dispatch')->once()->with('orchestra.theme.set: default')->andReturnNull()
+            ->shouldReceive('dispatch')->once()->with('orchestra.theme.boot: default')->andReturnNull();
 
         $stub->initiate();
 
@@ -121,9 +121,9 @@ class ThemeTest extends TestCase
             ->shouldReceive('isDirectory')->once()->with("{$themePath}/default")->andReturn(false)
             ->shouldReceive('isDirectory')->once()->with("{$resourcePath}/default")->andReturn(false);
 
-        $events->shouldReceive('fire')->once()->with('orchestra.theme.resolving', m::type('Array'))->andReturnNull()
-            ->shouldReceive('fire')->once()->with('orchestra.theme.set: default')->andReturnNull()
-            ->shouldReceive('fire')->once()->with('orchestra.theme.boot: default')->andReturnNull();
+        $events->shouldReceive('dispatch')->once()->with('orchestra.theme.resolving', m::type('Array'))->andReturnNull()
+            ->shouldReceive('dispatch')->once()->with('orchestra.theme.set: default')->andReturnNull()
+            ->shouldReceive('dispatch')->once()->with('orchestra.theme.boot: default')->andReturnNull();
 
         $stub->initiate();
 
