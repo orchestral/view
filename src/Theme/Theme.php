@@ -121,11 +121,11 @@ class Theme implements ThemeContract
         if (! is_null($this->theme)) {
             $this->resolved && $this->resetViewPaths();
 
-            $this->dispatcher->fire("orchestra.theme.unset: {$this->theme}");
+            $this->dispatcher->dispatch("orchestra.theme.unset: {$this->theme}");
         }
 
         $this->theme = $theme;
-        $this->dispatcher->fire("orchestra.theme.set: {$this->theme}");
+        $this->dispatcher->dispatch("orchestra.theme.set: {$this->theme}");
 
         if ($this->resolved) {
             $this->resolved = false;
@@ -164,7 +164,7 @@ class Theme implements ThemeContract
             $this->files->requireOnce("{$themePath}/{$file}");
         }
 
-        $this->dispatcher->fire("orchestra.theme.boot: {$this->theme}");
+        $this->dispatcher->dispatch("orchestra.theme.boot: {$this->theme}");
 
         return true;
     }
@@ -182,7 +182,7 @@ class Theme implements ThemeContract
 
         $this->resolved = true;
 
-        $this->dispatcher->fire('orchestra.theme.resolving', [$this, $this->app]);
+        $this->dispatcher->dispatch('orchestra.theme.resolving', [$this, $this->app]);
 
         $this->setViewPaths();
 
