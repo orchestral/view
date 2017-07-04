@@ -106,7 +106,7 @@ class Manifest
 
         // Assign extension manifest option or provide the default value.
         foreach ($this->manifestOptions as $key => $default) {
-            $manifest["{$key}"] = Arr::get($jsonable, $key, $default);
+            $manifest["{$key}"] = $jsonable[$key] ?? $default;
         }
 
         return $manifest;
