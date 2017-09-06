@@ -1,18 +1,22 @@
 View Component for Orchestra Platform
 ==============
 
-[![Join the chat at https://gitter.im/orchestral/platform/components](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/orchestral/platform/components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 View Component is Orchestra Platform approach to deliver themeable application that support extensions. The functionality evolves by modifying how `Illuminate\View\ViewFileFinder` would resolve which file, which would first look into the current active theme folder, before resolving it cascading-ly.
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![Latest Stable Version](https://img.shields.io/github/release/orchestral/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
-[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
-[![MIT License](https://img.shields.io/packagist/l/orchestra/view.svg?style=flat-square)](https://packagist.org/packages/orchestra/view)
-[![Build Status](https://img.shields.io/travis/orchestral/view/master.svg?style=flat-square)](https://travis-ci.org/orchestral/view)
-[![Coverage Status](https://img.shields.io/coveralls/orchestral/view/master.svg?style=flat-square)](https://coveralls.io/r/orchestral/view?branch=master)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/view/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/view/)
+[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=master)](https://travis-ci.org/orchestral/view)
+[![Latest Stable Version](https://poser.pugx.org/orchestra/view/version)](https://packagist.org/packages/orchestra/view)
+[![Total Downloads](https://poser.pugx.org/orchestra/view/downloads)](https://packagist.org/packages/orchestra/view)
+[![Latest Unstable Version](https://poser.pugx.org/orchestra/view/v/unstable)](//packagist.org/packages/orchestra/view)
+[![License](https://poser.pugx.org/orchestra/view/license)](https://packagist.org/packages/orchestra/view)
+
+## Table of Content
+
+* [Version Compatibility](#version-compatibility)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Changelog](https://github.com/orchestral/view/releases)
 
 ## Version Compatibility
 
@@ -26,6 +30,7 @@ Laravel    | View
  5.2.x     | 3.2.x
  5.3.x     | 3.3.x
  5.4.x     | 3.4.x
+ 5.5.x     | 3.5.x@dev
 
 ## Installation
 
@@ -62,7 +67,3 @@ Next add the service provider in `config/app.php`.
 ],
 ```
 
-## Resources
-
-* [Documentation](http://orchestraplatform.com/docs/latest/components/view)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/view/changes#v3-3)
