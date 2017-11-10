@@ -5,7 +5,7 @@ View Component is Orchestra Platform approach to deliver themeable application t
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=master)](https://travis-ci.org/orchestral/view)
+[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=3.5)](https://travis-ci.org/orchestral/view)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/view/version)](https://packagist.org/packages/orchestra/view)
 [![Total Downloads](https://poser.pugx.org/orchestra/view/downloads)](https://packagist.org/packages/orchestra/view)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/view/v/unstable)](//packagist.org/packages/orchestra/view)
@@ -22,15 +22,13 @@ This would allow extension (or even packages) to have it's own set of view styli
 
 Laravel    | View
 :----------|:----------
- 4.0.x     | 2.0.x
- 4.1.x     | 2.1.x
- 4.2.x     | 2.2.x
+ 4.x.x     | 2.x.x
  5.0.x     | 3.0.x
  5.1.x     | 3.1.x
  5.2.x     | 3.2.x
  5.3.x     | 3.3.x
  5.4.x     | 3.4.x
- 5.5.x     | 3.5.x@dev
+ 5.5.x     | 3.5.x
 
 ## Installation
 
