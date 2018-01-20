@@ -40,14 +40,14 @@ class FileViewFinderTest extends TestCase
     public function testFindNamedPathViewMethod()
     {
         $files = $this->files;
-        $stub  = new FileViewFinder($files, ['/path/theme/views', '/path/app/views'], ['php']);
+        $stub = new FileViewFinder($files, ['/path/theme/views', '/path/app/views'], ['php']);
 
         $files->shouldReceive('exists')->once()->with('/path/theme/views/packages/foo/bar/hello.php')->andReturn(false)
             ->shouldReceive('exists')->once()->with('/path/app/views/packages/foo/bar/hello.php')->andReturn(false)
             ->shouldReceive('exists')->once()->with('/path/vendor/foo/bar/views/hello.php')->andReturn(true);
 
         $stub->addNamespace('foo/bar', '/path/vendor/foo/bar/views');
-        $this->assertEquals('/path/vendor/foo/bar/views/hello.php', $stub->find("foo/bar::hello"));
+        $this->assertEquals('/path/vendor/foo/bar/views/hello.php', $stub->find('foo/bar::hello'));
     }
 
     /**
@@ -58,9 +58,9 @@ class FileViewFinderTest extends TestCase
     public function testSetPathsMethod()
     {
         $files = $this->files;
-        $stub  = new FileViewFinder($files, ['/path/theme/views', '/path/app/views'], ['php']);
+        $stub = new FileViewFinder($files, ['/path/theme/views', '/path/app/views'], ['php']);
 
-        $refl  = new \ReflectionObject($stub);
+        $refl = new \ReflectionObject($stub);
         $paths = $refl->getProperty('paths');
         $paths->setAccessible(true);
 

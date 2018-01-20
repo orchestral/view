@@ -66,7 +66,7 @@ class ActivateCommand extends Command
         }
 
         $group = Str::lower($this->argument('group'));
-        $id    = Str::lower($this->argument('id'));
+        $id = Str::lower($this->argument('id'));
 
         $theme = $this->getAvailableTheme($group)->get($id);
 
@@ -81,12 +81,12 @@ class ActivateCommand extends Command
      * Validate provided theme.
      *
      * @param  string  $group
-     * @param  string  $id
+     * @param  string|int  $id
      * @param  object|null  $theme
      *
-     * @return bool
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return bool
      */
     protected function validateProvidedTheme($group, $id, $theme)
     {

@@ -17,7 +17,7 @@ class CommandServiceProvider extends ServiceProvider
      */
     protected $commands = [
         'Activate' => 'orchestra.view.command.activate',
-        'Detect'   => 'orchestra.view.command.detect',
+        'Detect' => 'orchestra.view.command.detect',
         'Optimize' => 'orchestra.view.command.optimize',
     ];
 

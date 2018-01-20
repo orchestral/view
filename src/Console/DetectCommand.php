@@ -47,13 +47,13 @@ class DetectCommand extends Command
      */
     public function handle()
     {
-        $memory   = $this->laravel['orchestra.memory'];
+        $memory = $this->laravel['orchestra.memory'];
 
-        $themes   = $this->finder->detect();
+        $themes = $this->finder->detect();
         $frontend = $memory->get('site.theme.frontend');
-        $backend  = $memory->get('site.theme.backend');
+        $backend = $memory->get('site.theme.backend');
 
-        $header  = ['ID', 'Theme Name', 'Frontend', 'Backend'];
+        $header = ['ID', 'Theme Name', 'Frontend', 'Backend'];
         $content = [];
 
         foreach ($themes as $id => $theme) {

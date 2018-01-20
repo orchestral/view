@@ -24,8 +24,8 @@ class ThemeTest extends TestCase
         $this->app = new Container();
 
         $this->app['path.public'] = '/var/orchestra/public';
-        $this->app['path.base']   = '/var/orchestra';
-        $this->app['request']     = $request = m::mock('Request');
+        $this->app['path.base'] = '/var/orchestra';
+        $this->app['request'] = $request = m::mock('Request');
 
         $request->shouldReceive('root')->andReturn('http://localhost/');
     }
@@ -48,13 +48,13 @@ class ThemeTest extends TestCase
      */
     public function testGetterAndSetterForTheme()
     {
-        $app                = $this->app;
+        $app = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
-        $app['files']       = $files       = m::mock('\Illuminate\Filesystem\Filesystem');
-        $app['events']      = $events      = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
+        $app['events'] = $events = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 
-        $defaultPath  = '/var/orchestra/resources/views';
-        $themePath    = '/var/orchestra/public/themes';
+        $defaultPath = '/var/orchestra/resources/views';
+        $themePath = '/var/orchestra/public/themes';
         $resourcePath = '/var/orchestra/resources/themes';
 
         $stub = new Theme($app, $events, $files);
@@ -92,8 +92,8 @@ class ThemeTest extends TestCase
 
         $this->assertTrue($stub->boot());
 
-        $this->assertEquals("http://localhost/themes/default/hello", $stub->to('hello'));
-        $this->assertEquals("/themes/default/hello", $stub->asset('hello'));
+        $this->assertEquals('http://localhost/themes/default/hello', $stub->to('hello'));
+        $this->assertEquals('/themes/default/hello', $stub->asset('hello'));
 
         $this->assertFalse($stub->resolving());
         $this->assertFalse($stub->boot());
@@ -107,12 +107,12 @@ class ThemeTest extends TestCase
      */
     public function testBootMethodWhenManifestIsNotAvailable()
     {
-        $app                = $this->app;
+        $app = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
-        $app['events']      = $events      = m::mock('\Illuminate\Contracts\Events\Dispatcher');
-        $app['files']       = $files       = m::mock('\Illuminate\Filesystem\Filesystem');
+        $app['events'] = $events = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
 
-        $themePath    = '/var/orchestra/public/themes';
+        $themePath = '/var/orchestra/public/themes';
         $resourcePath = '/var/orchestra/resources/themes';
 
         $stub = new Theme($app, $events, $files);

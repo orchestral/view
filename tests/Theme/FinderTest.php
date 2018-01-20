@@ -40,9 +40,9 @@ class FinderTest extends TestCase
      */
     public function testDetectMethod()
     {
-        $app                = $this->app;
+        $app = $this->app;
         $app['path.public'] = '/var/orchestra/public/';
-        $app['files']       = $file = m::mock('\Illuminate\Filesystem\Filesystem');
+        $app['files'] = $file = m::mock('\Illuminate\Filesystem\Filesystem');
 
         $file->shouldReceive('directories')->once()
                 ->with('/var/orchestra/public/themes/')->andReturn([
@@ -56,7 +56,7 @@ class FinderTest extends TestCase
             ->shouldReceive('get')->once()
                 ->with('/var/orchestra/public/themes/a/theme.json')->andReturn('{"name": "foo"}');
 
-        $stub   = new Finder($app);
+        $stub = new Finder($app);
         $themes = $stub->detect();
 
         $this->assertInstanceOf('\Orchestra\View\Theme\Manifest', $themes['a']);

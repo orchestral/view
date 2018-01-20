@@ -28,20 +28,20 @@ class Finder implements FinderContract
     /**
      * Detect available themes.
      *
-     * @return \Illuminate\Support\Collection
-     *
      * @throws \RuntimeException
+     *
+     * @return \Illuminate\Support\Collection
      */
     public function detect()
     {
         $themes = new Collection();
-        $file   = $this->app->make('files');
-        $path   = rtrim($this->app['path.public'], '/').'/themes/';
+        $file = $this->app->make('files');
+        $path = rtrim($this->app['path.public'], '/').'/themes/';
 
         $folders = $file->directories($path);
 
         foreach ($folders as $folder) {
-            $name          = $this->parseThemeNameFromPath($folder);
+            $name = $this->parseThemeNameFromPath($folder);
             $themes[$name] = new Manifest($file, rtrim($folder, '/').'/');
         }
 

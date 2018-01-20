@@ -3,7 +3,6 @@
 namespace Orchestra\View\Theme;
 
 use RuntimeException;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 use Illuminate\Filesystem\Filesystem;
 
@@ -29,12 +28,12 @@ class Manifest
      * @var array
      */
     protected $manifestOptions = [
-        'name'        => null,
-        'uid'         => null,
+        'name' => null,
+        'uid' => null,
         'description' => null,
-        'author'      => null,
-        'autoload'    => [],
-        'type'        => [],
+        'author' => null,
+        'autoload' => [],
+        'type' => [],
     ];
 
     /**
@@ -47,7 +46,7 @@ class Manifest
      */
     public function __construct(Filesystem $files, $path)
     {
-        $path        = rtrim($path, '/');
+        $path = rtrim($path, '/');
         $this->files = $files;
 
         if ($files->exists($manifest = "{$path}/theme.json")) {
@@ -62,7 +61,7 @@ class Manifest
 
             $this->items = new Fluent($this->generateManifestConfig($jsonable));
 
-            $this->items['uid']  = $this->parseThemeNameFromPath($path);
+            $this->items['uid'] = $this->parseThemeNameFromPath($path);
             $this->items['path'] = $path;
         }
     }

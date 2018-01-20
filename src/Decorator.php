@@ -32,9 +32,9 @@ class Decorator
      * @param  string  $name
      * @param  mixed  $parameters
      *
-     * @return string
-     *
      * @throws \BadMethodCallException
+     *
+     * @return string
      */
     public function render($name, ...$parameters)
     {

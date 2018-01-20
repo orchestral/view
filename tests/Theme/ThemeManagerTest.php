@@ -4,6 +4,7 @@ namespace Orchestra\View\TestCase\Theme;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
+use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
 use Orchestra\View\Theme\ThemeManager;
 
@@ -21,11 +22,11 @@ class ThemeManagerTest extends TestCase
      */
     protected function setUp()
     {
-        $this->app                = new Container();
-        $this->app['request']     = $request     = m::mock('\Illuminate\Http\Request');
-        $this->app['events']      = m::mock('\Illuminate\Contracts\Events\Dispatcher');
-        $this->app['files']       = m::mock('\Illuminate\Filesystem\Filesystem');
-        $this->app['path.base']   = '/var/orchestra';
+        $this->app = new Container();
+        $this->app['request'] = $request = m::mock('\Illuminate\Http\Request');
+        $this->app['events'] = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $this->app['files'] = m::mock('\Illuminate\Filesystem\Filesystem');
+        $this->app['path.base'] = '/var/orchestra';
         $this->app['path.public'] = '/var/orchestra/public';
 
         $request->shouldReceive('root')->andReturn('http://localhost/');
@@ -47,7 +48,7 @@ class ThemeManagerTest extends TestCase
      */
     public function testConstructMethod()
     {
-        $app  = $this->app;
+        $app = $this->app;
         $stub = new ThemeManager($app);
         $this->assertInstanceOf('\Orchestra\View\Theme\Theme', $stub->driver());
     }
@@ -59,12 +60,12 @@ class ThemeManagerTest extends TestCase
      */
     public function testDetectMethod()
     {
-        $app                           = $this->app;
+        $app = $this->app;
         $app['orchestra.theme.finder'] = $finder = m::mock('\Orchestra\View\Theme\Finder');
 
-        $finder->shouldReceive('detect')->once()->andReturn('foo');
+        $finder->shouldReceive('detect')->once()->andReturn(new Collection('foo'));
 
         $stub = new ThemeManager($app);
-        $this->assertEquals('foo', $stub->detect());
+        $this->assertEquals(['foo'], $stub->detect()->all());
     }
 }

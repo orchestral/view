@@ -84,11 +84,11 @@ class Theme implements ThemeContract
      */
     public function __construct(Container $app, Dispatcher $dispatcher, Filesystem $files)
     {
-        $this->app        = $app;
+        $this->app = $app;
         $this->dispatcher = $dispatcher;
-        $this->files      = $files;
+        $this->files = $files;
 
-        $this->path          = $app['path.public'].'/themes';
+        $this->path = $app['path.public'].'/themes';
         $this->cascadingPath = $app['path.base'].'/resources/themes';
     }
 
@@ -157,7 +157,7 @@ class Theme implements ThemeContract
         $this->booted = true;
 
         $themePath = $this->getThemePath();
-        $autoload  = $this->getThemeAutoloadFiles($themePath);
+        $autoload = $this->getThemeAutoloadFiles($themePath);
 
         foreach ($autoload as $file) {
             $file = ltrim($file, '/');
@@ -229,7 +229,7 @@ class Theme implements ThemeContract
      */
     public function getAvailableThemePaths()
     {
-        $paths      = [];
+        $paths = [];
         $themePaths = $this->getThemePaths();
 
         foreach ($themePaths as $path) {
