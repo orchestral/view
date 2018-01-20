@@ -39,7 +39,7 @@ class OptimizeCommand extends BaseCommand
      *
      * @return void
      */
-    protected function compileViews()
+    protected function compileViews(): void
     {
         foreach ($this->laravel['view']->getFinder()->getPaths() as $path) {
             $this->compileViewsInPath($path);
@@ -53,7 +53,7 @@ class OptimizeCommand extends BaseCommand
      *
      * @return void
      */
-    protected function compileViewsInPath($path)
+    protected function compileViewsInPath(string $path): void
     {
         foreach ($this->laravel['files']->allFiles($path) as $file) {
             try {
@@ -74,7 +74,7 @@ class OptimizeCommand extends BaseCommand
      *
      * @return void
      */
-    protected function compileSingleViewFile($engine, $file)
+    protected function compileSingleViewFile($engine, string $file): void
     {
         if ($engine instanceof CompilerEngine) {
             $engine->getCompiler()->compile($file);

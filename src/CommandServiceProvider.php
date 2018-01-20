@@ -26,7 +26,7 @@ class CommandServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerActivateCommand()
+    public function registerActivateCommand(): void
     {
         $this->app->singleton('orchestra.view.command.activate', function (Application $app) {
             return new ActivateCommand($app->make('orchestra.theme.finder'));
@@ -38,7 +38,7 @@ class CommandServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerDetectCommand()
+    public function registerDetectCommand(): void
     {
         $this->app->singleton('orchestra.view.command.detect', function (Application $app) {
             return new DetectCommand($app->make('orchestra.theme.finder'));
@@ -50,7 +50,7 @@ class CommandServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerOptimizeCommand()
+    public function registerOptimizeCommand(): void
     {
         $this->app->singleton('orchestra.view.command.optimize', function () {
             return new OptimizeCommand();

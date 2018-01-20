@@ -32,7 +32,7 @@ class Finder implements FinderContract
      *
      * @return \Illuminate\Support\Collection
      */
-    public function detect()
+    public function detect(): Collection
     {
         $themes = new Collection();
         $file = $this->app->make('files');
@@ -55,7 +55,7 @@ class Finder implements FinderContract
      *
      * @return string
      */
-    protected function parseThemeNameFromPath($path)
+    protected function parseThemeNameFromPath(string $path): string
     {
         $path = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $path);
         $path = explode(DIRECTORY_SEPARATOR, $path);

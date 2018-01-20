@@ -21,7 +21,7 @@ class Decorator
      *
      * @return void
      */
-    public function macro($name, $macro)
+    public function macro(string $name, callable $macro): void
     {
         $this->macros[$name] = $macro;
     }
@@ -36,7 +36,7 @@ class Decorator
      *
      * @return string
      */
-    public function render($name, ...$parameters)
+    public function render(string $name, ...$parameters)
     {
         if (! isset($this->macros[$name])) {
             throw new BadMethodCallException("Method [$name] does not exist.");
@@ -53,7 +53,7 @@ class Decorator
      *
      * @return mixed
      */
-    public function __call($method, $parameters)
+    public function __call(string $method, array $parameters)
     {
         array_unshift($parameters, $method);
 

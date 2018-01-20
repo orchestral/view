@@ -44,7 +44,7 @@ class Manifest
      *
      * @throws \RuntimeException
      */
-    public function __construct(Filesystem $files, $path)
+    public function __construct(Filesystem $files, string $path)
     {
         $path = rtrim($path, '/');
         $this->files = $files;
@@ -74,7 +74,7 @@ class Manifest
      *
      * @return mixed
      */
-    public function get($key, $default = null)
+    public function get(string $key, $default = null)
     {
         return $this->items->get($key, $default);
     }
@@ -84,7 +84,7 @@ class Manifest
      *
      * @return \Illuminate\Support\Fluent
      */
-    public function items()
+    public function items(): Fluent
     {
         return $this->items;
     }
@@ -99,7 +99,7 @@ class Manifest
      *
      * @return array
      */
-    protected function generateManifestConfig(array $jsonable)
+    protected function generateManifestConfig(array $jsonable): array
     {
         $manifest = [];
 
@@ -118,7 +118,7 @@ class Manifest
      *
      * @return string
      */
-    protected function parseThemeNameFromPath($path)
+    protected function parseThemeNameFromPath(string $path): string
     {
         $path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
         $path = explode(DIRECTORY_SEPARATOR, $path);
@@ -133,12 +133,8 @@ class Manifest
      *
      * @return mixed
      */
-    public function __get($key)
+    public function __get(string $key)
     {
-        if (! isset($this->items->{$key})) {
-            return;
-        }
-
         return $this->items->get($key);
     }
 
@@ -149,7 +145,7 @@ class Manifest
      *
      * @return bool
      */
-    public function __isset($key)
+    public function __isset(string $key): bool
     {
         return isset($this->items->{$key});
     }

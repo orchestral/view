@@ -30,7 +30,7 @@ class ViewServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerViewFinder()
+    public function registerViewFinder(): void
     {
         $this->app->singleton('view.finder', function (Application $app) {
             $paths = $app->make('config')->get('view.paths', []);
@@ -44,7 +44,7 @@ class ViewServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerTheme()
+    protected function registerTheme(): void
     {
         $this->app->singleton('orchestra.theme', function (Application $app) {
             return new ThemeManager($app);

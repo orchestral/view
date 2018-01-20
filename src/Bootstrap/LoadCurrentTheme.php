@@ -14,7 +14,7 @@ class LoadCurrentTheme
      *
      * @return void
      */
-    public function bootstrap(Application $app)
+    public function bootstrap(Application $app): void
     {
         $theme = $app->make('orchestra.theme')->driver();
 
@@ -30,7 +30,7 @@ class LoadCurrentTheme
      *
      * @return void
      */
-    protected function setCurrentTheme(Application $app, Theme $theme)
+    protected function setCurrentTheme(Application $app, Theme $theme): void
     {
         $memory = $app->make('orchestra.memory')->makeOrFallback();
         $events = $app->make('events');
@@ -57,7 +57,7 @@ class LoadCurrentTheme
      *
      * @return void
      */
-    protected function setThemeResolver(Application $app, Theme $theme)
+    protected function setThemeResolver(Application $app, Theme $theme): void
     {
         // The theme is only booted when the first view is being composed.
         // This would prevent multiple theme being booted in the same

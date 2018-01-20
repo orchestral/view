@@ -98,7 +98,7 @@ class Theme implements ThemeContract
      *
      * @return $this
      */
-    public function initiate()
+    public function initiate(): self
     {
         $baseUrl = $this->app->make('request')->root();
 
@@ -116,7 +116,7 @@ class Theme implements ThemeContract
      *
      * @return void
      */
-    public function setTheme($theme)
+    public function setTheme(string $theme): void
     {
         if (! is_null($this->theme)) {
             $this->resolved && $this->resetViewPaths();
@@ -138,7 +138,7 @@ class Theme implements ThemeContract
      *
      * @return string
      */
-    public function getTheme()
+    public function getTheme(): string
     {
         return $this->theme;
     }
@@ -148,7 +148,7 @@ class Theme implements ThemeContract
      *
      * @return bool
      */
-    public function boot()
+    public function boot(): bool
     {
         if ($this->booted) {
             return false;
@@ -174,7 +174,7 @@ class Theme implements ThemeContract
      *
      * @return bool
      */
-    public function resolving()
+    public function resolving(): bool
     {
         if ($this->resolved) {
             return false;
@@ -194,7 +194,7 @@ class Theme implements ThemeContract
      *
      * @return string
      */
-    public function getThemePath()
+    public function getThemePath(): string
     {
         return "{$this->path}/{$this->theme}";
     }
@@ -204,7 +204,7 @@ class Theme implements ThemeContract
      *
      * @return string
      */
-    public function getCascadingThemePath()
+    public function getCascadingThemePath(): string
     {
         return "{$this->cascadingPath}/{$this->theme}";
     }
@@ -214,7 +214,7 @@ class Theme implements ThemeContract
      *
      * @return array
      */
-    public function getThemePaths()
+    public function getThemePaths(): array
     {
         return [
             $this->getCascadingThemePath(),
@@ -227,7 +227,7 @@ class Theme implements ThemeContract
      *
      * @return array
      */
-    public function getAvailableThemePaths()
+    public function getAvailableThemePaths(): array
     {
         $paths = [];
         $themePaths = $this->getThemePaths();
@@ -246,7 +246,7 @@ class Theme implements ThemeContract
      *
      * @return string
      */
-    public function to($url = '')
+    public function to(string $url = ''): string
     {
         return "{$this->absoluteUrl}/{$this->theme}/{$url}";
     }
@@ -258,7 +258,7 @@ class Theme implements ThemeContract
      *
      * @return string
      */
-    public function asset($url = '')
+    public function asset(string $url = ''): string
     {
         return "/{$this->relativeUrl}/{$this->theme}/{$url}";
     }
@@ -270,11 +270,11 @@ class Theme implements ThemeContract
      *
      * @return array
      */
-    protected function getThemeAutoloadFiles($themePath)
+    protected function getThemeAutoloadFiles(string $themePath): array
     {
         $manifest = new Manifest($this->files, $themePath);
 
-        return data_get($manifest, 'autoload', []);
+        return $manifest->autoload ?? [];
     }
 
     /**
@@ -282,7 +282,7 @@ class Theme implements ThemeContract
      *
      * @return void
      */
-    protected function setViewPaths()
+    protected function setViewPaths(): void
     {
         $viewFinder = $this->app->make('view.finder');
 
@@ -298,7 +298,7 @@ class Theme implements ThemeContract
      *
      * @return void
      */
-    protected function resetViewPaths()
+    protected function resetViewPaths(): void
     {
         $viewFinder = $this->app->make('view.finder');
 

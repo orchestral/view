@@ -77,7 +77,7 @@ class DetectCommand extends Command
      *
      * @return string
      */
-    protected function getThemeStatus($type, Manifest $theme, $active = false)
+    protected function getThemeStatus(string $type, Manifest $theme, bool $active = false): string
     {
         if ($active === true) {
             return '   ✓';

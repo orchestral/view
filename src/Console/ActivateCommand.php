@@ -5,6 +5,7 @@ namespace Orchestra\View\Console;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Orchestra\View\Theme\Finder;
+use Illuminate\Support\Collection;
 use Orchestra\View\Theme\Manifest;
 use Illuminate\Console\ConfirmableTrait;
 use Symfony\Component\Console\Input\InputOption;
@@ -88,7 +89,7 @@ class ActivateCommand extends Command
      *
      * @return bool
      */
-    protected function validateProvidedTheme($group, $id, $theme)
+    protected function validateProvidedTheme(string $group, $id, $theme): bool
     {
         if (! in_array($group, $this->type)) {
             throw new InvalidArgumentException("Invalid theme name [{$group}], should either be 'frontend' or 'backend'.");
@@ -108,7 +109,7 @@ class ActivateCommand extends Command
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function getAvailableTheme($type)
+    protected function getAvailableTheme(string $type): Collection
     {
         $themes = $this->finder->detect();
 

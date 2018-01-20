@@ -30,7 +30,7 @@ abstract class Command extends BaseCommand
      *
      * @return void
      */
-    protected function finish()
+    protected function finish(): void
     {
         // Save any changes to orchestra/memory
         $this->laravel['orchestra.memory']->finish();
