@@ -11,7 +11,7 @@ class ManifestTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
@@ -21,7 +21,7 @@ class ManifestTest extends TestCase
      *
      * @test
      */
-    public function testManifest()
+    public function it_can_read_manifest_file()
     {
         $files = m::mock('\Illuminate\Filesystem\Filesystem');
 
@@ -43,11 +43,10 @@ class ManifestTest extends TestCase
     }
 
     /**
-     * Test Orchestra\View\Theme\Manifest throws an exception.
-     *
+     * @test
      * @expectedException \RuntimeException
      */
-    public function testManifestThrowsException()
+    public function it_throws_exception_when_manifest_file_is_invalid()
     {
         $files = m::mock('\Illuminate\Filesystem\Filesystem');
 

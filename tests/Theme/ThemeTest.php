@@ -19,7 +19,7 @@ class ThemeTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->app = new Container();
 
@@ -33,7 +33,7 @@ class ThemeTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->app);
 
@@ -46,7 +46,7 @@ class ThemeTest extends TestCase
      *
      * @test
      */
-    public function testGetterAndSetterForTheme()
+    public function it_can_set_and_get_current_theme()
     {
         $app = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
@@ -99,13 +99,8 @@ class ThemeTest extends TestCase
         $this->assertFalse($stub->boot());
     }
 
-    /**
-     * Test Orchestra\View\Theme\Container::boot() method when manifest
-     * is not available.
-     *
-     * @test
-     */
-    public function testBootMethodWhenManifestIsNotAvailable()
+    /** @test */
+    public function it_can_be_booted_when_manifest_file_is_not_available()
     {
         $app = $this->app;
         $app['view.finder'] = $finder = m::mock('\Orchestra\View\FileViewFinder');
