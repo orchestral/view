@@ -18,7 +18,7 @@ class FileViewFinderTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->files = m::mock('\Illuminate\Filesystem\Filesystem');
     }
@@ -26,18 +26,14 @@ class FileViewFinderTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->files);
         m::close();
     }
 
-    /**
-     * Test Orchestra\View\FileViewFinder::findNamedPathView() method.
-     *
-     * @test
-     */
-    public function testFindNamedPathViewMethod()
+    /** @test */
+    public function it_can_find_namespaced_view()
     {
         $files = $this->files;
         $stub = new FileViewFinder($files, ['/path/theme/views', '/path/app/views'], ['php']);
@@ -50,12 +46,8 @@ class FileViewFinderTest extends TestCase
         $this->assertEquals('/path/vendor/foo/bar/views/hello.php', $stub->find('foo/bar::hello'));
     }
 
-    /**
-     * Test Orchestra\View\FileViewFinder::setPaths() method.
-     *
-     * @test
-     */
-    public function testSetPathsMethod()
+    /** @test */
+    public function it_can_set_custom_paths_for_view()
     {
         $files = $this->files;
         $stub = new FileViewFinder($files, ['/path/theme/views', '/path/app/views'], ['php']);

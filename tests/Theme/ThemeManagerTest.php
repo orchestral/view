@@ -20,7 +20,7 @@ class ThemeManagerTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->app = new Container();
         $this->app['request'] = $request = m::mock('\Illuminate\Http\Request');
@@ -41,24 +41,16 @@ class ThemeManagerTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test contructing Orchestra\View\Theme\ThemeManager.
-     *
-     * @test
-     */
-    public function testConstructMethod()
+    /** @test */
+    public function it_have_the_expected_signature()
     {
         $app = $this->app;
         $stub = new ThemeManager($app);
         $this->assertInstanceOf('\Orchestra\View\Theme\Theme', $stub->driver());
     }
 
-    /**
-     * Test Orchestra\View\Theme\ThemeManager::detect() method.
-     *
-     * @test
-     */
-    public function testDetectMethod()
+    /** @test */
+    public function it_can_detect_themes()
     {
         $app = $this->app;
         $app['orchestra.theme.finder'] = $finder = m::mock('\Orchestra\View\Theme\Finder');

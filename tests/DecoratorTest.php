@@ -7,12 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class DecoratorTest extends TestCase
 {
-    /**
-     * Test add and using macros.
-     *
-     * @test
-     */
-    public function testAddAndUsingMacros()
+    /** @test */
+    public function it_can_add_and_use_macros()
     {
         $stub = new Decorator();
 
@@ -24,11 +20,10 @@ class DecoratorTest extends TestCase
     }
 
     /**
-     * Test calling undefined macros throws an exception.
-     *
+     * @test
      * @expectedException \BadMethodCallException
      */
-    public function testCallingUndefinedMacrosThrowsException()
+    public function it_throws_exception_when_calling_unknown_macros()
     {
         with(new Decorator())->foobar();
     }

@@ -19,7 +19,7 @@ class FinderTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->app = new Container();
     }
@@ -27,18 +27,14 @@ class FinderTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->app);
         m::close();
     }
 
-    /**
-     * Test Orchestra\Theme\Finder::detect() method.
-     *
-     * @test
-     */
-    public function testDetectMethod()
+    /** @test */
+    public function it_can_detect_themes()
     {
         $app = $this->app;
         $app['path.public'] = '/var/orchestra/public/';
