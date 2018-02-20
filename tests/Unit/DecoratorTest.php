@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\View\TestCase;
+namespace Orchestra\View\TestCase\Unit;
 
 use Orchestra\View\Decorator;
 use PHPUnit\Framework\TestCase;
@@ -25,6 +25,6 @@ class DecoratorTest extends TestCase
      */
     public function it_throws_exception_when_calling_unknown_macros()
     {
-        with(new Decorator())->foobar();
+        (new Decorator())->foobar();
     }
 }

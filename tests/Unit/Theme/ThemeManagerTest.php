@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\View\TestCase\Theme;
+namespace Orchestra\View\TestCase\Unit\Theme;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -35,7 +35,7 @@ class ThemeManagerTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->app);
         m::close();

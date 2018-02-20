@@ -16,11 +16,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerEngineResolver();
-
-        $this->registerViewFinder();
-
-        $this->registerFactory();
+        parent::register();
 
         $this->registerTheme();
     }
@@ -30,9 +26,9 @@ class ViewServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerViewFinder(): void
+    public function registerViewFinder()
     {
-        $this->app->singleton('view.finder', function (Application $app) {
+        $this->app->bind('view.finder', function (Application $app) {
             $paths = $app->make('config')->get('view.paths', []);
 
             return new FileViewFinder($app->make('files'), $paths);
