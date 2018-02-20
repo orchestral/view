@@ -9,6 +9,20 @@ use Orchestra\View\ViewServiceProvider as OverrideServiceProvider;
 abstract class TestCase extends Testbench
 {
     /**
+     * Get package aliases.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     *
+     * @return array
+     */
+    protected function getPackageAliases($app): array
+    {
+        return [
+            'Theme' => \Orchestra\Support\Facades\Theme::class,
+        ];
+    }
+
+    /**
      * Override application aliases.
      *
      * @param  \Illuminate\Foundation\Application  $app

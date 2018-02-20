@@ -16,11 +16,7 @@ class ManifestTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\View\Theme\Manifest.
-     *
-     * @test
-     */
+    /** @test */
     public function it_can_read_manifest_file()
     {
         $files = m::mock('\Illuminate\Filesystem\Filesystem');

@@ -40,12 +40,7 @@ class ThemeTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\View\Theme\Container::setTheme() and
-     * Orchestra\View\Theme\Container::getTheme() method.
-     *
-     * @test
-     */
+    /** @test */
     public function it_can_set_and_get_current_theme()
     {
         $app = $this->app;
