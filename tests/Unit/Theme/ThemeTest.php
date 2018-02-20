@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\View\TestCase\Theme;
+namespace Orchestra\View\TestCase\Unit\Theme;
 
 use Mockery as m;
 use Orchestra\View\Theme\Theme;
@@ -25,7 +25,7 @@ class ThemeTest extends TestCase
 
         $this->app['path.public'] = '/var/orchestra/public';
         $this->app['path.base'] = '/var/orchestra';
-        $this->app['request'] = $request = m::mock('Request');
+        $this->app['request'] = $request = m::mock('Illuminate\Http\Request');
 
         $request->shouldReceive('root')->andReturn('http://localhost/');
     }
@@ -40,12 +40,7 @@ class ThemeTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\View\Theme\Container::setTheme() and
-     * Orchestra\View\Theme\Container::getTheme() method.
-     *
-     * @test
-     */
+    /** @test */
     public function it_can_set_and_get_current_theme()
     {
         $app = $this->app;
