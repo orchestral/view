@@ -98,7 +98,7 @@ class Theme implements ThemeContract
      *
      * @return $this
      */
-    public function initiate(): self
+    public function initiate()
     {
         $baseUrl = $this->app->make('request')->root();
 

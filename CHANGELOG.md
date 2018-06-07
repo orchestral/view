@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/view`.
 
+## 3.6.1
+
+Released: 2018-06-07
+
+### Changes
+
+* return `self` should only be used when method is marked as `final`.
+
 ## 3.6.0
 
 Released: 2018-02-13

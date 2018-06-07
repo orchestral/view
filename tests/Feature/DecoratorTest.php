@@ -4,7 +4,6 @@ namespace Orchestra\View\TestCase\Feature;
 
 use Orchestra\Support\Facades\Decorator;
 
-
 class DecoratorTest extends TestCase
 {
     /**

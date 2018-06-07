@@ -17,7 +17,7 @@ class FileViewFinderTest extends TestCase
         $this->assertSame(__DIR__.'/views/hello.php', $finder->find('foo/bar::hello'));
     }
 
-     /** @test */
+    /** @test */
     public function it_can_set_custom_paths_for_view()
     {
         $finder = View::getFinder();
