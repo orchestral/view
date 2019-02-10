@@ -38,12 +38,11 @@ class ManifestTest extends TestCase
         $this->assertEquals('foobar', $stub->items()->get('name'));
     }
 
-    /**
-     * @test
-     * @expectedException \RuntimeException
-     */
+    /** @test */
     public function it_throws_exception_when_manifest_file_is_invalid()
     {
+        $this->expectException('RuntimeException');
+
         $files = m::mock('\Illuminate\Filesystem\Filesystem');
 
         $files->shouldReceive('exists')->once()->with('/var/orchestra/themes/default/theme.json')->andReturn(true)

@@ -44,13 +44,12 @@ class DecoratorTest extends TestCase
         $this->assertEquals('foo', Decorator::foo());
     }
 
-    /**
-     * @test
-     * @expectedException \BadMethodCallException
-     */
+    /** @test */
     public function it_throws_exception_when_calling_unknown_macros()
     {
         $this->withoutExceptionHandling();
+
+        $this->expectException('BadMethodCallException');
 
         Decorator::foobar();
     }
