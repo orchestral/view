@@ -23,12 +23,6 @@ This would allow extension (or even packages) to have it's own set of view styli
 
 Laravel    | View
 :----------|:----------
- 4.x.x     | 2.x.x
- 5.0.x     | 3.0.x
- 5.1.x     | 3.1.x
- 5.2.x     | 3.2.x
- 5.3.x     | 3.3.x
- 5.4.x     | 3.4.x
  5.5.x     | 3.5.x
  5.6.x     | 3.6.x
  5.7.x     | 3.7.x
@@ -40,7 +34,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "orchestra/view": "^3.0"
+        "orchestra/view": "^3.5"
     }
 }
 ```
@@ -51,7 +45,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require "orchestra/view=^3.0"
+    composer require "orchestra/view=^3.5"
 
 ## Configuration
 
