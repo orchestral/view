@@ -91,11 +91,11 @@ class ActivateCommand extends Command
      */
     protected function validateProvidedTheme(string $group, $id, $theme): bool
     {
-        if (! in_array($group, $this->type)) {
+        if (! \in_array($group, $this->type)) {
             throw new InvalidArgumentException("Invalid theme name [{$group}], should either be 'frontend' or 'backend'.");
         }
 
-        if (is_null($theme)) {
+        if (\is_null($theme)) {
             throw new InvalidArgumentException("Invalid Theme ID [{$id}], or is not available for '{$group}'.");
         }
 
@@ -116,7 +116,7 @@ class ActivateCommand extends Command
         return $themes->filter(function (Manifest $manifest) use ($type) {
             $group = $manifest->get('type');
 
-            if (! empty($group) && ! in_array($type, $group)) {
+            if (! empty($group) && ! \in_array($type, $group)) {
                 return;
             }
 

@@ -17,13 +17,12 @@ class FileViewFinder extends LaravelViewFinder
 
         // Prepend global view paths to namespace hints path. This would
         // allow theme to take priority if such view exist.
-        $generatePath = function ($path) use ($namespace) {
+
+        $paths = \array_map(function ($path) use ($namespace) {
             return "{$path}/packages/{$namespace}";
-        };
+        }, $this->paths);
 
-        $paths = array_map($generatePath, $this->paths);
-
-        return $this->findInPaths($view, array_merge($paths, $this->hints[$namespace]));
+        return $this->findInPaths($view, \array_merge($paths, $this->hints[$namespace]));
     }
 
     /**
