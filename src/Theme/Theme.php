@@ -103,8 +103,8 @@ class Theme implements ThemeContract
         $baseUrl = $this->app->make('request')->root();
 
         // Register relative and absolute URL for theme usage.
-        $this->absoluteUrl = rtrim($baseUrl, '/').'/themes';
-        $this->relativeUrl = trim(str_replace($baseUrl, '/', $this->absoluteUrl), '/');
+        $this->absoluteUrl = \rtrim($baseUrl, '/').'/themes';
+        $this->relativeUrl = \trim(\str_replace($baseUrl, '/', $this->absoluteUrl), '/');
 
         return $this;
     }
@@ -118,7 +118,7 @@ class Theme implements ThemeContract
      */
     public function setTheme(?string $theme): void
     {
-        if (! is_null($this->theme)) {
+        if (! \is_null($this->theme)) {
             $this->resolved && $this->resetViewPaths();
 
             $this->dispatcher->dispatch("orchestra.theme.unset: {$this->theme}");
@@ -160,7 +160,7 @@ class Theme implements ThemeContract
         $autoload = $this->getThemeAutoloadFiles($themePath);
 
         foreach ($autoload as $file) {
-            $file = ltrim($file, '/');
+            $file = \ltrim($file, '/');
             $this->files->requireOnce("{$themePath}/{$file}");
         }
 
@@ -289,7 +289,7 @@ class Theme implements ThemeContract
         $themePaths = $this->getAvailableThemePaths();
 
         if (! empty($themePaths)) {
-            $viewFinder->setPaths(array_merge($themePaths, $viewFinder->getPaths()));
+            $viewFinder->setPaths(\array_merge($themePaths, $viewFinder->getPaths()));
         }
     }
 
@@ -305,7 +305,7 @@ class Theme implements ThemeContract
         $paths = $viewFinder->getPaths();
 
         foreach ($this->getThemePaths() as $themePath) {
-            ($paths[0] === $themePath) && array_shift($paths);
+            ($paths[0] === $themePath) && \array_shift($paths);
         }
 
         $viewFinder->setPaths($paths);

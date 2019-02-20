@@ -36,13 +36,13 @@ class Finder implements FinderContract
     {
         $themes = new Collection();
         $file = $this->app->make('files');
-        $path = rtrim($this->app['path.public'], '/').'/themes/';
+        $path = \rtrim($this->app['path.public'], '/').'/themes/';
 
         $folders = $file->directories($path);
 
         foreach ($folders as $folder) {
             $name = $this->parseThemeNameFromPath($folder);
-            $themes[$name] = new Manifest($file, rtrim($folder, '/').'/');
+            $themes[$name] = new Manifest($file, \rtrim($folder, '/').'/');
         }
 
         return $themes;
@@ -57,9 +57,9 @@ class Finder implements FinderContract
      */
     protected function parseThemeNameFromPath(string $path): string
     {
-        $path = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $path);
-        $path = explode(DIRECTORY_SEPARATOR, $path);
+        $path = \str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $path);
+        $path = \explode(DIRECTORY_SEPARATOR, $path);
 
-        return array_pop($path);
+        return \array_pop($path);
     }
 }

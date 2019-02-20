@@ -55,7 +55,7 @@ class Decorator
      */
     public function __call(string $method, array $parameters)
     {
-        array_unshift($parameters, $method);
+        \array_unshift($parameters, $method);
 
         return $this->render($method, ...$parameters);
     }

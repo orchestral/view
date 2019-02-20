@@ -46,13 +46,13 @@ class Manifest
      */
     public function __construct(Filesystem $files, string $path)
     {
-        $path = rtrim($path, '/');
+        $path = \rtrim($path, '/');
         $this->files = $files;
 
         if ($files->exists($manifest = "{$path}/theme.json")) {
-            $jsonable = json_decode($files->get($manifest), true);
+            $jsonable = \json_decode($files->get($manifest), true);
 
-            if (is_null($jsonable)) {
+            if (\is_null($jsonable)) {
                 // json_decode couldn't parse, throw an exception.
                 throw new RuntimeException(
                     "Theme [{$path}]: cannot decode theme.json file"
@@ -120,10 +120,10 @@ class Manifest
      */
     protected function parseThemeNameFromPath(string $path): string
     {
-        $path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
-        $path = explode(DIRECTORY_SEPARATOR, $path);
+        $path = \str_replace('\\', DIRECTORY_SEPARATOR, $path);
+        $path = \explode(DIRECTORY_SEPARATOR, $path);
 
-        return array_pop($path);
+        return \array_pop($path);
     }
 
     /**
