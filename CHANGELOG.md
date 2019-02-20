@@ -3,6 +3,14 @@
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/view`.
 
 
+## 3.7.1
+
+Released: 2019-02-21
+
+### Changes
+
+* Improve performance by prefixing all global functions calls with `\` to skip the look up and resolve process and go straight to the global function.
+
 ## 3.7.0
 
 Released: 2018-09-13
