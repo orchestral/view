@@ -5,12 +5,12 @@ View Component is Orchestra Platform approach to deliver themeable application t
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=master)](https://travis-ci.org/orchestral/view)
+[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=3.8)](https://travis-ci.org/orchestral/view)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/view/version)](https://packagist.org/packages/orchestra/view)
 [![Total Downloads](https://poser.pugx.org/orchestra/view/downloads)](https://packagist.org/packages/orchestra/view)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/view/v/unstable)](//packagist.org/packages/orchestra/view)
 [![License](https://poser.pugx.org/orchestra/view/license)](https://packagist.org/packages/orchestra/view)
-[![Coverage Status](https://coveralls.io/repos/github/orchestral/view/badge.svg?branch=master)](https://coveralls.io/github/orchestral/view?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/orchestral/view/badge.svg?branch=3.8)](https://coveralls.io/github/orchestral/view?branch=3.8)
 
 ## Table of Content
 
@@ -26,6 +26,7 @@ Laravel    | View
  5.5.x     | 3.5.x
  5.6.x     | 3.6.x
  5.7.x     | 3.7.x
+ 5.8.x     | 3.8.x@dev
 
 ## Installation
 
