@@ -54,18 +54,15 @@ class DetectCommand extends Command
         $backend = $memory->get('site.theme.backend');
 
         $header = ['ID', 'Theme Name', 'Frontend', 'Backend'];
-        $content = [];
 
-        foreach ($themes as $id => $theme) {
-            $content[] = [
+        $this->table($header, $themes->map(function ($theme, $id) use ($backend, $frontend) {
+            return [
                 $id,
                 $theme->get('name'),
                 $this->getThemeStatus('frontend', $theme, ($id == $frontend)),
                 $this->getThemeStatus('backend', $theme, ($id == $backend)),
             ];
-        }
-
-        $this->table($header, $content);
+        })->all());
     }
 
     /**

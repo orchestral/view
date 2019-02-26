@@ -2,6 +2,7 @@
 
 namespace Orchestra\View\Theme;
 
+use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Container\Container;
@@ -17,11 +18,15 @@ class Theme implements ThemeContract
     protected $app;
 
     /**
+     * The event dispatcher implementation.
+     *
      * @var \Illuminate\Contracts\Events\Dispatcher
      */
     protected $dispatcher;
 
     /**
+     * The filesystem implementation.
+     *
      * @var \Illuminate\Filesystem\Filesystem
      */
     protected $files;
@@ -229,14 +234,9 @@ class Theme implements ThemeContract
      */
     public function getAvailableThemePaths(): array
     {
-        $paths = [];
-        $themePaths = $this->getThemePaths();
-
-        foreach ($themePaths as $path) {
-            $this->files->isDirectory($path) && $paths[] = $path;
-        }
-
-        return $paths;
+        return Collection::make($this->getThemePaths())->filter(function ($path) {
+            return $this->files->isDirectory($path);
+        })->values()->all();
     }
 
     /**

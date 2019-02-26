@@ -3,26 +3,34 @@
 namespace Orchestra\View\Theme;
 
 use Illuminate\Support\Collection;
-use Illuminate\Contracts\Container\Container;
+use Illuminate\Filesystem\Filesystem;
 use Orchestra\Contracts\Theme\Finder as FinderContract;
 
 class Finder implements FinderContract
 {
     /**
-     * Application instance.
+     * The filesystem implementation.
      *
-     * @var \Illuminate\Contracts\Container\Container
+     * @var \Illuminate\Filesystem\Filesystem
      */
-    protected $app;
+    protected $files;
+
+    /**
+     * Public path.
+     *
+     * @var string
+     */
+    protected $publicPath;
 
     /**
      * Construct a new finder.
      *
-     * @param  \Illuminate\Contracts\Container\Container  $app
+     * @param  \Illuminate\Filesystem\Filesystem  $files
      */
-    public function __construct(Container $app)
+    public function __construct(Filesystem $files, string $publicPath)
     {
-        $this->app = $app;
+        $this->files = $files;
+        $this->publicPath = $publicPath;
     }
 
     /**
@@ -34,18 +42,13 @@ class Finder implements FinderContract
      */
     public function detect(): Collection
     {
-        $themes = new Collection();
-        $file = $this->app->make('files');
-        $path = \rtrim($this->app['path.public'], '/').'/themes/';
+        $path = \rtrim($this->publicPath, '/').'/themes/';
 
-        $folders = $file->directories($path);
-
-        foreach ($folders as $folder) {
-            $name = $this->parseThemeNameFromPath($folder);
-            $themes[$name] = new Manifest($file, \rtrim($folder, '/').'/');
-        }
-
-        return $themes;
+        return Collection::make($this->files->directories($path))->mapWithKeys(function ($folder) {
+            return [
+                $this->parseThemeNameFromPath($folder) => new Manifest($this->files, \rtrim($folder, '/').'/'),
+            ];
+        });
     }
 
     /**

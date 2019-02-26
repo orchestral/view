@@ -4,12 +4,13 @@ namespace Orchestra\View\Theme;
 
 use RuntimeException;
 use Illuminate\Support\Fluent;
+use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
 
 class Manifest
 {
     /**
-     * Application instance.
+     * The filesystem implementation.
      *
      * @var \Illuminate\Filesystem\Filesystem
      */
@@ -95,20 +96,15 @@ class Manifest
      * to migrate, load service provider as well as preload some
      * configuration.
      *
-     * @param  array  $jsonable
+     * @param  array  $config
      *
      * @return array
      */
-    protected function generateManifestConfig(array $jsonable): array
+    protected function generateManifestConfig(array $config): array
     {
-        $manifest = [];
-
-        // Assign extension manifest option or provide the default value.
-        foreach ($this->manifestOptions as $key => $default) {
-            $manifest["{$key}"] = $jsonable[$key] ?? $default;
-        }
-
-        return $manifest;
+        return Collection::make($this->manifestOptions)->mapWithKeys(function ($default, $key) use ($config) {
+            return [$key => ($config[$key] ?? $default)];
+        })->all();
     }
 
     /**

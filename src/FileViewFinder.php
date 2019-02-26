@@ -2,6 +2,7 @@
 
 namespace Orchestra\View;
 
+use Illuminate\Support\Collection;
 use Illuminate\View\FileViewFinder as LaravelViewFinder;
 
 class FileViewFinder extends LaravelViewFinder
@@ -18,11 +19,9 @@ class FileViewFinder extends LaravelViewFinder
         // Prepend global view paths to namespace hints path. This would
         // allow theme to take priority if such view exist.
 
-        $paths = \array_map(function ($path) use ($namespace) {
+        return $this->findInPaths($view, Collection::make($this->paths)->map(function ($path) use ($namespace) {
             return "{$path}/packages/{$namespace}";
-        }, $this->paths);
-
-        return $this->findInPaths($view, \array_merge($paths, $this->hints[$namespace]));
+        })->merge($this->hints[$namespace])->all());
     }
 
     /**
