@@ -2,6 +2,13 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/view`.
 
+## 3.7.2
+
+Released: 2019-02-28
+
+### Changes
+
+* Remove `Orchestra\View\FileViewFinder::setPaths()` parameter typehint to make it compatibility for overriding `Illuminate\View\FileViewFinder::setPaths()`.
 
 ## 3.7.1
 
@@ -18,6 +25,14 @@ Released: 2018-09-13
 ### Changes
 
 * Update support for Laravel Framework v5.7.
+
+## 3.6.2
+
+Released: 2019-02-28
+
+### Changes
+
+* Remove `Orchestra\View\FileViewFinder::setPaths()` parameter typehint to make it compatibility for overriding `Illuminate\View\FileViewFinder::setPaths()`.
 
 ## 3.6.1
 
