@@ -23,6 +23,7 @@
     },
     "require": {
         "php": ">=7.1",
+        "illuminate/view": "~5.8.1",
         "orchestra/contracts": "~3.8.0",
         "orchestra/memory": "~3.8.0",
         "orchestra/support": "~3.8.0"
