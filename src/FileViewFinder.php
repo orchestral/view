@@ -32,7 +32,7 @@ class FileViewFinder extends LaravelViewFinder
      *
      * @return array
      */
-    public function setPaths(array $paths)
+    public function setPaths($paths)
     {
         $this->paths = $paths;
     }
