@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/view`.
 
+## 3.6.2
+
+Released: 2019-02-19
+
+### Changes
+
+* Remove `Orchestra\View\FileViewFinder::setPaths()` parameter typehint to make it compatibility for overriding `Illuminate\View\FileViewFinder::setPaths()`.
+
 ## 3.6.1
 
 Released: 2018-06-07
