@@ -47,7 +47,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('orchestra.theme.finder', function (Application $app) {
-            return new Finder($app);
+            return new Finder($app->make('files'), $app->publicPath());
         });
     }
 }
