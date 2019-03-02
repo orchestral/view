@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/view`.
 
+## 3.8.0
+
+Released: 2019-03-02
+
+### Changes
+
+* Update support for Laravel Framework v5.8.
+
 ## 3.7.2
 
 Released: 2019-02-28
@@ -49,11 +57,3 @@ Released: 2018-02-13
 ### Changes
 
 * Update support for Laravel Framework v5.6.
-
-## 3.5.0
-
-Released: 2017-11-10
-
-### Changes
-
-* Update support for Laravel Framework v5.5.
