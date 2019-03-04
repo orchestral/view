@@ -23,4 +23,18 @@ class FileViewFinder extends LaravelViewFinder
             return "{$path}/packages/{$namespace}";
         })->merge($this->hints[$namespace])->all());
     }
+
+    /**
+     * Set the active view paths.
+     *
+     * @param  array  $paths
+     *
+     * @return $this
+     */
+    public function setPaths($paths)
+    {
+        $this->paths = $paths;
+
+        return $this;
+    }
 }
