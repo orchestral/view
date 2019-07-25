@@ -20,7 +20,7 @@ class DecoratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('orchestra.decorator', function () {
+        $this->app->singleton('orchestra.decorator', static function () {
             return new Decorator();
         });
     }

@@ -40,11 +40,11 @@ class LoadCurrentTheme
         // event is fired.
         $theme->setTheme($memory->get('site.theme.frontend'));
 
-        $events->listen('orchestra.started: admin', function () use ($theme, $memory) {
+        $events->listen('orchestra.started: admin', static function () use ($theme, $memory) {
             $theme->setTheme($memory->get('site.theme.backend'));
         });
 
-        $events->listen('composing: *', function () use ($theme) {
+        $events->listen('composing: *', static function () use ($theme) {
             $theme->boot();
         });
     }
@@ -65,7 +65,7 @@ class LoadCurrentTheme
         if ($app->resolved('view')) {
             $theme->resolving();
         } else {
-            $app->resolving('view', function () use ($theme) {
+            $app->resolving('view', static function () use ($theme) {
                 $theme->resolving();
             });
         }
