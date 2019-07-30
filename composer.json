@@ -23,8 +23,8 @@
     },
     "require": {
         "php": ">=7.2",
-        "illuminate/view": "dev-master",
-        "orchestra/contracts": "~4.0.0",
+        "illuminate/view": "^6.0",
+        "orchestra/contracts": "^4.0",
         "orchestra/memory": "^4.0",
         "orchestra/support": "^4.0"
     },
