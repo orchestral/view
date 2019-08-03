@@ -28,7 +28,7 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function registerActivateCommand(): void
     {
-        $this->app->singleton('orchestra.view.command.activate', function (Application $app) {
+        $this->app->singleton('orchestra.view.command.activate', static function (Application $app) {
             return new ActivateCommand($app->make('orchestra.theme.finder'));
         });
     }
@@ -40,7 +40,7 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function registerDetectCommand(): void
     {
-        $this->app->singleton('orchestra.view.command.detect', function (Application $app) {
+        $this->app->singleton('orchestra.view.command.detect', static function (Application $app) {
             return new DetectCommand($app->make('orchestra.theme.finder'));
         });
     }
@@ -52,7 +52,7 @@ class CommandServiceProvider extends ServiceProvider
      */
     public function registerOptimizeCommand(): void
     {
-        $this->app->singleton('orchestra.view.command.optimize', function () {
+        $this->app->singleton('orchestra.view.command.optimize', static function () {
             return new OptimizeCommand();
         });
     }

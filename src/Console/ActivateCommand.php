@@ -113,7 +113,7 @@ class ActivateCommand extends Command
     {
         $themes = $this->finder->detect();
 
-        return $themes->filter(function (Manifest $manifest) use ($type) {
+        return $themes->filter(static function (Manifest $manifest) use ($type) {
             $group = $manifest->get('type');
 
             if (! empty($group) && ! \in_array($type, $group)) {

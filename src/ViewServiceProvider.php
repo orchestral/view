@@ -28,7 +28,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function registerViewFinder()
     {
-        $this->app->bind('view.finder', function (Application $app) {
+        $this->app->bind('view.finder', static function (Application $app) {
             $paths = $app->make('config')->get('view.paths', []);
 
             return new FileViewFinder($app->make('files'), $paths);
@@ -42,11 +42,11 @@ class ViewServiceProvider extends ServiceProvider
      */
     protected function registerTheme(): void
     {
-        $this->app->singleton('orchestra.theme', function (Application $app) {
+        $this->app->singleton('orchestra.theme', static function (Application $app) {
             return new ThemeManager($app);
         });
 
-        $this->app->singleton('orchestra.theme.finder', function (Application $app) {
+        $this->app->singleton('orchestra.theme.finder', static function (Application $app) {
             return new Finder($app->make('files'), $app->publicPath());
         });
     }

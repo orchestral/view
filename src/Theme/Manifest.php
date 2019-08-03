@@ -102,7 +102,7 @@ class Manifest
      */
     protected function generateManifestConfig(array $config): array
     {
-        return Collection::make($this->manifestOptions)->mapWithKeys(function ($default, $key) use ($config) {
+        return Collection::make($this->manifestOptions)->mapWithKeys(static function ($default, $key) use ($config) {
             return [$key => ($config[$key] ?? $default)];
         })->all();
     }
