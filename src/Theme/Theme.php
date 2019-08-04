@@ -29,7 +29,7 @@ class Theme implements ThemeContract
      *
      * @var \Illuminate\Filesystem\Filesystem
      */
-    protected $files;
+    protected $filesystem;
 
     /**
      * Theme filesystem path.
@@ -85,13 +85,13 @@ class Theme implements ThemeContract
      *
      * @param  \Illuminate\Contracts\Container\Container  $app
      * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
-     * @param  \Illuminate\Filesystem\Filesystem  $files
+     * @param  \Illuminate\Filesystem\Filesystem  $filesystem
      */
-    public function __construct(Container $app, Dispatcher $dispatcher, Filesystem $files)
+    public function __construct(Container $app, Dispatcher $dispatcher, Filesystem $filesystem)
     {
         $this->app = $app;
         $this->dispatcher = $dispatcher;
-        $this->files = $files;
+        $this->filesystem = $filesystem;
 
         $this->path = $app['path.public'].'/themes';
         $this->cascadingPath = $app['path.base'].'/resources/themes';
@@ -166,7 +166,7 @@ class Theme implements ThemeContract
 
         foreach ($autoload as $file) {
             $file = \ltrim($file, '/');
-            $this->files->requireOnce("{$themePath}/{$file}");
+            $this->filesystem->requireOnce("{$themePath}/{$file}");
         }
 
         $this->dispatcher->dispatch("orchestra.theme.boot: {$this->theme}");
@@ -234,8 +234,10 @@ class Theme implements ThemeContract
      */
     public function getAvailableThemePaths(): array
     {
-        return Collection::make($this->getThemePaths())->filter(function ($path) {
-            return $this->files->isDirectory($path);
+        $filesystem = $this->filesystem;
+
+        return Collection::make($this->getThemePaths())->filter(static function ($path) use ($filesystem) {
+            return $filesystem->isDirectory($path);
         })->values()->all();
     }
 
@@ -272,7 +274,7 @@ class Theme implements ThemeContract
      */
     protected function getThemeAutoloadFiles(string $themePath): array
     {
-        $manifest = new Manifest($this->files, $themePath);
+        $manifest = new Manifest($this->filesystem, $themePath);
 
         return $manifest->autoload ?? [];
     }
