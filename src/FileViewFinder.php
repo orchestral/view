@@ -14,7 +14,7 @@ class FileViewFinder extends LaravelViewFinder
      */
     protected function findNamespacedView($name)
     {
-        list($namespace, $view) = $this->parseNamespaceSegments($name);
+        [$namespace, $view] = $this->parseNamespaceSegments($name);
 
         // Prepend global view paths to namespace hints path. This would
         // allow theme to take priority if such view exist.
