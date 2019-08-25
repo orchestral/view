@@ -7,7 +7,6 @@ use Illuminate\Contracts\Support\DeferrableProvider;
 
 class DecoratorServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-
     /**
      * Register the service provider.
      *

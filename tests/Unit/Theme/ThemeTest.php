@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\View\TestCase\Unit\Theme;
+namespace Orchestra\View\Tests\Unit\Theme;
 
 use Mockery as m;
 use Orchestra\View\Theme\Theme;

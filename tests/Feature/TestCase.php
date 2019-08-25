@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\View\TestCase\Feature;
+namespace Orchestra\View\Tests\Feature;
 
 use Orchestra\Testbench\TestCase as Testbench;
 use Illuminate\View\ViewServiceProvider as BaseServiceProvider;

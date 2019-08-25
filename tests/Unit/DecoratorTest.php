@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\View\TestCase\Unit;
+namespace Orchestra\View\Tests\Unit;
 
 use Orchestra\View\Decorator;
 use PHPUnit\Framework\TestCase;
