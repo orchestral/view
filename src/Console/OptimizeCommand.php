@@ -2,9 +2,9 @@
 
 namespace Orchestra\View\Console;
 
-use InvalidArgumentException;
-use Illuminate\View\Engines\CompilerEngine;
 use Illuminate\Console\Command as BaseCommand;
+use Illuminate\View\Engines\CompilerEngine;
+use InvalidArgumentException;
 
 class OptimizeCommand extends BaseCommand
 {

@@ -2,10 +2,10 @@
 
 namespace Orchestra\View\Tests\Unit\Theme;
 
+use Illuminate\Container\Container;
 use Mockery as m;
 use Orchestra\View\Theme\Theme;
 use PHPUnit\Framework\TestCase;
-use Illuminate\Container\Container;
 
 class ThemeTest extends TestCase
 {

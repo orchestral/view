@@ -2,8 +2,8 @@
 
 namespace Orchestra\View\Theme;
 
-use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
 use Orchestra\Contracts\Theme\Finder as FinderContract;
 
 class Finder implements FinderContract
