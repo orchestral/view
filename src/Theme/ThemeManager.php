@@ -2,8 +2,8 @@
 
 namespace Orchestra\View\Theme;
 
-use Illuminate\Support\Manager;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Manager;
 use Orchestra\Contracts\Theme\Theme as ThemeContract;
 
 class ThemeManager extends Manager

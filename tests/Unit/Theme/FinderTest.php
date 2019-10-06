@@ -2,10 +2,10 @@
 
 namespace Orchestra\View\Tests\Unit\Theme;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
-use Orchestra\View\Theme\Finder;
 use Illuminate\Container\Container;
+use Mockery as m;
+use Orchestra\View\Theme\Finder;
+use PHPUnit\Framework\TestCase;
 
 class FinderTest extends TestCase
 {

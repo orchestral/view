@@ -2,10 +2,10 @@
 
 namespace Orchestra\View\Theme;
 
-use RuntimeException;
-use Illuminate\Support\Fluent;
-use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
+use RuntimeException;
 
 class Manifest
 {

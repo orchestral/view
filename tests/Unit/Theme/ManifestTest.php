@@ -3,8 +3,8 @@
 namespace Orchestra\View\Tests\Unit\Theme;
 
 use Mockery as m;
-use PHPUnit\Framework\TestCase;
 use Orchestra\View\Theme\Manifest;
+use PHPUnit\Framework\TestCase;
 
 class ManifestTest extends TestCase
 {

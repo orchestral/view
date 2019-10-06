@@ -2,11 +2,11 @@
 
 namespace Orchestra\View;
 
-use Orchestra\View\Console\DetectCommand;
-use Orchestra\View\Console\ActivateCommand;
-use Orchestra\View\Console\OptimizeCommand;
 use Illuminate\Contracts\Container\Container;
 use Orchestra\Support\Providers\CommandServiceProvider as ServiceProvider;
+use Orchestra\View\Console\ActivateCommand;
+use Orchestra\View\Console\DetectCommand;
+use Orchestra\View\Console\OptimizeCommand;
 
 class CommandServiceProvider extends ServiceProvider
 {

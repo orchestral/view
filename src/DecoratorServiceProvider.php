@@ -2,8 +2,8 @@
 
 namespace Orchestra\View;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
 
 class DecoratorServiceProvider extends ServiceProvider implements DeferrableProvider
 {

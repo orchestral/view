@@ -2,8 +2,8 @@
 
 namespace Orchestra\View\Tests\Feature;
 
-use Mockery as m;
 use Illuminate\Support\Collection;
+use Mockery as m;
 use Orchestra\Support\Facades\Theme;
 
 class ThemeManagerTest extends TestCase

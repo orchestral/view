@@ -2,11 +2,11 @@
 
 namespace Orchestra\View;
 
-use Orchestra\View\Theme\Finder;
-use Orchestra\View\Theme\ThemeManager;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\View\ViewServiceProvider as ServiceProvider;
+use Orchestra\View\Theme\Finder;
+use Orchestra\View\Theme\ThemeManager;
 
 class ViewServiceProvider extends ServiceProvider
 {

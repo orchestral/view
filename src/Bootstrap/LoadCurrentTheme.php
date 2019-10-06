@@ -2,8 +2,8 @@
 
 namespace Orchestra\View\Bootstrap;
 
-use Orchestra\Contracts\Theme\Theme;
 use Illuminate\Contracts\Foundation\Application;
+use Orchestra\Contracts\Theme\Theme;
 
 class LoadCurrentTheme
 {

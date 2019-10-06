@@ -2,14 +2,14 @@
 
 namespace Orchestra\View\Console;
 
+use Illuminate\Console\ConfirmableTrait;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Orchestra\View\Theme\Finder;
-use Illuminate\Support\Collection;
 use Orchestra\View\Theme\Manifest;
-use Illuminate\Console\ConfirmableTrait;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class ActivateCommand extends Command
 {

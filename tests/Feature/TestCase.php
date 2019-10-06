@@ -2,8 +2,8 @@
 
 namespace Orchestra\View\Tests\Feature;
 
-use Orchestra\Testbench\TestCase as Testbench;
 use Illuminate\View\ViewServiceProvider as BaseServiceProvider;
+use Orchestra\Testbench\TestCase as Testbench;
 use Orchestra\View\ViewServiceProvider as OverrideServiceProvider;
 
 abstract class TestCase extends Testbench

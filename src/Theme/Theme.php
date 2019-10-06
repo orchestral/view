@@ -2,10 +2,10 @@
 
 namespace Orchestra\View\Theme;
 
-use Illuminate\Support\Collection;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
 use Orchestra\Contracts\Theme\Theme as ThemeContract;
 
 class Theme implements ThemeContract
