@@ -8,13 +8,6 @@ use Orchestra\View\Theme\Manifest;
 class DetectCommand extends Command
 {
     /**
-     * Theme finder instance.
-     *
-     * @var \Orchestra\View\Theme\Finder
-     */
-    protected $finder;
-
-    /**
      * The console command name.
      *
      * @var string
@@ -29,27 +22,17 @@ class DetectCommand extends Command
     protected $description = 'Detect available themes in the application.';
 
     /**
-     * Construct a new status command.
-     *
-     * @param  \Orchestra\View\Theme\Finder $finder
-     */
-    public function __construct(Finder $finder)
-    {
-        $this->finder = $finder;
-
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
-     * @return void
+     * @param  \Orchestra\View\Theme\Finder  $finder
+     *
+     * @return int
      */
-    public function handle()
+    public function handle(Finder $finder)
     {
         $memory = $this->laravel['orchestra.memory'];
 
-        $themes = $this->finder->detect();
+        $themes = $finder->detect();
         $frontend = $memory->get('site.theme.frontend');
         $backend = $memory->get('site.theme.backend');
 
@@ -63,6 +46,8 @@ class DetectCommand extends Command
                 $this->getThemeStatus('backend', $theme, ($id == $backend)),
             ];
         })->all());
+
+        return 0;
     }
 
     /**
@@ -82,7 +67,7 @@ class DetectCommand extends Command
 
         $group = $theme->get('type');
 
-        if (! empty($group) && ! in_array($type, $group)) {
+        if (! empty($group) && ! \in_array($type, $group)) {
             return '   ✗';
         }
 
