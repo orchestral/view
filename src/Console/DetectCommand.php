@@ -8,13 +8,6 @@ use Orchestra\View\Theme\Manifest;
 class DetectCommand extends Command
 {
     /**
-     * Theme finder instance.
-     *
-     * @var \Orchestra\View\Theme\Finder
-     */
-    protected $finder;
-
-    /**
      * The console command name.
      *
      * @var string
@@ -29,27 +22,17 @@ class DetectCommand extends Command
     protected $description = 'Detect available themes in the application.';
 
     /**
-     * Construct a new status command.
+     * Execute the console command.
      *
      * @param  \Orchestra\View\Theme\Finder $finder
-     */
-    public function __construct(Finder $finder)
-    {
-        $this->finder = $finder;
-
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
      *
      * @return void
      */
-    public function handle()
+    public function handle(Finder $finder)
     {
         $memory = $this->laravel['orchestra.memory'];
 
-        $themes = $this->finder->detect();
+        $themes = $finder->detect();
         $frontend = $memory->get('site.theme.frontend');
         $backend = $memory->get('site.theme.backend');
 

@@ -16,13 +16,6 @@ class ActivateCommand extends Command
     use ConfirmableTrait;
 
     /**
-     * Theme finder instance.
-     *
-     * @var \Orchestra\View\Theme\Finder
-     */
-    protected $finder;
-
-    /**
      * The console command name.
      *
      * @var string
@@ -44,23 +37,13 @@ class ActivateCommand extends Command
     protected $type = ['frontend', 'backend'];
 
     /**
-     * Construct a new status command.
-     *
-     * @param  \Orchestra\View\Theme\Finder $finder
-     */
-    public function __construct(Finder $finder)
-    {
-        $this->finder = $finder;
-
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
+     *
+     * @param  \Orchestra\View\Theme\Finder  $finder
      *
      * @return void
      */
-    public function handle()
+    public function handle(Finder $finder)
     {
         if (! $this->confirmToProceed()) {
             return;
@@ -69,7 +52,7 @@ class ActivateCommand extends Command
         $group = Str::lower($this->argument('group'));
         $id = Str::lower($this->argument('id'));
 
-        $theme = $this->getAvailableTheme($group)->get($id);
+        $theme = $this->getAvailableTheme($finder, $group)->get($id);
 
         if ($this->validateProvidedTheme($group, $id, $theme)) {
             $this->laravel['orchestra.memory']->set("site.theme.{$group}", $theme->get('uid'));
@@ -105,13 +88,14 @@ class ActivateCommand extends Command
     /**
      * Get all available theme by type.
      *
+     * @param  \Orchestra\View\Theme\Finder  $finder
      * @param  string  $type
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function getAvailableTheme(string $type): Collection
+    protected function getAvailableTheme(Finder $finder, string $type): Collection
     {
-        $themes = $this->finder->detect();
+        $themes = $finder->detect();
 
         return $themes->filter(static function (Manifest $manifest) use ($type) {
             $group = $manifest->get('type');
