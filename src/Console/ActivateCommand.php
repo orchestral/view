@@ -42,11 +42,13 @@ class ActivateCommand extends Command
      * @param  \Orchestra\View\Theme\Finder  $finder
      *
      * @return void
+     *
+     * @return int
      */
     public function handle(Finder $finder)
     {
         if (! $this->confirmToProceed()) {
-            return;
+            return 126;
         }
 
         $group = Str::lower($this->argument('group'));
@@ -59,6 +61,8 @@ class ActivateCommand extends Command
 
             $this->info("Theme [{$theme->get('name')}] activated on group [{$group}].");
         }
+
+        return 0;
     }
 
     /**

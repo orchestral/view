@@ -24,9 +24,9 @@ class DetectCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param  \Orchestra\View\Theme\Finder $finder
+     * @param  \Orchestra\View\Theme\Finder  $finder
      *
-     * @return void
+     * @return int
      */
     public function handle(Finder $finder)
     {
@@ -46,6 +46,8 @@ class DetectCommand extends Command
                 $this->getThemeStatus('backend', $theme, ($id == $backend)),
             ];
         })->all());
+
+        return 0;
     }
 
     /**
@@ -65,7 +67,7 @@ class DetectCommand extends Command
 
         $group = $theme->get('type');
 
-        if (! empty($group) && ! in_array($type, $group)) {
+        if (! empty($group) && ! \in_array($type, $group)) {
             return '   ✗';
         }
 

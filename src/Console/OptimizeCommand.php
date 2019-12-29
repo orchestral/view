@@ -25,13 +25,15 @@ class OptimizeCommand extends BaseCommand
     /**
      * Execute the console command.
      *
-     * @return void
+     * @return int
      */
     public function handle()
     {
         $this->info('Compiling views');
 
         $this->compileViews();
+
+        return 0;
     }
 
     /**
