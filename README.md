@@ -28,26 +28,14 @@ Laravel    | View
  5.7.x     | 3.7.x
  5.8.x     | 3.8.x
  6.x       | 4.x
+ 7.x       | 5.x
 
 ## Installation
 
-To install through composer, simply put the following in your `composer.json` file:
 
-```json
-{
-    "require": {
-        "orchestra/view": "^4.0"
-    }
-}
-```
+To install through composer, run the following command from terminal:
 
-And then run `composer install` from the terminal.
-
-### Quick Installation
-
-Above installation can also be simplify by using the following command:
-
-    composer require "orchestra/view=^4.0"
+    composer require "orchestra/view"
 
 ## Configuration
 
