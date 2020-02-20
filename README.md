@@ -5,12 +5,12 @@ View Component is Orchestra Platform approach to deliver themeable application t
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=master)](https://travis-ci.org/orchestral/view)
+[![Build Status](https://travis-ci.org/orchestral/view.svg?branch=5.x)](https://travis-ci.org/orchestral/view)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/view/version)](https://packagist.org/packages/orchestra/view)
 [![Total Downloads](https://poser.pugx.org/orchestra/view/downloads)](https://packagist.org/packages/orchestra/view)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/view/v/unstable)](//packagist.org/packages/orchestra/view)
 [![License](https://poser.pugx.org/orchestra/view/license)](https://packagist.org/packages/orchestra/view)
-[![Coverage Status](https://coveralls.io/repos/github/orchestral/view/badge.svg?branch=master)](https://coveralls.io/github/orchestral/view?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/orchestral/view/badge.svg?branch=5.x)](https://coveralls.io/github/orchestral/view?branch=5.x)
 
 ## Table of Content
 
@@ -28,26 +28,14 @@ Laravel    | View
  5.7.x     | 3.7.x
  5.8.x     | 3.8.x
  6.x       | 4.x
+ 7.x       | 5.x
 
 ## Installation
 
-To install through composer, simply put the following in your `composer.json` file:
 
-```json
-{
-    "require": {
-        "orchestra/view": "^4.0"
-    }
-}
-```
+To install through composer, run the following command from terminal:
 
-And then run `composer install` from the terminal.
-
-### Quick Installation
-
-Above installation can also be simplify by using the following command:
-
-    composer require "orchestra/view=^4.0"
+    composer require "orchestra/view"
 
 ## Configuration
 
