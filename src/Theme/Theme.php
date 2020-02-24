@@ -82,10 +82,6 @@ class Theme implements ThemeContract
 
     /**
      * Setup a new theme container.
-     *
-     * @param  \Illuminate\Contracts\Container\Container  $app
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
-     * @param  \Illuminate\Filesystem\Filesystem  $filesystem
      */
     public function __construct(Container $app, Dispatcher $dispatcher, Filesystem $filesystem)
     {
@@ -116,10 +112,6 @@ class Theme implements ThemeContract
 
     /**
      * Set the theme, this would also load the theme manifest.
-     *
-     * @param  string|null  $theme
-     *
-     * @return void
      */
     public function setTheme(?string $theme): void
     {
@@ -140,8 +132,6 @@ class Theme implements ThemeContract
 
     /**
      * Get the theme.
-     *
-     * @return string
      */
     public function getTheme(): string
     {
@@ -150,8 +140,6 @@ class Theme implements ThemeContract
 
     /**
      * Boot and Load theme starter files.
-     *
-     * @return bool
      */
     public function boot(): bool
     {
@@ -176,8 +164,6 @@ class Theme implements ThemeContract
 
     /**
      * Resolving the theme.
-     *
-     * @return bool
      */
     public function resolving(): bool
     {
@@ -196,8 +182,6 @@ class Theme implements ThemeContract
 
     /**
      * Get theme path.
-     *
-     * @return string
      */
     public function getThemePath(): string
     {
@@ -206,8 +190,6 @@ class Theme implements ThemeContract
 
     /**
      * Get cascading theme path.
-     *
-     * @return string
      */
     public function getCascadingThemePath(): string
     {
@@ -216,8 +198,6 @@ class Theme implements ThemeContract
 
     /**
      * Get theme paths.
-     *
-     * @return array
      */
     public function getThemePaths(): array
     {
@@ -229,24 +209,20 @@ class Theme implements ThemeContract
 
     /**
      * Get available theme paths.
-     *
-     * @return array
      */
     public function getAvailableThemePaths(): array
     {
         $filesystem = $this->filesystem;
 
-        return Collection::make($this->getThemePaths())->filter(static function ($path) use ($filesystem) {
-            return $filesystem->isDirectory($path);
-        })->values()->all();
+        return Collection::make($this->getThemePaths())
+            ->filter(static function ($path) use ($filesystem) {
+                return $filesystem->isDirectory($path);
+            })->values()
+            ->all();
     }
 
     /**
      * URL helper for the theme.
-     *
-     * @param  string  $url
-     *
-     * @return string
      */
     public function to(string $url = ''): string
     {
@@ -255,10 +231,6 @@ class Theme implements ThemeContract
 
     /**
      * Relative URL helper for theme.
-     *
-     * @param  string  $url
-     *
-     * @return string
      */
     public function asset(string $url = ''): string
     {
@@ -267,10 +239,6 @@ class Theme implements ThemeContract
 
     /**
      * Get theme autoload files from manifest.
-     *
-     * @param  string $themePath
-     *
-     * @return array
      */
     protected function getThemeAutoloadFiles(string $themePath): array
     {
@@ -281,8 +249,6 @@ class Theme implements ThemeContract
 
     /**
      * Set theme paths to view file finder paths.
-     *
-     * @return void
      */
     protected function setViewPaths(): void
     {
@@ -297,8 +263,6 @@ class Theme implements ThemeContract
 
     /**
      * Reset theme paths to view file finder paths.
-     *
-     * @return void
      */
     protected function resetViewPaths(): void
     {

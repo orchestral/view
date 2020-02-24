@@ -15,11 +15,6 @@ class Decorator
 
     /**
      * Registers a custom macro.
-     *
-     * @param  string  $name
-     * @param  \Closure  $macro
-     *
-     * @return void
      */
     public function macro(string $name, callable $macro): void
     {
@@ -29,7 +24,6 @@ class Decorator
     /**
      * Render the macro.
      *
-     * @param  string  $name
      * @param  mixed  $parameters
      *
      * @throws \BadMethodCallException
@@ -47,9 +41,6 @@ class Decorator
 
     /**
      * Dynamically handle calls to custom macros.
-     *
-     * @param  string  $method
-     * @param  array   $parameters
      *
      * @return mixed
      */

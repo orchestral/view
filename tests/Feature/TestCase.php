@@ -12,8 +12,6 @@ abstract class TestCase extends Testbench
      * Get package aliases.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array
      */
     protected function getPackageAliases($app): array
     {
@@ -26,8 +24,6 @@ abstract class TestCase extends Testbench
      * Override application aliases.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array
      */
     protected function overrideApplicationProviders($app): array
     {

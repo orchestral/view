@@ -39,10 +39,7 @@ class ActivateCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param  \Orchestra\View\Theme\Finder  $finder
-     *
      * @return void
-     *
      * @return int
      */
     public function handle(Finder $finder)
@@ -68,13 +65,10 @@ class ActivateCommand extends Command
     /**
      * Validate provided theme.
      *
-     * @param  string  $group
      * @param  string|int  $id
      * @param  object|null  $theme
      *
      * @throws \InvalidArgumentException
-     *
-     * @return bool
      */
     protected function validateProvidedTheme(string $group, $id, $theme): bool
     {
@@ -91,11 +85,6 @@ class ActivateCommand extends Command
 
     /**
      * Get all available theme by type.
-     *
-     * @param  \Orchestra\View\Theme\Finder  $finder
-     * @param  string  $type
-     *
-     * @return \Illuminate\Support\Collection
      */
     protected function getAvailableTheme(Finder $finder, string $type): Collection
     {

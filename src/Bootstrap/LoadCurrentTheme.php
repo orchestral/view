@@ -9,10 +9,6 @@ class LoadCurrentTheme
 {
     /**
      * Bootstrap the given application.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     *
-     * @return void
      */
     public function bootstrap(Application $app): void
     {
@@ -24,11 +20,6 @@ class LoadCurrentTheme
 
     /**
      * Set current theme for request.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Orchestra\Contracts\Theme\Theme  $theme
-     *
-     * @return void
      */
     protected function setCurrentTheme(Application $app, Theme $theme): void
     {
@@ -51,11 +42,6 @@ class LoadCurrentTheme
 
     /**
      * Boot theme resolver.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Orchestra\Contracts\Theme\Theme  $theme
-     *
-     * @return void
      */
     protected function setThemeResolver(Application $app, Theme $theme): void
     {

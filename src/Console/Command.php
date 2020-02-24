@@ -11,9 +11,6 @@ abstract class Command extends BaseCommand
     /**
      * Execute the console command.
      *
-     * @param  \Symfony\Component\Console\Input\InputInterface  $input
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
-     *
      * @return mixed
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -27,8 +24,6 @@ abstract class Command extends BaseCommand
 
     /**
      * Finish the console command.
-     *
-     * @return void
      */
     protected function finish(): void
     {
