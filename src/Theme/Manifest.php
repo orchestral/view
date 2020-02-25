@@ -40,9 +40,6 @@ class Manifest
     /**
      * Load the theme.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  string  $path
-     *
      * @throws \RuntimeException
      */
     public function __construct(Filesystem $files, string $path)
@@ -55,9 +52,7 @@ class Manifest
 
             if (\is_null($jsonable)) {
                 // json_decode couldn't parse, throw an exception.
-                throw new RuntimeException(
-                    "Theme [{$path}]: cannot decode theme.json file"
-                );
+                throw new RuntimeException("Theme [{$path}]: cannot decode theme.json file");
             }
 
             $this->items = new Fluent($this->generateManifestConfig($jsonable));
@@ -70,7 +65,6 @@ class Manifest
     /**
      * Get single attribute.
      *
-     * @param  string  $key
      * @param  mixed|null  $default
      *
      * @return mixed
@@ -82,8 +76,6 @@ class Manifest
 
     /**
      * Get collection.
-     *
-     * @return \Illuminate\Support\Fluent
      */
     public function items(): Fluent
     {
@@ -95,24 +87,17 @@ class Manifest
      * would allow other part of the application to use this configuration
      * to migrate, load service provider as well as preload some
      * configuration.
-     *
-     * @param  array  $config
-     *
-     * @return array
      */
     protected function generateManifestConfig(array $config): array
     {
-        return Collection::make($this->manifestOptions)->mapWithKeys(static function ($default, $key) use ($config) {
-            return [$key => ($config[$key] ?? $default)];
-        })->all();
+        return Collection::make($this->manifestOptions)
+            ->mapWithKeys(static function ($default, $key) use ($config) {
+                return [$key => ($config[$key] ?? $default)];
+            })->all();
     }
 
     /**
      * Get theme name from path.
-     *
-     * @param  string  $path
-     *
-     * @return string
      */
     protected function parseThemeNameFromPath(string $path): string
     {
@@ -125,8 +110,6 @@ class Manifest
     /**
      * Magic method to get items by key.
      *
-     * @param  string  $key
-     *
      * @return mixed
      */
     public function __get(string $key)
@@ -136,10 +119,6 @@ class Manifest
 
     /**
      * Magic Method to check isset by key.
-     *
-     * @param  string  $key
-     *
-     * @return bool
      */
     public function __isset(string $key): bool
     {

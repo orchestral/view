@@ -10,8 +10,6 @@ class ThemeManager extends Manager
 {
     /**
      * Create an instance of the orchestra theme driver.
-     *
-     * @return \Orchestra\Contracts\Theme\Theme
      */
     protected function createOrchestraDriver(): ThemeContract
     {
@@ -32,8 +30,6 @@ class ThemeManager extends Manager
 
     /**
      * Detect available themes.
-     *
-     * @return \Illuminat\Support\Collection
      */
     public function detect(): Collection
     {

@@ -23,8 +23,6 @@ class CommandServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function registerActivateCommand(): void
     {
@@ -35,8 +33,6 @@ class CommandServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function registerDetectCommand(): void
     {
@@ -47,8 +43,6 @@ class CommandServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function registerOptimizeCommand(): void
     {

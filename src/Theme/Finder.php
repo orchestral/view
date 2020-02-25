@@ -24,8 +24,6 @@ class Finder implements FinderContract
 
     /**
      * Construct a new finder.
-     *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
      */
     public function __construct(Filesystem $files, string $publicPath)
     {
@@ -37,8 +35,6 @@ class Finder implements FinderContract
      * Detect available themes.
      *
      * @throws \RuntimeException
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function detect(): Collection
     {
@@ -53,10 +49,6 @@ class Finder implements FinderContract
 
     /**
      * Get folder name from full path.
-     *
-     * @param  string   $path
-     *
-     * @return string
      */
     protected function parseThemeNameFromPath(string $path): string
     {

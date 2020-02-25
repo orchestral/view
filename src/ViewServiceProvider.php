@@ -38,8 +38,6 @@ class ViewServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider for theme.
-     *
-     * @return void
      */
     protected function registerTheme(): void
     {

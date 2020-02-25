@@ -24,8 +24,6 @@ class DetectCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param  \Orchestra\View\Theme\Finder  $finder
-     *
      * @return int
      */
     public function handle(Finder $finder)
@@ -52,12 +50,6 @@ class DetectCommand extends Command
 
     /**
      * Get theme status.
-     *
-     * @param  string  $type
-     * @param  \Orchestra\View\Theme\Manifest  $theme
-     * @param  bool  $active
-     *
-     * @return string
      */
     protected function getThemeStatus(string $type, Manifest $theme, bool $active = false): string
     {

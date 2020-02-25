@@ -38,8 +38,6 @@ class OptimizeCommand extends BaseCommand
 
     /**
      * Compile all view files.
-     *
-     * @return void
      */
     protected function compileViews(): void
     {
@@ -50,10 +48,6 @@ class OptimizeCommand extends BaseCommand
 
     /**
      * Compile all views files in path.
-     *
-     * @param  string  $path
-     *
-     * @return void
      */
     protected function compileViewsInPath(string $path): void
     {
@@ -72,9 +66,6 @@ class OptimizeCommand extends BaseCommand
      * Compile single view file.
      *
      * @param  mixed  $engine
-     * @param  string  $file
-     *
-     * @return void
      */
     protected function compileSingleViewFile($engine, string $file): void
     {

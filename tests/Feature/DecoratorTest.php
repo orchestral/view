@@ -10,8 +10,6 @@ class DecoratorTest extends TestCase
      * Get package aliases.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array
      */
     protected function getPackageAliases($app): array
     {
@@ -24,8 +22,6 @@ class DecoratorTest extends TestCase
      * Get package providers.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array
      */
     protected function getPackageProviders($app): array
     {
