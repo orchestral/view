@@ -5,7 +5,7 @@ View Component is Orchestra Platform approach to deliver themeable application t
 
 This would allow extension (or even packages) to have it's own set of view styling while developer can maintain a standardise overall design through out the project using a theme.
 
-[![tests](https://github.com/orchestral/view/workflows/tests/badge.svg?branch=6.x)](https://github.com/orchestral/view/actions?query=workflow%3Atests+branch%3A6.x)
+[![tests](https://github.com/orchestral/view/workflows/tests/badge.svg?branch=master)](https://github.com/orchestral/view/actions?query=workflow%3Atests+branch%3Amaster)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/view/version)](https://packagist.org/packages/orchestra/view)
 [![Total Downloads](https://poser.pugx.org/orchestra/view/downloads)](https://packagist.org/packages/orchestra/view)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/view/v/unstable)](//packagist.org/packages/orchestra/view)
