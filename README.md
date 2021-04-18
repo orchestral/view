@@ -10,7 +10,7 @@ This would allow extension (or even packages) to have it's own set of view styli
 [![Total Downloads](https://poser.pugx.org/orchestra/view/downloads)](https://packagist.org/packages/orchestra/view)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/view/v/unstable)](//packagist.org/packages/orchestra/view)
 [![License](https://poser.pugx.org/orchestra/view/license)](https://packagist.org/packages/orchestra/view)
-[![Coverage Status](https://coveralls.io/repos/github/orchestral/view/badge.svg?branch=master)](https://coveralls.io/github/orchestral/view?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/orchestral/view/badge.svg?branch=6.x)](https://coveralls.io/github/orchestral/view?branch=6.x)
 
 ## Version Compatibility
 

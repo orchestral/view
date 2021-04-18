@@ -1,7 +1,6 @@
 {
     "name": "orchestra/view",
     "description": "View Component for Orchestra Platform",
-    "homepage": "http://orchestraplatform.com/docs/latest/components/view/",
     "keywords": ["orchestra-platform", "orchestral", "laravel", "view", "theme"],
     "license": "MIT",
     "authors": [
